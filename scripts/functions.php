@@ -17,6 +17,7 @@
 //         }
 //         echo "Connected successfully";
 // }
+
 function db_connect() //to connect database
 {
 $connection = pg_connect("host=127.0.0.1 dbname=qualitylife_db user=smit password=smitpatelx" ); 
