@@ -1,1 +1,8 @@
 group 19
+
+patels@opentech2.durhamcollege.org:/var/www/html/git/group19.git
+
+git clone
+git pull
+git add .
+git push                [origin/master]
