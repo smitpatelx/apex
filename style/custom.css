@@ -1,0 +1,118 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: Dosis, sans-serif;
+  }
+
+#main {
+flex: 1 0 auto;
+}
+
+.brand-logo-s {
+    width: 60px;
+    height: 60px;
+    margin:0 10px 5px 30px;
+    padding-bottom: 10px;
+    vertical-align: middle;
+    align-self: center;
+    transition: all .5s;
+}
+
+.nav-bar-site-logo {
+    animation-duration: 2s;
+    animation-name: logo-anim;
+    animation-delay: 0s;
+    animation-direction:alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes logo-anim {
+    0%{
+        transform: scale(1,1);
+        opacity: 1;
+    }100%{
+        transform: scale(1.2,1.2);
+        opacity: 0.8;
+    }
+}
+
+.home-hero {
+    font-family: Dosis, sans-serif;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.carousel-wrapper {
+    width:100%;
+    padding:2% 20%;
+    text-align: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.nav-bar-site-logo::before {
+    margin:0;
+    padding:0px;
+}
+
+#logo-container {
+    margin:0 !important;
+    padding:0 !important;
+    width:310px;
+}
+
+.listing-hero-text h3 {
+    font-family: Dosis,sans-serif;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 4rem !important;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.397);
+    border-radius: 5px;
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+}
+
+.nav-bar-site-text {
+    width:300px;
+    height:64px;
+    font-family: Pacifico, sans-serif;
+    letter-spacing: 3px;
+    justify-self: center;
+    margin:5px 10px 0 10px;
+}
+
+.waves-effect .waves-dark .waves-ripple {
+    background-color: rgb(255, 0, 0);
+}
+
+.footer-made-by {
+    font-family: Dosis;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.footer-made-by a {
+    text-decoration: none;
+    color:red;
+
+}
+
+.transition-1 {
+    transition:all 1s;
+}
+
+.transition-2 {
+    transition:all 2s;
+}
+
+.bg-blur {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+}
