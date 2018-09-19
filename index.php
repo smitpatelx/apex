@@ -13,20 +13,6 @@ $desc = "Home Page of QualityLife";
 require("./header.php");
 ?>
 
-    <!-- <div class="loading_wrap grid-x">
-        <div class="cell large-12 medium-12 preloader-wrapper small active">
-            <div class="spinner-layer spinner-blue">
-                <div class="circle-clipper left">
-                <div class="circle"></div>
-                </div><div class="gap-patch">
-                <div class="circle"></div>
-                </div><div class="circle-clipper right">
-                <div class="circle"></div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
      <div class="row">
         <div class="col l12">
         <div class="card cyan lighten-1 z-depth-4 hoverable">

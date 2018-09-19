@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>QualityLife | <?php echo($title); ?></title>
+    <title>Apex | <?php echo($title); ?></title>
 
     <link rel="icon" href="./assets/logo/ico.png">
 
@@ -18,16 +18,32 @@
 
 </head>
 <body>
+    <div class="preloader-background">
+        <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <nav class="blue darken-1" role="navigation">
         <div class="nav-wrapper">
             <!-- <img src="./assets/logo/bandcamp-brands.svg" alt="s" class="nav-bar-site-logo hide-on-med-and-down"> -->
             <div class="brand-logo-s">
-                <i class="fas fa-heartbeat fa-3x hide-on-med-and-down nav-bar-site-logo"></i>
+                <i class="fab fa-strava fa-3x hide-on-med-and-down nav-bar-site-logo"></i>
             </div>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="index.php" class="brand-logo stretch-it" data-splitting>
-                <h4 class="nav-bar-site-text">Quality Life</h4>
+                <h4 class="nav-bar-site-text">APEX Listing</h4>
             </a>
             
             <ul id="nav-mobile" class="right hide-on-med-and-down">

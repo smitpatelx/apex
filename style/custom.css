@@ -1,3 +1,15 @@
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader-64x/Preloader_2.gif) center no-repeat #fff;
+}
+
 body {
     display: flex;
     min-height: 100vh;
@@ -9,13 +21,51 @@ body {
 flex: 1 0 auto;
 }
 
-.loading_wrap {
-    width:100%;
-    height:100%;
-    position: absolute;
-    top:0;
-    overflow: hidden;
-    z-index: 1000;
+.preloader-background {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #eee;
+	
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+}
+
+.loading-text {
+    font-size: 4rem;
+    font-family: Dosis,sans-serif;
+    transition:all 1s;
+}
+
+.loading-text span{
+    color: #555555;
+    animation-name: loading_words;
+    animation-duration:0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0s;
+}
+
+.loading-text span:nth-child(odd){
+    color: #006eff;
+    animation-name: loading_words;
+    animation-duration:0.7s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-delay: 0s;
+}
+
+@keyframes loading_words{
+    0%{
+        transform: translateY(10px);
+    }
+    100%{
+        transform: translateY(-10px);
+    }
 }
 
 .brand-logo-s {
@@ -39,10 +89,8 @@ flex: 1 0 auto;
 @keyframes logo-anim {
     0%{
         transform: scale(1,1);
-        opacity: 1;
     }100%{
-        transform: scale(1.2,1.2);
-        opacity: 0.8;
+        transform: scale(0.9,0.9);
     }
 }
 
@@ -88,7 +136,7 @@ flex: 1 0 auto;
 .nav-bar-site-text {
     width:300px;
     height:64px;
-    font-family: Pacifico, sans-serif;
+    font-family: Dosis, sans-serif;
     letter-spacing: 3px;
     justify-self: center;
     margin:5px 10px 0 10px;
