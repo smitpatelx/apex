@@ -73,8 +73,10 @@
             </form>
         </li>
         <li class="center-align"><a href="index.php">Home</a></li>
-        <li class="center-align"><a href="listing.php">List</a></li>
+        <li class="center-align"><a href="listing.php">Listing</a></li>
+        <li class="center-align"><a href="login.php">Login</a></li>
         <li class="center-align"><a href="admin.php">Admin</a></li>
+        <li class="center-align"><a href="dashboard.php">Dashboard</a></li>
         <li style="position: absolute;bottom:50px;width:250px;">
             <div class="footer-copyright">
                 <div class="container center footer-made-by">

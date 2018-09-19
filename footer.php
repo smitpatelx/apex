@@ -15,7 +15,9 @@
                     <ul>
                         <li><a class="white-text shift-right" href="index.php" data-splitting>HOME</a></li>
                         <li><a class="white-text shift-right" href="listing.php" data-splitting>LISTING</a></li>
+                        <li><a class="white-text shift-right" href="login.php" data-splitting>LOGIN</a></li>
                         <li><a class="white-text shift-right" href="admin.php" data-splitting>ADMIN</a></li>
+                        <li><a class="white-text shift-right" href="dashboard.php" data-splitting>DASHBOARD</a></li>
                     </ul>
                 </div>
             </div>
