@@ -22,3 +22,10 @@ $(document).ready(function () {
 $(document).ready(function () {
     $('.slider').slider();
 });
+
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function () { $body.addClass("loading_wrap"); },
+    ajaxStop: function () { $body.removeClass("loading_wrap"); }
+});
