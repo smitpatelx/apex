@@ -88,9 +88,10 @@ flex: 1 0 auto;
 
 @keyframes logo-anim {
     0%{
-        transform: scale(1,1);
+        transform: scale(1,1) rotate3d(0);
+        
     }100%{
-        transform: scale(0.9,0.9);
+        transform: scale(0.9,0.9) rotate3d(1, 0, 0, 180deg);
     }
 }
 
