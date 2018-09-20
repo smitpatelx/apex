@@ -135,12 +135,13 @@ flex: 1 0 auto;
 }
 
 .nav-bar-site-text {
-    width:300px;
+    width:240px;
     height:64px;
     font-family: Dosis, sans-serif;
     letter-spacing: 3px;
     justify-self: center;
-    margin:5px 10px 0 10px;
+    margin:7px 0 0 10px !important;
+    text-align: center;
 }
 
 .waves-effect .waves-dark .waves-ripple {

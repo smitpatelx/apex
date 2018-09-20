@@ -47,7 +47,7 @@ require("./header.php");
   </div>
 
   <div class="grid-x grid-padding-x">
-  <div class="cell medium-12 large-12 small-12 grid-x grid-margin-x">
+  <div class="cell medium-12 large-12 small-12 grid-x grid-margin-x small-up-2 medium-up-2 large-up-4">
   <?php 
   $conn = db_connect();
   $output = "";
@@ -61,7 +61,7 @@ require("./header.php");
     while($row = pg_fetch_assoc($result)) {
         // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
 
-    echo  "<div class='card cell medium-3 large-3 small-6 z-depth-4 hoverable'>";
+    echo  "<div class='card cell z-depth-4 hoverable' data-aos='zoom-out'>";
     echo  "<div class='card-image waves-effect waves-block waves-light'>";
     echo  "<img class='activator' src='".$row["img"]."'>";
     echo  "</div>";

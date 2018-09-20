@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./style/main.min.css">
     <link rel="stylesheet" href="./style/foundation/css/foundation.min.css">
     <link rel="stylesheet" href="./style/custom.css">
+    <link rel="stylesheet" href="./style/aos.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
@@ -43,7 +44,7 @@
             </div>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="index.php" class="brand-logo stretch-it" data-splitting>
-                <h4 class="nav-bar-site-text ml-4 pl-4">APEX Listing</h4>
+                <h4 class="nav-bar-site-text">APEX Listing</h4>
             </a>
             
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -66,7 +67,7 @@
         <li class="center-align">
             <form class="center container">
                 <div class="input-field blue-grey">
-                <input class="center-align black-text" id="search" type="search" placeholder="SEARCH" required>
+                <input class="center-align black-text" id="search1" type="search" placeholder="SEARCH" required>
                 <label class="label-icon m-2 p-1" for="search"><i class="material-icons">search</i></label>
                 <i class="material-icons">close</i>
                 </div>

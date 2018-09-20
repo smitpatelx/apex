@@ -38,3 +38,5 @@ $('.loading-text')
 $('.preloader-wrapper')
     .delay(1350)
     .fadeOut();
+
+AOS.init();

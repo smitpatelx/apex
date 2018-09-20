@@ -21,8 +21,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="row center" data-splitting>
-                <a class="col l2 s2 offset-l5 waves-effect waves-light btn-flat z-depth-5 transition-1 blue white-text text-lighten-4 modal-trigger center-align shift-right" href="#modal1">&copy; Copyright</a>
+            <div class="grid-x center" data-splitting>
+                <a class="cell large-2 medium-2 small-2 large-offset-5 medium-offset-5 small-offset-5 waves-effect waves-light btn-flat z-depth-5 transition-1 blue white-text text-lighten-4 modal-trigger center-align shift-right" href="#modal1">&copy; Copyright</a>
 
                 <div id="modal1" class="modal modal-fixed-footer">
                     <div class="row modal-content black-text">
@@ -55,7 +55,9 @@
     <script src="./scripts/js/parallax.min.js"></script>
     <script src="./scripts/js/custom.js"></script> -->
     <script src="./scripts/js/vendors.js"></script>
+    <script src="./scripts/js/aos.js"></script>
     <script src="./scripts/js/custom.js"></script>
+    
     <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script> -->
 
 </body>
