@@ -11,7 +11,7 @@
                     </p>
                 </div>
                 <div class="col l6 s12 center">
-                    <h4 class="white-text ">Pages</h4>
+                    <h4 class="white-text pl-2">Pages</h4>
                     <ul>
                         <li><a class="white-text shift-right" href="index.php" data-splitting>HOME</a></li>
                         <li><a class="white-text shift-right" href="listing.php" data-splitting>LISTING</a></li>

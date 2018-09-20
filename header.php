@@ -18,7 +18,7 @@
 
 </head>
 <body>
-    <div class="preloader-background">
+    <div class="preloader-background white">
         <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
         <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">
@@ -43,7 +43,7 @@
             </div>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="index.php" class="brand-logo stretch-it" data-splitting>
-                <h4 class="nav-bar-site-text">APEX Listing</h4>
+                <h4 class="nav-bar-site-text ml-4 pl-4">APEX Listing</h4>
             </a>
             
             <ul id="nav-mobile" class="right hide-on-med-and-down">
