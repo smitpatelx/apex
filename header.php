@@ -44,7 +44,7 @@
             </div>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <a href="index.php" class="brand-logo stretch-it" data-splitting>
-                <h4 class="nav-bar-site-text">APEX Listing</h4>
+                <h4 class="nav-bar-site-text">Apex Listings</h4>
             </a>
             
             <ul id="nav-mobile" class="right hide-on-med-and-down">
