@@ -189,10 +189,8 @@ flex: 1 0 auto;
 .user-dashboard-img .full-width{
     width:120%;
     z-index: 1;
-    position:relative;
-    align-self: center;
-    text-align: center;
-    justify-self: center;
+    transform: scale(1.2,1);
+    object-fit: cover;
 }
 
 .user-dashboard-img a img{

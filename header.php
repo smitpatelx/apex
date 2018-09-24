@@ -19,7 +19,7 @@
 
 </head>
 <body>
-    <!-- <div class="preloader-background white">
+    <div class="preloader-background white">
         <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
         <div class="preloader-wrapper big active">
             <div class="spinner-layer spinner-blue-only">
@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <nav class="blue darken-1" role="navigation">
         <div class="nav-wrapper">

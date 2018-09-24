@@ -26,8 +26,8 @@ require("./header.php");
                     
                 </div>
                 </li>
-                <li class="list-block pt-2 py-2"><a href="#" class="welcomebtn_dashboard my-2"><i class="fas fa-user mr-3"></i>John Doe</a></li>
-                <li class="list-block pt-2 py-2"><a href="#!" class=" my-2"><i class="fas fa-at mr-3"></i>email</i>jdandturk@gmail.com</a></li>
+                <li class="pt-2 py-2"><a href="#" class="welcomebtn_dashboard my-2"><i class="fas fa-user mr-3"></i>Smit Patel</a></li>
+                <li class="pt-2 py-2"><a href="#!" class="welcomebtn_dashboard my-2"><i class="fas fa-at mr-3"></i>admin@netdevv.com</a></li>
                 <li><div class="divider"></div></li>
                 <li class="waves-effect list-block pt-2"><a href="#!" class=" my-2 postbtn_dashboard"><i class="fas fa-pen mr-3"></i>Posts</a></li>
                 <li class="waves-effect list-block pt-2"><a href="#!" class=" my-2 passbtn_dashboard"><i class="fas fa-user-lock mr-3"></i>Change Password</a></li>
@@ -40,6 +40,11 @@ require("./header.php");
         <div class="cell large-10 medium-10 small-10 p-4">
             <div class="welcome_dashboard center blue-text">
                 <h1 class='dosis'>WELCOME SMIT</h1>
+                <div>
+                    <h3 class='dosis red-text'>This is your DASH-board !</h3>
+                    <h5 class='dosis'><i class="fas fa-user mr-3"></i>Smit Patel</h5>
+                    <h5 class='dosis'><i class="fas fa-at mr-3"></i>admin@netdevv.com</h5>
+                </div>
             </div>
             <div class="pass_dashboard center">
                 <div class='grid-x'>
