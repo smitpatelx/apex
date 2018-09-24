@@ -40,3 +40,34 @@ $('.preloader-wrapper')
     .fadeOut();
 
 AOS.init();
+
+$(".post_dashboard").hide(0);
+$(".welcome_dashboard").show(0);
+$(".pass_dashboard").hide(0);
+$(".users_dashboard").hide(0);
+$(document).ready(function () {
+    $(".postbtn_dashboard").click(function () {
+        $(".post_dashboard").show(1000); 
+        $(".welcome_dashboard").hide(1000);
+        $(".pass_dashboard").hide(1000);
+        $(".users_dashboard").hide(1000);
+    });
+    $(".passbtn_dashboard").click(function () {
+        $(".post_dashboard").hide(1000);
+        $(".welcome_dashboard").hide(1000);
+        $(".pass_dashboard").show(1000);
+        $(".users_dashboard").hide(1000);
+    });
+    $(".usersbtn_dashboard").click(function () {
+        $(".post_dashboard").hide(1000);
+        $(".welcome_dashboard").hide(1000);
+        $(".pass_dashboard").hide(1000);
+        $(".users_dashboard").show(1000);
+    });
+    $(".welcomebtn_dashboard").click(function () {
+        $(".post_dashboard").hide(1000);
+        $(".welcome_dashboard").show(1000);
+        $(".pass_dashboard").hide(1000);
+        $(".users_dashboard").hide(1000);
+    });
+});

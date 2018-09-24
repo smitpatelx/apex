@@ -175,3 +175,55 @@ flex: 1 0 auto;
     -ms-filter: blur(3px);
     filter: blur(3px);
 }
+
+.full-width {
+    width:100%;
+    height:100%;
+}
+
+.user-dashboard-img {
+    width:100%;
+    position: relative;
+}
+
+.user-dashboard-img .full-width{
+    width:120%;
+    z-index: 1;
+    position:relative;
+    align-self: center;
+    text-align: center;
+    justify-self: center;
+}
+
+.user-dashboard-img a img{
+    position: absolute;
+    width:60%;
+    z-index: 5;
+    position: absolute;
+    top:40px;
+    left:40px;  
+}
+
+.admin_nav li {
+    display: block;
+    text-align: left;
+    padding-left: 10px;  
+}
+
+.admin_nav .list-block{
+    height: 50px;  
+}
+
+.admin_nav li:hover {
+    background: #55555544;
+}
+
+.scroll-table-y{
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height:85vh;
+}
+
+.dosis {
+    font-family: 'Dosis',sans-serif !important;
+}
