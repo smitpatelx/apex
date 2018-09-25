@@ -40,8 +40,7 @@ $(document).ready(function () {
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
-
-        
+       
         setTimeout(function(){
             $.get("dashboard_search.php", { "search": "%" }, function ($data) {
                 $(".result").html($data);

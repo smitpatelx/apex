@@ -33,6 +33,14 @@ require("./scripts/functions.php");
     OR LOWER(phone) LIKE $search1
     ORDER BY listing_demo.price DESC";
 
+    function delRow($table,$delValue){
+    $conn2 = db_connect();
+    $sql_del2 = "DELETE FROM $table WHERE id = $delValue";
+    $delResult2 = pg_query($conn2, $sql_del2);
+
+    //delRow("listing_demo",$row2["id"])
+    }
+// delRow('listing_demo',$row2["id"])
     $result2 = pg_query($conn2, $sql2); 
 
     while($row2 = pg_fetch_assoc($result2)) {
