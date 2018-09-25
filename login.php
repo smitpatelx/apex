@@ -16,8 +16,8 @@ require("./header.php");
 <div class="grid-x center">
 
         <ul id="tabs-swipe-demo col l4 offset-4" class="tabs center">
-            <li class="tab center"><a class="active" href="#sugn-up">Sign In</a></li>
-            <li class="tab center"><a href="#sign-in">Sign UP</a></li>
+            <li class="tab center"><a class="active blue-text" href="#sugn-up">Sign In</a></li>
+            <li class="tab center"><a href="#sign-in" class="blue-text">Sign UP</a></li>
         </ul>
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
