@@ -2,25 +2,14 @@ Splitting();
 
 $(document).ready(function () {
     $('.sidenav').sidenav();
-});
-
-$(document).ready(function () {
     $('.carousel').carousel({
         fullWidth: true,
         indicators: true
     });
-});
-
-$(document).ready(function () {
     $('.modal').modal();
-});
-
-$(document).ready(function () {
     $('.tabs').tabs();
-});
-
-$(document).ready(function () {
     $('.slider').slider();
+    $(".posts_search").dispatchEvent("input");
 });
 
 $body = $("body");
@@ -51,6 +40,13 @@ $(document).ready(function () {
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
+
+        
+        setTimeout(function(){
+            $.get("dashboard_search.php", { "search": "%" }, function ($data) {
+                $(".result").html($data);
+            });
+        },600);
     });
     $(".passbtn_dashboard").click(function () {
         $(".post_dashboard").hide(400);
