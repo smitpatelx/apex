@@ -80,7 +80,7 @@ $(document).ready(function () {
                 $(".result").html($data);
             })
         }
-        else
+        else if ($search.length == 0)
         {
             $.get("dashboard_search.php", { "search": "%" }, function ($data) {
                 $(".result").html($data);
