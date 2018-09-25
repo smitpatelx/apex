@@ -24,12 +24,13 @@ require("./scripts/functions.php");
                 
     // echo "<h5 class='black-text waves-effect list-block'>".$row2["location"]."</h5><br>";
     // }
-        $conn2 = db_connect();
-    $sql2 = "SELECT * FROM listing_demo WHERE LOWER(location) LIKE trim(LOWER('$_GET[search]%'))
-    OR LOWER(list_heading) LIKE trim(LOWER('$_GET[search]%'))
-    OR LOWER(price) LIKE LOWER('$_GET[search]%')
-    OR LOWER(sqft) LIKE LOWER('$_GET[search]%')
-    OR LOWER(phone) LIKE LOWER('$_GET[search]%')
+    $conn2 = db_connect();
+    $search1 = "trim(LOWER('$_GET[search]%'))";
+    $sql2 = "SELECT * FROM listing_demo WHERE LOWER(location) LIKE $search1
+    OR LOWER(list_heading) LIKE $search1
+    OR LOWER(price) LIKE $search1
+    OR LOWER(sqft) LIKE $search1
+    OR LOWER(phone) LIKE $search1
     ORDER BY listing_demo.price DESC";
 
     $result2 = pg_query($conn2, $sql2); 
