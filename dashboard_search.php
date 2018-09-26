@@ -1,6 +1,6 @@
-<div class="scroll-table-y">
+<div class="scroll-table-y scroll_snap">
 <table class="highlight centered responsive-table">
-    <thead>
+    <thead class='scroll_snap_item'>
         <tr>
             <th>Title</th>
             <th>Location</th>
@@ -44,13 +44,13 @@ require("./scripts/functions.php");
     $result2 = pg_query($conn2, $sql2); 
 
     while($row2 = pg_fetch_assoc($result2)) {
-    echo "<tr>";
+    echo "<tr class='scroll_snap_item'>";
     echo "<td>".$row2["list_heading"]."</td>";
     echo "<td>".$row2["location"]."</td>";
     echo "<td>$ ".$row2["price"]."</td>";
     echo "<td>".$row2["sqft"]." sqft </td>";
     echo "<td>".$row2["phone"]."</td>";
-    echo "<td><a class='btn red' href='".$row2["id"]."'><i class='fas fa-trash'></i></a></td>";
+    echo "<td><a class='btn red' href='".$row2["id"]."'><i class='fas fa-trash'></i></a><a class='btn teal lighten-1 mx-1' href='".$row2["id"]."'><i class='fas fa-pen-square'></i></a></td>";
     echo "</tr>";
     }
     ?>       

@@ -14,10 +14,10 @@ require("./header.php");
 ?>
 
     <div class="grid-x">       
-        <div class="cell large-2 medium-2 small-2 center pr-3">
+        <div class="cell large-2 medium-2 small-2 center pr-3 dashdoard_container">
             <ul id="slide-out" class="admin_nav">
                 <li>
-                <div class="user-view">
+                <div class="user-view hide-on-med-and-down">
                     <div class="background user-dashboard-img">
                         <img src="./assets/bg/1511.jpg" class="full-width">
                     
@@ -26,19 +26,20 @@ require("./header.php");
                     
                 </div>
                 </li>
-                <a href="#" class="welcomebtn_dashboard my-2"><li class="pt-2 py-2"><i class="fas fa-user mr-3"></i>Smit Patel</li></a>
-                <a href="#" class="welcomebtn_dashboard my-2"><li class="pt-2 py-2"><i class="fas fa-at mr-3"></i>admin@netdevv.com</li></a>
+                <a href="#" class="welcomebtn_dashboard my-2"><li class="pt-2 py-2"><i class="fas fa-user mr-3"></i><p class='hide-on-med-and-down'>Smit Patel</p></li></a>
+                <a href="#" class="welcomebtn_dashboard my-2"><li class="pt-2 py-2"><i class="fas fa-at mr-3"></i><p class='hide-on-med-and-down'>admin@netdevv.com</p></li></a>
                 <li><div class="divider black"></div></li>
-                <a href="#" class=" my-2 postbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-pen mr-3"></i>Posts</li></a>
-                <a href="#" class=" my-2 passbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-user-lock mr-3"></i>Change Password</li></a>
-                <a class=" my-2 usersbtn_dashboard" href="#!"><li class="waves-effect list-block pt-2"><i class="fas fa-users mr-3"></i>Users</li></a>
+                <a href="#" class=" my-2 postbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-pen mr-3"></i><p class='hide-on-med-and-down'>Posts</p></li></a>
+                <a href="#" class=" my-2 passbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-user-lock mr-3"></i><p class='hide-on-med-and-down'>Change Password</p></li></a>
+                <a class=" my-2 usersbtn_dashboard" href="#!"><li class="waves-effect list-block pt-2"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></li></a>
             </ul>
             <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons small">menu</i></a> -->
         </div>
          
         
         <div class="cell large-10 medium-10 small-10 p-4">
-            <div class="welcome_dashboard center blue-text">
+            <div class="dashdoard_container scroll_bar_hide">
+            <div class="welcome_dashboard center blue-text dashdoard_container scroll_snap_item" >
                 <h1 class='dosis'>WELCOME SMIT</h1>
                 <div>
                     <h3 class='dosis red-text'>This is your DASH-board !</h3>
@@ -46,7 +47,7 @@ require("./header.php");
                     <h5 class='dosis'><i class="fas fa-at mr-3"></i>admin@netdevv.com</h5>
                 </div>
             </div>
-            <div class="pass_dashboard center">
+            <div class="pass_dashboard center dashdoard_container scroll_snap_item">
                 <div class='grid-x'>
                     <h2 class='cell medium-5 medium-offset-3 center red-text dosis'>Change Password</h2>
                     <form class='cell medium-5 medium-offset-3 center row' action='dashboard.php'>
@@ -66,7 +67,7 @@ require("./header.php");
                     </form>
                 </div>
             </div>
-            <div class="users_dashboard center">
+            <div class="users_dashboard center dashdoard_container scroll_snap_item">
                 <h2 class='dosis'>Users</h2>
                 <table class="highlight centered responsive-table">
                         <thead>
@@ -87,7 +88,7 @@ require("./header.php");
                         </tbody>
                 </table>
             </div>
-            <div class="post_dashboard">
+            <div class="post_dashboard dashdoard_container scroll_snap_item">
                 <div>
                     <h4 class='dosis center blue-text text-lighten-1'>LIVE SEARCH</h4>
                     <form>                 
@@ -101,8 +102,7 @@ require("./header.php");
 
                     </div>
                       
-                </div>
-                
+                </div>               
             </div>
         </div>
     </div>

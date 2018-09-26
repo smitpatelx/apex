@@ -229,6 +229,10 @@ flex: 1 0 auto;
     padding-left: 10px;  
 }
 
+.admin_nav a li *{
+    display: inline-block; 
+}
+
 .admin_nav a li{
     color:#fff;
     transition: all 0.5s;
@@ -255,4 +259,23 @@ flex: 1 0 auto;
 
 .dosis {
     font-family: 'Dosis',sans-serif !important;
+}
+
+.dashdoard_container {
+    height:80vh;
+}
+
+.scroll_snap_item {
+    scroll-snap-align:start;
+    -moz-scroll-snap-align:start;
+}
+
+.scroll_snap {
+    scroll-snap-type: y mandatory;
+    -moz-scroll-snap-type: y mandatory;
+}
+
+.scroll_bar_hide{
+    scroll-behavior: smooth;
+    width:102%;
 }
