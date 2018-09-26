@@ -14,7 +14,7 @@ require("./header.php");
 ?>
 
     <div class="grid-x">       
-        <div class="cell large-2 medium-2 small-2 center pr-3 dashdoard_container">
+        <div class="cell large-2 medium-2 small-3 center pr-3 dashdoard_container">
             <ul id="slide-out" class="admin_nav">
                 <li>
                 <div class="user-view hide-on-med-and-down">
@@ -37,7 +37,7 @@ require("./header.php");
         </div>
          
         
-        <div class="cell large-10 medium-10 small-10 p-4">
+        <div class="cell large-10 medium-10 small-9 p-5">
             <div class="dashdoard_container scroll_bar_hide">
             <div class="welcome_dashboard center blue-text dashdoard_container scroll_snap_item" >
                 <h1 class='dosis'>WELCOME SMIT</h1>

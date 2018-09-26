@@ -230,7 +230,8 @@ flex: 1 0 auto;
 }
 
 .admin_nav a li *{
-    display: inline-block; 
+    display: inline-block;
+    text-align: center; 
 }
 
 .admin_nav a li{
