@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./style/foundation/css/foundation.min.css">
     <link rel="stylesheet" href="./style/custom.css">
     <link rel="stylesheet" href="./style/aos.css">
+    <link rel="stylesheet" href="./style/slick.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     
@@ -21,7 +22,7 @@
 <body>
     <div class="preloader-background white">
         <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
-        <div class="preloader-wrapper big active">
+        <div class="preloader-wrapper big active">       
             <div class="spinner-layer spinner-blue-only">
                 <div class="circle-clipper left">
                     <div class="circle"></div>

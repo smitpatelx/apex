@@ -13,36 +13,28 @@ $desc = "Home Page of QualityLife";
 require("./header.php");
 ?>
 
-     <div class="row">
-        <div class="col l12">
-        <div class="card cyan lighten-1 z-depth-4 hoverable">
-            <div class="card-content">
-            <span class="card-title center-align">WELCOME</span>
-            <div class="container home-hero">
-                <h6>If you are thinking of buying a home working with a QUALITY LIFE should be your first step. REALTOR.ca can connect you to QUALITY LIFE across Canada and help find the right home for you.<br/>
-                    Start your property search with the fully redesigned QUALITY-LIFE.ca app for Android.
-                </h6>
+    <div class="grid-x">
+            <div class="cell large-12 medium-12 small-12 home_hero">
+                <img src="./assets/bg/blue_bg1.svg" alt="bg">
+                <h1 class="dosis center white-text" data-aos="fade-up" data-aos-offset="0" data-aos-delay="2000" data-splitting>APEX</h1>
+                <p class="dosis center white-text" data-aos="fade-down" data-aos-offset="0" data-aos-delay="2000" data-splitting>If you are thinking of buying a home working with a APEX should be your first step. APEX can connect you
+                to APEX across Canada and help find the right home for you.<br />
+                Start your property search with the fully redesigned APEX app for Android.</p>
+                <div class="center">
+                    <a data-aos="flip-up" data-aos-delay="2000"  data-aos-duration="1500" href="listing.php" class="waves-effect waves-light btn-flat z-depth-5 white-text text-darken-4 blue lighten-2 transition-1">Discover More</a>
+                    <a data-aos="flip-down" data-aos-delay="2000" data-aos-duration="1500" class="modal-trigger waves-effect waves-light btn-flat z-depth-5 white-text text-darken-4 blue lighten-2 transition-1" href="#modal1">&copy; Copyright</a>
+                </div>
             </div>
-            </div>
-            <div class="card-action center">
-            <a href="listing.php" class="waves-effect waves-light btn-flat z-depth-5 cyan-text text-darken-4 transition-1">Discover More</a>
-            <a class="modal-trigger waves-effect waves-light btn-flat z-depth-5 cyan-text text-darken-4 transition-1" href="#modal1">&copy; Copyright</a>
-            </div>
-        </div>
-        </div>
     </div>
 
-    <div class="carousel-wrapper">
-        <div class="carousel carousel-slider center z-depth-4">
-            <a class="carousel-item" href="#one!"><img src="./assets/illustrations/1a.jpg"></a>
-            <a class="carousel-item" href="#two!"><img src="./assets/illustrations/2a.jpg"></a>
-            <a class="carousel-item" href="#three!"><img src="./assets/illustrations/3a.jpg"></a>
-            <a class="carousel-item" href="#four!"><img src="./assets/illustrations/4a.jpg"></a>
-            <a class="carousel-item" href="#five!"><img src="./assets/illustrations/5a.jpg"></a>
-            <a class="carousel-item" href="#five!"><img src="./assets/illustrations/6a.jpg"></a>
-            <a class="carousel-item" href="#five!"><img src="./assets/illustrations/7a.jpg"></a>
-        </div>
+    <div class="slides slides_home">
+        <img src="./assets/illustrations/1a.jpg" alt="bg">
+        <img src="./assets/illustrations/2a.jpg" alt="bg">
+        <img src="./assets/illustrations/3a.jpg" alt="bg">
     </div>
+
+
+    
     
 <?php
 require("./footer.php");

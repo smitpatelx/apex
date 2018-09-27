@@ -13,38 +13,14 @@ $desc = "Listing Page of QualityLife";
 require("./header.php");
 ?>
 
-  <div class="slider">
-    <ul class="slides">
-      <li>
-        <img class="bg-blur" src="./assets/illustrations/1a.jpg"> <!-- random image -->
-        <div class="caption center-align listing-hero-text">
-          <h3>QUALITY LIFE</h3>
-          <h5 class="light grey-text text-lighten-3">The Power of Deep Roots</h5>
-        </div>
-      </li>
-      <li>
-        <img class="bg-blur" src="./assets/illustrations/2a.jpg"> <!-- random image -->
-        <div class="caption left-align listing-hero-text">
-          <h3>Move to What Moves You</h3>
-          <!-- <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> -->
-        </div>
-      </li>
-      <li>
-        <img class="bg-blur" src="./assets/illustrations/3a.jpg"> <!-- random image -->
-        <div class="caption right-align listing-hero-text">
-          <h3>Client Focused. Results Driven</h3>
-          <!-- <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> -->
-        </div>
-      </li>
-      <li>
-        <img class="bg-blur" src="./assets/illustrations/4a.jpg"> <!-- random image -->
-        <div class="caption center-align listing-hero-text">
-          <h3>A home changes everything</h3>
-          <!-- <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> -->
-        </div>
-      </li>
-    </ul>
-  </div>
+  <div class="slides slides_listing">
+        <img src="./assets/illustrations/1a.jpg" alt="bg">
+        <img src="./assets/illustrations/2a.jpg" alt="bg">
+        <img src="./assets/illustrations/3a.jpg" alt="bg">
+        <img src="./assets/illustrations/4a.jpg" alt="bg">
+        <img src="./assets/illustrations/5a.jpg" alt="bg">
+        <img src="./assets/illustrations/6a.jpg" alt="bg">
+    </div>
 
   <div class="grid-x grid-padding-x">
   <div class="cell medium-12 large-12 small-12 grid-x grid-margin-x small-up-2 medium-up-2 large-up-4">

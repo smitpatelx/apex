@@ -34,7 +34,10 @@ $('.preloader-wrapper')
 //FOR LOADING SCREEN  @end
 
 //ON SCROLL ANIMATION
-AOS.init();
+AOS.init({
+    offset: 0,
+    duration: 1000
+});
 //ON SCROLL ANIMATION @end
 
 //FOR DASHBOARD
@@ -48,10 +51,7 @@ $(document).ready(function () {
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
-        // $(".post_dashboard").show(300);
         $(".post_dashboard").fadeIn(1000);
-        // $(".post_dashboard").scroll();
-        // $(".result").show(1000);
         $(".result").fadeIn(2000);
 
         //FOR LIVE SEARCH ON DASHBOARD
@@ -65,9 +65,7 @@ $(document).ready(function () {
     $(".passbtn_dashboard").click(function () {
         $(".post_dashboard").hide(400);
         $(".welcome_dashboard").hide(400);
-        // $(".pass_dashboard").show(300);
         $(".pass_dashboard").fadeIn(1000);
-        // $(".pass_dashboard").scroll();
         $(".users_dashboard").hide(400);
         $(".result").hide(400);
     });
@@ -75,16 +73,12 @@ $(document).ready(function () {
         $(".post_dashboard").hide(400);
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
-        // $(".users_dashboard").show( 300);
         $(".users_dashboard").fadeIn(1000);
         $(".result").hide(400);
-        // $(".users_dashboard").scroll();
     });
     $(".welcomebtn_dashboard").click(function () {
         $(".post_dashboard").hide(400);
-        // $(".welcome_dashboard").show(300);
         $(".welcome_dashboard").fadeIn(1000);
-        // $(".welcome_dashboard").scroll();
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
         $(".result").hide(400);
@@ -108,3 +102,17 @@ $(document).ready(function () {
         }
     });
 //FOR LIVE SEARCH ON DASHBOARD @end
+$('.slides').slick({
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    fade:true,
+    autoplaySpeed: 4000,
+    pauseOnHover:false,
+    pauseOnFocus:false,
+    dots:false,
+    arrows:false
+});
