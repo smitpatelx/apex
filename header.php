@@ -48,24 +48,17 @@
                 <h4 class="nav-bar-site-text">Apex Listings</h4>
             </a>
             
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li class="waves-dark waves-effect my-3"><a href="index.php" class="nav-mobile-text">Home</a></li>
-                <li class="waves-dark waves-effect my-3"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
-                <li class="waves-dark waves-effect my-3"><a href="login.php" class="nav-mobile-text">Login</a></li>
-                <li class="waves-dark waves-effect my-3"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
-                <li class="waves-dark waves-effect my-3"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
+            <ul id="nav-mobile" class="right hide-on-med-and-down px-3">
+                <li class="waves-effect my-3"><a href="index.php" class="nav-mobile-text">Home</a></li>
+                <li class="waves-effect my-3"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
+                <li class="waves-effect my-3"><a href="login.php" class="nav-mobile-text">Login</a></li>
+                <li class="waves-effect my-3"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
+                <li class="waves-effect my-3"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
             </ul>
-            <form class="right hide-on-med-and-down">
-                <div class="input-field blue lighten-1">
-                <input id="search" type="search" placeholder="SEARCH" required>
-                <label class="label-icon"  for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-                </div>
-            </form>    
         </div>
     </nav>
     <ul class="sidenav" id="mobile-demo">
-        <li class="center-align">
+        <!-- <li class="center-align">
             <form class="center container">
                 <div class="input-field blue-grey">
                 <input class="center-align black-text" id="search1" type="search" placeholder="SEARCH" required>
@@ -73,7 +66,7 @@
                 <i class="material-icons">close</i>
                 </div>
             </form>
-        </li>
+        </li> -->
         <li class="center-align"><a href="index.php">Home</a></li>
         <li class="center-align"><a href="listing.php">Listing</a></li>
         <li class="center-align"><a href="login.php">Login</a></li>

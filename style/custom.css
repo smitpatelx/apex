@@ -96,6 +96,12 @@ flex: 1 0 auto;
     }
 }
 
+#nav-mobile li:hover {
+    background: rgb(255, 255, 255);
+    transition:background 1s;
+    border-radius: 10px;
+}
+
 .home-hero {
     font-family: Dosis, sans-serif;
     text-align: center;
