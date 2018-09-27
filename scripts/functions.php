@@ -20,7 +20,7 @@
 
 function db_connect() //to connect database
 {
-$connection = pg_connect("host=127.0.0.1 dbname=qualitylife_db user=smit password=smitpatelx" ); 
+$connection = pg_connect("host=127.0.0.1 dbname=group19_db user=group19_admin password=apexscdb18" ); 
 return $connection; 
 
 
