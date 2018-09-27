@@ -49,11 +49,11 @@
             </a>
             
             <ul id="nav-mobile" class="right hide-on-med-and-down px-3">
-                <li class="waves-effect my-3"><a href="index.php" class="nav-mobile-text">Home</a></li>
-                <li class="waves-effect my-3"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
-                <li class="waves-effect my-3"><a href="login.php" class="nav-mobile-text">Login</a></li>
-                <li class="waves-effect my-3"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
-                <li class="waves-effect my-3"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
+                <li class="waves-effect my-3 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
+                <li class="waves-effect my-3 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
+                <li class="waves-effect my-3 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
+                <li class="waves-effect my-3 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
+                <li class="waves-effect my-3 mx-2"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
             </ul>
         </div>
     </nav>
