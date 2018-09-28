@@ -23,7 +23,7 @@
     <div class="preloader-background white">
         <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
         <div class="preloader-wrapper big active">       
-            <div class="spinner-layer spinner-blue-only">
+            <div class="spinner-layer spinner-cyan-only lighten-1 ">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
                 </div>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <nav class="blue darken-1" role="navigation">
+    <nav class="nav_bar" role="navigation">
         <div class="nav-wrapper">
             <!-- <img src="./assets/logo/bandcamp-brands.svg" alt="s" class="nav-bar-site-logo hide-on-med-and-down"> -->
             <div class="brand-logo-s">
@@ -49,11 +49,11 @@
             </a>
             
             <ul id="nav-mobile" class="right hide-on-med-and-down px-3">
-                <li class="waves-effect my-3 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
-                <li class="waves-effect my-3 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
-                <li class="waves-effect my-3 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
-                <li class="waves-effect my-3 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
-                <li class="waves-effect my-3 mx-2"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
+                <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
+                <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
+                <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
+                <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
+                <li class="waves-effect my-2 mx-2"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
             </ul>
         </div>
     </nav>

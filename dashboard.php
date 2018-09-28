@@ -13,9 +13,23 @@ $desc = "Dashboard Page of QualityLife";
 require("./header.php");
 ?>
 
-    <div class="grid-x">       
-        <div class="cell large-2 medium-2 small-3 center pr-3 dashdoard_container">
-            <ul id="slide-out" class="admin_nav">
+    <div class="row">       
+        <div class="col l12 m12 s12 center pr-3 dashboard_panel">
+            <ul class="">
+                <li>
+                    <a href="#" class='welcomebtn_dashboard img_c_1'><img class="" src="./assets/list-images/profile.jpg"></a>
+                </li>
+                <li>
+                    <a href="#" class="postbtn_dashboard"><i class="fas fa-pen mr-3"></i><p class='hide-on-med-and-down'>Posts</p></li></a>
+                </li>
+                <li>
+                    <a href="#" class="passbtn_dashboard"><i class="fas fa-user-lock mr-3"></i><p class='hide-on-med-and-down'>Change Password</p></a>
+                </li>
+                <li>
+                    <a href="#" class="usersbtn_dashboard"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></a>
+                </li>
+            </ul>
+            <!-- <ul id="slide-out" class="admin_nav">
                 <li>
                 <div class="user-view hide-on-med-and-down">
                     <div class="background user-dashboard-img">
@@ -26,18 +40,18 @@ require("./header.php");
                     
                 </div>
                 </li>
-                <a href="#" class="welcomebtn_dashboard my-2"><li class="pt-2 py-2"><i class="fas fa-user mr-3"></i><p class='hide-on-med-and-down'>Smit Patel</p></li></a>
-                <a href="#" class="welcomebtn_dashboard my-2"><li class="pt-2 py-2"><i class="fas fa-at mr-3"></i><p class='hide-on-med-and-down'>admin@netdevv.com</p></li></a>
+                <a href="#" class="welcomebtn_dashboard my-2"><li class=" py-2"><i class="fas fa-user mr-3"></i><p class='hide-on-med-and-down'>Smit Patel</p></li></a>
+                <a href="#" class="welcomebtn_dashboard my-2"><li class=" py-2"><i class="fas fa-at mr-3"></i><p class='hide-on-med-and-down'>admin@netdevv.com</p></li></a>
                 <li><div class="divider black"></div></li>
                 <a href="#" class=" my-2 postbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-pen mr-3"></i><p class='hide-on-med-and-down'>Posts</p></li></a>
                 <a href="#" class=" my-2 passbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-user-lock mr-3"></i><p class='hide-on-med-and-down'>Change Password</p></li></a>
                 <a class=" my-2 usersbtn_dashboard" href="#!"><li class="waves-effect list-block pt-2"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></li></a>
-            </ul>
+            </ul> -->
             <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons small">menu</i></a> -->
         </div>
-         
-        
-        <div class="cell large-10 medium-10 small-9 p-5">
+    </div>   
+      <div class="grid-x">  
+        <div class="cell large-12 medium-12 small-12 p-5">
             <div class="dashdoard_container scroll_bar_hide">
             <div class="welcome_dashboard center blue-text dashdoard_container scroll_snap_item" >
                 <h1 class='dosis'>WELCOME SMIT</h1>

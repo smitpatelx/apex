@@ -12,6 +12,7 @@ $(document).ready(function () {
     $('.modal').modal();
     $('.tabs').tabs();
     $('.slider').slider();
+    $('.parallax').parallax();
 });
 //MATERIALIZE @end
 
