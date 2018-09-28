@@ -522,4 +522,13 @@ body {
   -webkit-transform: translateY(-10vh);
           transform: translateY(-10vh);
 }
+
+/*****************************************************************/
+.primary {
+  background: #00e0fe !important;
+}
+
+.secondry {
+  background: #008b9e !important;
+}
 /*# sourceMappingURL=custom.css.map */

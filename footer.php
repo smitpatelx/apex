@@ -1,7 +1,7 @@
 
     </div>
 
-    <footer class="page-footer blue darken-1" style="position:relative;overflow:hidden;">
+    <footer class="page-footer secondry" style="position:relative;overflow:hidden;">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12 center">
@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="grid-x center" data-splitting>
-                <a class="cell large-2 medium-2 small-2 large-offset-5 medium-offset-5 small-offset-5 waves-effect waves-light btn-flat z-depth-5 transition-1 blue white-text text-lighten-4 modal-trigger center-align shift-right" href="#modal1">&copy; Copyright</a>
+                <a class="cell large-2 medium-2 small-2 large-offset-5 medium-offset-5 small-offset-5 waves-effect waves-light btn-flat z-depth-5 transition-1 primary cayan-text text-lighten-4 modal-trigger center-align shift-right" href="#modal1">&copy; Copyright</a>
 
                 <div id="modal1" class="modal modal-fixed-footer">
                     <div class="row modal-content black-text">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright blue lighten-2">
+        <div class="footer-copyright secondry">
             <div class="container center footer-made-by">
                 Made with <i class="fas fa-heart" style="color:red;"></i> by <a href="http://www.netdevv.com">NETDEVV</a>
             </div>
