@@ -24,20 +24,24 @@ $(document).on({
     ajaxStop: function () { $body.removeClass("loading_wrap"); }
 });
 
+
+// Animate loader off screen
 $('.preloader-background').delay(1400).fadeOut('slow');
 
 $('.loading-text')
     .delay(1350)
-    .fadeOut();
+    .fadeOut('slow');
 $('.preloader-wrapper')
     .delay(1350)
-    .fadeOut();
+    .fadeOut('slow');
+
 //FOR LOADING SCREEN  @end
 
 //ON SCROLL ANIMATION
 AOS.init({
     offset: 0,
-    duration: 1000
+    duration: 1000,
+    delay:2000
 });
 //ON SCROLL ANIMATION @end
 

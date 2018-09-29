@@ -415,9 +415,8 @@ body {
 .home_hero img {
   position: absolute;
   width: 100%;
-  height: 100%;
-  -webkit-animation: scale-1 2s ease-in-out forwards;
-          animation: scale-1 2s ease-in-out forwards;
+  -webkit-animation: scale-1 4s ease-in-out forwards 0s;
+          animation: scale-1 4s ease-in-out forwards 0s;
   -webkit-transition: 0.5s;
   transition: 0.5s;
   -o-object-fit: cover;
@@ -487,15 +486,15 @@ body {
   padding: 15px 50px;
   margin: 10px;
   font-size: 1.3rem;
-  -webkit-transition: all 1s !important;
-  transition: all 1s !important;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 .home_btn:hover {
   background: #00e0fe;
   color: #000000;
-  -webkit-transition: all 1s !important;
-  transition: all 1s !important;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 /**********************************************************************/
