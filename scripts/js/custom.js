@@ -40,8 +40,7 @@ $('.preloader-wrapper')
 //ON SCROLL ANIMATION
 AOS.init({
     offset: 0,
-    duration: 1000,
-    delay:2000
+    duration: 1000
 });
 //ON SCROLL ANIMATION @end
 

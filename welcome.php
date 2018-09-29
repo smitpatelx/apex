@@ -14,7 +14,7 @@ require("./header.php");
 ?>
 
  <div class="row">
-        <div class="col l12">
+        <div class="col l12 mt-4">
         <div class="card cyan lighten-1 z-depth-4 hoverable">
             <div class="card-content">
             <span class="card-title center-align">WELCOME</span>
@@ -25,8 +25,8 @@ require("./header.php");
             </div>
             </div>
             <div class="card-action center">
-            <a href="listing.php" class="waves-effect waves-light btn-flat z-depth-5 cyan-text text-darken-4 transition-1">Discover More</a>
-            <a class="modal-trigger waves-effect waves-light btn-flat z-depth-5 cyan-text text-darken-4 transition-1" href="#modal1">&copy; Copyright</a>
+            <a href="dashboard.php" class="waves-effect waves-light btn blue lighten-4 z-depth-5 cyan-text text-darken-4 transition-1">Dashboard</a>
+            <a href="listing.php" class=" waves-effect waves-light btn blue lighten-4 z-depth-5 cyan-text text-darken-4 transition-1" href="#modal1">Listing</a>
             </div>
         </div>
         </div>
