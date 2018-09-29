@@ -53,7 +53,7 @@ require("./header.php");
       <div class="grid-x">  
         <div class="cell large-12 medium-12 small-12 p-5">
             <div class="dashdoard_container scroll_bar_hide">
-            <div class="welcome_dashboard center blue-text dashdoard_container scroll_snap_item" >
+            <div class="welcome_dashboard center cayan-text dashdoard_container scroll_snap_item" >
                 <h1 class='dosis'>WELCOME SMIT</h1>
                 <div>
                     <h3 class='dosis red-text'>This is your DASH-board !</h3>
@@ -74,7 +74,7 @@ require("./header.php");
                             <label for="last_name">New Password</label>
                         </div>
                         <div class='input-field col s12 center'>
-                            <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">
+                            <button class="btn waves-effect waves-light cayan lighten-1" type="submit" name="action">
                                 <i class="material-icons right">lock</i> PROCEED
                             </button>
                         </div>
@@ -104,7 +104,7 @@ require("./header.php");
             </div>
             <div class="post_dashboard dashdoard_container scroll_snap_item">
                 <div>
-                    <h4 class='dosis center blue-text text-lighten-1'>LIVE SEARCH</h4>
+                    <h4 class='dosis center cayan-text text-lighten-1'>LIVE SEARCH</h4>
                     <form>                 
                         <div class="input-field col s6">
                         <i class="fas fa-search-location prefix"></i>

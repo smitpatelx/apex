@@ -20,6 +20,7 @@
     
 </head>
 <body>
+    <div class="navbar-fixed">
     <div class="preloader-background white">
         <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
         <div class="preloader-wrapper big active">       
@@ -57,6 +58,7 @@
             </ul>
         </div>
     </nav>
+
     <ul class="sidenav" id="mobile-demo">
         <!-- <li class="center-align">
             <form class="center container">
@@ -80,5 +82,5 @@
             </div>
         </li>
     </ul>
-
+    </div>
     <div id="main">
