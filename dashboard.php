@@ -65,14 +65,15 @@ require("./header.php");
                         <input disabled type="tel" class="validate"  placeholder="admin@netdevv.com" value="admin@netdevv.com">
                         <label for="email_dashboard">Email</label>
                     </div>
-                    <div class="input-field col m12">
-                        <button class="btn btn-submit mx-2 btn_toogle_disable">CHANGE</button>
-                        <button class="btn btn-submit mx-2 btn_username_save">SAVE</button>
-                        <!-- <input type="button" class="btn btn-submit btn_toogle_disable" value="CHANGE"> -->
-                    </div>
+                    
                     <!-- <h5 class='dosis'><i class="fas fa-user mr-3"></i>Smit Patel</h5>
                     <h5 class='dosis'><i class="fas fa-at mr-3"></i>admin@netdevv.com</h5> -->
                 </form>
+                <div class="input-field row cell medium-4 medium-offset-4">
+                        <button class="col m5 mx-3 btn btn-submit btn_toogle_disable">CHANGE</button>
+                        <button class="col m5 mx-3 btn btn-submit btn_username_save">SAVE</button>
+                        <!-- <input type="button" class="btn btn-submit btn_toogle_disable" value="CHANGE"> -->
+                </div>
             </div>        
             <div class="pass_dashboard center dashdoard_container">
                 <div class='grid-x'>
