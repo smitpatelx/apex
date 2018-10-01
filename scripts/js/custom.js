@@ -24,16 +24,16 @@ $(document).on({
     ajaxStop: function () { $body.removeClass("loading_wrap"); }
 });
 
+$(window).on('load', function () { 
+    $('.preloader-background').delay(1400).fadeOut('slow');
 
-// Animate loader off screen
-$('.preloader-background').delay(1400).fadeOut('slow');
-
-$('.loading-text')
-    .delay(1350)
-    .fadeOut('slow');
-$('.preloader-wrapper')
-    .delay(1350)
-    .fadeOut('slow');
+    $('.loading-text')
+        .delay(1350)
+        .fadeOut('slow');
+    $('.preloader-wrapper')
+        .delay(1350)
+        .fadeOut('slow');
+});
 
 //FOR LOADING SCREEN  @end
 
@@ -89,7 +89,9 @@ $(document).ready(function () {
     });
 });
 //FOR DASHBOARD @end
-
+$('.btn_toogle_disable').on('click',function() {
+    $('.toogle_disable input').prop('disabled', function (i, v) { return !v; });
+})
 //FOR LIVE SEARCH ON DASHBOARD
     $(".posts_search").on("input", function() {
         $search = $(".posts_search").val();
@@ -118,7 +120,8 @@ $('.slides').slick({
     pauseOnHover:false,
     pauseOnFocus:false,
     dots:false,
-    arrows:false
+    arrows:false,
+    mobileFirst:true
 });
 
 $(document).ready(function () {

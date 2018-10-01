@@ -50,18 +50,31 @@ require("./header.php");
             <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons small">menu</i></a> -->
         </div>
     </div>   
-      <div class="grid-x">  
+    <div class="grid-x">  
         <div class="cell large-12 medium-12 small-12 p-5">
-            <div class="dashdoard_container scroll_bar_hide">
-            <div class="welcome_dashboard center cayan-text dashdoard_container scroll_snap_item" >
-                <h1 class='dosis'>WELCOME SMIT</h1>
-                <div>
-                    <h3 class='dosis red-text'>This is your DASH-board !</h3>
-                    <h5 class='dosis'><i class="fas fa-user mr-3"></i>Smit Patel</h5>
-                    <h5 class='dosis'><i class="fas fa-at mr-3"></i>admin@netdevv.com</h5>
-                </div>
-            </div>
-            <div class="pass_dashboard center dashdoard_container scroll_snap_item">
+            
+            <div class="grid-x welcome_dashboard center cayan-text">
+                <form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>  
+                    <h1 class='col m12 dosis'>WELCOME SMIT</h1>
+                    <h3 class='col m12 dosis red-text'>This is your DASH-board !</h3>            
+                    <div class="input-field col m12 toogle_disable ">
+                        <input disabled type="text" class="validate" placeholder="Smit Patel" value="Smit Patel">
+                        <label for="username_dashboard">User Name</label>
+                    </div>
+                    <div class="input-field col m12 toogle_disable">
+                        <input disabled type="tel" class="validate"  placeholder="admin@netdevv.com" value="admin@netdevv.com">
+                        <label for="email_dashboard">Email</label>
+                    </div>
+                    <div class="input-field col m12">
+                        <button class="btn btn-submit mx-2 btn_toogle_disable">CHANGE</button>
+                        <button class="btn btn-submit mx-2 btn_username_save">SAVE</button>
+                        <!-- <input type="button" class="btn btn-submit btn_toogle_disable" value="CHANGE"> -->
+                    </div>
+                    <!-- <h5 class='dosis'><i class="fas fa-user mr-3"></i>Smit Patel</h5>
+                    <h5 class='dosis'><i class="fas fa-at mr-3"></i>admin@netdevv.com</h5> -->
+                </form>
+            </div>        
+            <div class="pass_dashboard center dashdoard_container">
                 <div class='grid-x'>
                     <h2 class='cell medium-5 medium-offset-3 center red-text dosis'>Change Password</h2>
                     <form class='cell medium-5 medium-offset-3 center row' action='dashboard.php'>
@@ -81,7 +94,7 @@ require("./header.php");
                     </form>
                 </div>
             </div>
-            <div class="users_dashboard center dashdoard_container scroll_snap_item">
+            <div class="users_dashboard center dashdoard_container">
                 <h2 class='dosis'>Users</h2>
                 <table class="highlight centered responsive-table">
                         <thead>
@@ -102,7 +115,7 @@ require("./header.php");
                         </tbody>
                 </table>
             </div>
-            <div class="post_dashboard dashdoard_container scroll_snap_item">
+            <div class="post_dashboard dashdoard_container">
                 <div>
                     <h4 class='dosis center cayan-text text-lighten-1'>LIVE SEARCH</h4>
                     <form>                 
