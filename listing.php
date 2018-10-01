@@ -13,13 +13,14 @@ $desc = "Listing Page of QualityLife";
 require("./header.php");
 ?>
 
-  <div class="slides slides_listing">
-        <img src="./assets/illustrations/1a.jpg" alt="bg">
-        <img src="./assets/illustrations/2a.jpg" alt="bg">
-        <img src="./assets/illustrations/3a.jpg" alt="bg">
-        <img src="./assets/illustrations/4a.jpg" alt="bg">
-        <img src="./assets/illustrations/5a.jpg" alt="bg">
-        <img src="./assets/illustrations/6a.jpg" alt="bg">
+
+    <div class="slides slides_listing">
+          <img src="./assets/illustrations/1a.jpg" alt="bg">
+          <img src="./assets/illustrations/2a.jpg" alt="bg">
+          <img src="./assets/illustrations/3a.jpg" alt="bg">
+          <img src="./assets/illustrations/4a.jpg" alt="bg">
+          <img src="./assets/illustrations/5a.jpg" alt="bg">
+          <img src="./assets/illustrations/6a.jpg" alt="bg">
     </div>
 
   <div class="grid-x grid-padding-x">
