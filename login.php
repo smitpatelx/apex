@@ -1,15 +1,16 @@
 <?php
 /*************
-Smit Patel
+Front End: Smit Patel
+Backend: Blake Philips, Dylan Lopez
 Lab 10: Database/PHP Lab - User Registration
-09 April 2018
-WEBD2201
+October 2, 2018
+WEBD3201
 **************/
-$title = "Admin";
-$file = "index.php";
-$date = "Sept 14 2018";
-$banner = "ADMIN";
-$desc = "Admin Page of QualityLife";
+$title = "Login Page";
+$file = "login.php";
+$date = "October 2 2018";
+$banner = "Log in";
+$desc = "Login Page of Apex";
 require("./header.php");
 ?>
 
