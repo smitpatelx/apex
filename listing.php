@@ -24,44 +24,41 @@ require("./header.php");
     </div>
 
   <div class="grid-x grid-margin-x filters_listing">
-    <div class="cell medium-3 large-3 small-3">
+    <div class="cell medium-4 large-3 small-12">
       <select class="input-field">
         <option value="" disabled selected>Choose your option</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>
-      <label>Materialize Select</label>
+     
     </div>
 
-    <div class="cell medium-3 large-3 small-3">
+    <div class="cell medium-4 large-3 small-12">
       <select class="input-field">
         <option value="" disabled selected>Choose your option</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>
-      <label>Materialize Select</label>
     </div>
 
-    <div class="cell medium-3 large-3 small-3">
+    <div class="cell medium-4 large-3 small-12">
       <select class="input-field">
         <option value="" disabled selected>Choose your option</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>
-      <label>Materialize Select</label>
     </div>
 
-    <div class="cell medium-3 large-3 small-3">
+    <div class="cell medium-4 large-3 small-12">
       <select class="input-field">
         <option value="" disabled selected>Choose your option</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>
-      <label>Materialize Select</label>
     </div>
   </div>
 
