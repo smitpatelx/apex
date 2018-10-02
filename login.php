@@ -14,6 +14,16 @@ $desc = "Login Page of Apex";
 require("./header.php");
 ?>
 
+<?php
+//LOGIN FUNCTIONALITY
+//Authors: Blake, Dylan
+ 
+
+
+
+
+?>
+
 <div class="grid-x center">
 
         <ul id="tabs-swipe-demo col l4 offset-4" class="tabs center">
