@@ -109,7 +109,6 @@ $('.btn_toogle_disable').on('click',function() {
     });
 //FOR LIVE SEARCH ON DASHBOARD @end
 $('.slides').slick({
-    dots: true,
     infinite: true,
     speed: 600,
     slidesToShow: 1,
