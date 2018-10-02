@@ -13,6 +13,8 @@ $(document).ready(function () {
     $('.tabs').tabs();
     $('.slider').slider();
     $('.parallax').parallax();
+    $('select').formSelect();
+
 });
 //MATERIALIZE @end
 

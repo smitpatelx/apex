@@ -23,6 +23,48 @@ require("./header.php");
           <img src="./assets/illustrations/6a.jpg" alt="bg">
     </div>
 
+  <div class="grid-x grid-margin-x filters_listing">
+    <div class="cell medium-3 large-3 small-3">
+      <select class="input-field">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label>Materialize Select</label>
+    </div>
+
+    <div class="cell medium-3 large-3 small-3">
+      <select class="input-field">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label>Materialize Select</label>
+    </div>
+
+    <div class="cell medium-3 large-3 small-3">
+      <select class="input-field">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label>Materialize Select</label>
+    </div>
+
+    <div class="cell medium-3 large-3 small-3">
+      <select class="input-field">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <label>Materialize Select</label>
+    </div>
+  </div>
+
   <div class="grid-x grid-padding-x">
   <div class="cell medium-12 large-12 small-12 grid-x grid-margin-x small-up-2 medium-up-2 large-up-4">
   <?php 
