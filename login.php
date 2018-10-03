@@ -18,8 +18,26 @@ require("./header.php");
 //LOGIN FUNCTIONALITY
 //Authors: Blake, Dylan
  
+if ($_SERVER["REQUEST_METHOD"] == "GET")
+{
+  //default for when page loads first time
+
+  //initialize variables to be echo'ed into the 
+  $username = "User Name";
+  $firstname = "First Name";
+  $lastname = "Last Name";
+  $email = "Email";
 
 
+
+} else if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+  $requestType = $_POST['requestType'];
+  //if a request is submitted
+
+  echo $requestType;
+
+}
 
 
 ?>
@@ -33,9 +51,10 @@ require("./header.php");
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="row my-4">
-        <form class="col s12" action="welcome.php">
+        <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s6">
+              <input type="hidden" id="requestType" name="requestType" value="register"> 
               <input placeholder="First Name" id="first_name" type="text" class="validate">
               <label for="first_name">First Name</label>
             </div>
@@ -72,10 +91,10 @@ require("./header.php");
 
       <div id="sugn-up" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
-        <form class="col s12">
-      
+        <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s12">
+            <input type="hidden" id="requestType" name="requestType" value="login"> 
               <input id="email" type="email" class="validate">
               <label for="email">Email</label>
             </div>
