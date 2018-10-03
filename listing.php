@@ -49,8 +49,6 @@ require("./header.php");
         $page = 0;
         $resultsPerPage = 12;
         $offset = $resultsPerPage*$page;
-        if (isset($_COOKIE['resultsPerPage'])) $resultsPerPage = $_COOKIE['resultsPerPage'];
-        
         
         $conn = db_connect();
         $output = "";

@@ -173,6 +173,7 @@ $(".numberOfResults").ready(function () {
 });
 
 function changeResultsPerPage() {
+    $(".dropdown-content").remove();
     createCookie('resultsPerPage', $('.numberOfResults').val(), 1)
     console.log("updated cookie to " + $('.numberOfResults').val());
     location.reload();
