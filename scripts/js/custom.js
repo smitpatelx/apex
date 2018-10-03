@@ -22,11 +22,15 @@ $(document).ready(function () {
 $body = $("body");
 
 $(document).on({
-    ajaxStart: function () { $body.addClass("loading_wrap"); },
-    ajaxStop: function () { $body.removeClass("loading_wrap"); }
+    ajaxStart: function () {
+        $body.addClass("loading_wrap");
+    },
+    ajaxStop: function () {
+        $body.removeClass("loading_wrap");
+    }
 });
 
-$(window).on('load', function () { 
+$(window).on('load', function () {
     $('.preloader-background').delay(1400).fadeOut('slow');
 
     $('.loading-text')
@@ -53,7 +57,7 @@ $(".pass_dashboard").hide(0);
 $(".users_dashboard").hide(0);
 $(document).ready(function () {
     $(".postbtn_dashboard").click(function () {
-         
+
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
@@ -61,11 +65,13 @@ $(document).ready(function () {
         $(".result").fadeIn(2000);
 
         //FOR LIVE SEARCH ON DASHBOARD
-        setTimeout(function(){
-            $.get("dashboard_search.php", { "search": "%" }, function ($data) {
+        setTimeout(function () {
+            $.get("dashboard_search.php", {
+                "search": "%"
+            }, function ($data) {
                 $(".result").html($data);
             });
-        },600);
+        }, 600);
         //FOR LIVE SEARCH ON DASHBOARD @end
     });
     $(".passbtn_dashboard").click(function () {
@@ -91,24 +97,28 @@ $(document).ready(function () {
     });
 });
 //FOR DASHBOARD @end
-$('.btn_toogle_disable').on('click',function() {
-    $('.toogle_disable input').prop('disabled', function (i, v) { return !v; });
+$('.btn_toogle_disable').on('click', function () {
+    $('.toogle_disable input').prop('disabled', function (i, v) {
+        return !v;
+    });
 })
 //FOR LIVE SEARCH ON DASHBOARD
-    $(".posts_search").on("input", function() {
-        $search = $(".posts_search").val();
-        if($search.length>0){
-            $.get("dashboard_search.php", { "search": $search }, function ($data) {
-                $(".result").html($data);
-            })
-        }
-        else if ($search.length == 0)
-        {
-            $.get("dashboard_search.php", { "search": "%" }, function ($data) {
-                $(".result").html($data);
-            })
-        }
-    });
+$(".posts_search").on("input", function () {
+    $search = $(".posts_search").val();
+    if ($search.length > 0) {
+        $.get("dashboard_search.php", {
+            "search": $search
+        }, function ($data) {
+            $(".result").html($data);
+        })
+    } else if ($search.length == 0) {
+        $.get("dashboard_search.php", {
+            "search": "%"
+        }, function ($data) {
+            $(".result").html($data);
+        })
+    }
+});
 //FOR LIVE SEARCH ON DASHBOARD @end
 $('.slides').slick({
     infinite: true,
@@ -116,13 +126,13 @@ $('.slides').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    fade:true,
+    fade: true,
     autoplaySpeed: 4000,
-    pauseOnHover:false,
-    pauseOnFocus:false,
-    dots:false,
-    arrows:false,
-    mobileFirst:true
+    pauseOnHover: false,
+    pauseOnFocus: false,
+    dots: false,
+    arrows: false,
+    mobileFirst: true
 });
 
 $(document).ready(function () {
@@ -137,3 +147,57 @@ $(document).ready(function () {
     // Add active class to target link
     target.addClass('nav_active');
 })
+
+//LISTING
+$(document).ready(function () {
+    if (window.location == 'http://apex.com/listing.php') {
+        if (getCookie("resultsPerPage") == null) {
+            createCookie("resultsPerPage", 12, "1");
+            console.log("resultsPerPage cookie created." + getCookie("resultsPerPage"));
+        }
+        console.log(getCookie("resultsPerPage"));
+    }
+});
+$(".numberOfResults").ready(function () {
+    var index = [12, 24, 48, 0];
+    index = index.indexOf(parseInt(getCookie("resultsPerPage")));
+
+    if (index != -1) {
+        $(".numberOfResults").prop('selectedIndex', index);
+        $('.numberOfResults').formSelect();
+        console.log(getCookie("resultsPerPage"));
+    } else {
+        console.log("No cookie");
+    }
+
+});
+
+function changeResultsPerPage() {
+    createCookie('resultsPerPage', $('.numberOfResults').val(), 1)
+    console.log("updated cookie to " + $('.numberOfResults').val());
+    location.reload();
+}
+
+//LISTING @end
+
+
+
+
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function createCookie(name, value, days) {
+    var expires;
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+    } else {
+        expires = "";
+    }
+    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+}
