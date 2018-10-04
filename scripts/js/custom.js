@@ -165,7 +165,6 @@ $(".numberOfResults").ready(function () {
     if (index != -1) {
         $(".numberOfResults").prop('selectedIndex', index);
         $('.numberOfResults').formSelect();
-        console.log(getCookie("resultsPerPage"));
     } else {
         console.log("No cookie");
     }
@@ -178,6 +177,12 @@ function changeResultsPerPage() {
     console.log("updated cookie to " + $('.numberOfResults').val());
     location.reload();
 }
+
+function listingQuery(sql){
+    console.log("testest");
+}
+
+
 
 //LISTING @end
 

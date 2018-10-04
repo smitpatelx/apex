@@ -37,6 +37,7 @@
 <body>
 
     <div class="navbar-fixed">
+<!--
         <div class="preloader-background white">
             <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
             <div class="preloader-wrapper big active">       
@@ -53,6 +54,7 @@
                 </div>
             </div>
         </div>
+-->
     
         <nav class="nav_bar" role="navigation">
             <div class="nav-wrapper">
