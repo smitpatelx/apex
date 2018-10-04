@@ -33,9 +33,12 @@ require("./header.php");
     </div>   
     <div class="grid-x">  
         <div class="cell large-12 medium-12 small-12 p-5">
+            <div class="dashboard_loader">
+                <div class="dashboard_loader_1"></div>
+            </div>
             
             <div class="grid-x welcome_dashboard center cayan-text">
-                <div class="cell large-12 medium-12 small-12 grid-x  id='reloadContent_dsh'" >
+                <div class="cell large-12 medium-12 small-12 grid-x" >
                     <?php
                         
                         $conn4 = db_connect();

@@ -54,10 +54,13 @@ $(".post_dashboard").hide(0);
 $(".welcome_dashboard").show(0);
 $(".pass_dashboard").hide(0);
 $(".users_dashboard").hide(0);
+$(".dashboard_loader").delay(1400).fadeOut('slow');
+
 $(document).ready(function () {
     $(".postbtn_dashboard").click(function () {
-
-        $(".welcome_dashboard").hide(400);
+        $(".dashboard_loader").show();
+        $(".dashboard_loader").delay(1400).fadeOut('slow');
+        $(".welcome_dashboard").hide(400); 
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
         $(".post_dashboard").fadeIn(1000);
@@ -75,14 +78,19 @@ $(document).ready(function () {
         //FOR LIVE SEARCH ON DASHBOARD @end
     });
     $(".passbtn_dashboard").click(function () {
+        $(".dashboard_loader").show();
+        $(".dashboard_loader").delay(1400).fadeOut('slow');
         $(".post_dashboard").hide(400);
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").fadeIn(1000);
         $(".users_dashboard").hide(400);
         $(".result").hide(400);
         $(".users_result").hide(400);
+        
     });
     $(".usersbtn_dashboard").click(function () {
+        $(".dashboard_loader").show();
+        $(".dashboard_loader").delay(1400).fadeOut('slow');
         $(".post_dashboard").hide(400);
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
@@ -102,6 +110,8 @@ $(document).ready(function () {
         //FOR LIVE SEARCH USERS DASHBOARD @end
     });
     $(".welcomebtn_dashboard").click(function () {
+        $(".dashboard_loader").show();
+        $(".dashboard_loader").delay(1400).fadeOut('slow');
         $(".post_dashboard").hide(400);
         $(".welcome_dashboard").fadeIn(1000);
         $(".pass_dashboard").hide(400);
