@@ -13,17 +13,8 @@
     <tbody class='transition-1'>
 <?php
 require("./scripts/functions.php");
-    // $conn2 = db_connect();
-    // $sql2 = "SELECT * FROM listing_demo WHERE location LIKE '$_GET[search]%'";
 
-    // $result2 = pg_query($conn2, $sql2);
 
-  
-
-    // while($row2 = pg_fetch_assoc($result2)) {   
-                
-    // echo "<h5 class='black-text waves-effect list-block'>".$row2["location"]."</h5><br>";
-    // }
     $conn2 = db_connect();
     $search1 = "trim(LOWER('$_GET[search]%'))";
     $sql2 = "SELECT * FROM listing_demo WHERE LOWER(location) LIKE $search1
@@ -33,14 +24,6 @@ require("./scripts/functions.php");
     OR LOWER(phone) LIKE $search1
     ORDER BY listing_demo.price DESC";
 
-    function delRow($table,$delValue){
-    $conn2 = db_connect();
-    $sql_del2 = "DELETE FROM $table WHERE id = $delValue";
-    $delResult2 = pg_query($conn2, $sql_del2);
-
-    //delRow("listing_demo",$row2["id"])
-    }
-// delRow('listing_demo',$row2["id"])
     $result2 = pg_query($conn2, $sql2); 
 
     while($row2 = pg_fetch_assoc($result2)) {

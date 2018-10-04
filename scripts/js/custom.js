@@ -62,6 +62,7 @@ $(document).ready(function () {
         $(".users_dashboard").hide(400);
         $(".post_dashboard").fadeIn(1000);
         $(".result").fadeIn(2000);
+        $(".users_result").hide(400);
 
         //FOR LIVE SEARCH ON DASHBOARD
         setTimeout(function () {
@@ -79,13 +80,26 @@ $(document).ready(function () {
         $(".pass_dashboard").fadeIn(1000);
         $(".users_dashboard").hide(400);
         $(".result").hide(400);
+        $(".users_result").hide(400);
     });
     $(".usersbtn_dashboard").click(function () {
         $(".post_dashboard").hide(400);
         $(".welcome_dashboard").hide(400);
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").fadeIn(1000);
+        $(".users_result").fadeIn(2000);
         $(".result").hide(400);
+
+        //FOR LIVE SEARCH USERS DASHBOARD
+        setTimeout(function() {
+                $.get("dashboard_user_results.php", {
+                    "search7": "%"
+                }, function ($data) {
+                    $(".users_result").html($data);
+                })
+            
+        }, 600);
+        //FOR LIVE SEARCH USERS DASHBOARD @end
     });
     $(".welcomebtn_dashboard").click(function () {
         $(".post_dashboard").hide(400);
@@ -93,6 +107,7 @@ $(document).ready(function () {
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
         $(".result").hide(400);
+        $(".users_result").hide(400);
         
     });
 });
