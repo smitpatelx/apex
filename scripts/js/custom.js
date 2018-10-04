@@ -19,27 +19,27 @@ $(document).ready(function () {
 //MATERIALIZE @end
 
 //FOR LOADING SCREEN 
-$body = $("body");
+//$body = $("body");
 
-$(document).on({
-    ajaxStart: function () {
-        $body.addClass("loading_wrap");
-    },
-    ajaxStop: function () {
-        $body.removeClass("loading_wrap");
-    }
-});
-
-$(window).on('load', function () {
-    $('.preloader-background').delay(1400).fadeOut('slow');
-
-    $('.loading-text')
-        .delay(1350)
-        .fadeOut('slow');
-    $('.preloader-wrapper')
-        .delay(1350)
-        .fadeOut('slow');
-});
+//$(document).on({
+//    ajaxStart: function () {
+//        $body.addClass("loading_wrap");
+//    },
+//    ajaxStop: function () {
+//        $body.removeClass("loading_wrap");
+//    }
+//});
+//
+//$(window).on('load', function () {
+//    $('.preloader-background').delay(1400).fadeOut('slow');
+//
+//    $('.loading-text')
+//        .delay(1350)
+//        .fadeOut('slow');
+//    $('.preloader-wrapper')
+//        .delay(1350)
+//        .fadeOut('slow');
+//});
 
 //FOR LOADING SCREEN  @end
 
@@ -165,7 +165,6 @@ $(".numberOfResults").ready(function () {
     if (index != -1) {
         $(".numberOfResults").prop('selectedIndex', index);
         $('.numberOfResults').formSelect();
-        console.log(getCookie("resultsPerPage"));
     } else {
         console.log("No cookie");
     }
@@ -178,6 +177,12 @@ function changeResultsPerPage() {
     console.log("updated cookie to " + $('.numberOfResults').val());
     location.reload();
 }
+
+function listingQuery(sql){
+    console.log("testest");
+}
+
+
 
 //LISTING @end
 

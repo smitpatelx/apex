@@ -23,13 +23,12 @@ function db_connect() //to connect database
 $connection = pg_connect("host=127.0.0.1 dbname=group19_db user=group19_admin password=apexscdb18" ); 
 return $connection; 
 
-
-	// Check connection
-	if ($connection->connect_error) 
-	{
-	    die("Connection failed: " . $connection->connect_error);
-	}
-	echo "Connected successfully";
+	// Check connection - Code after return statement??
+//	if ($connection->connect_error)
+//	{
+//	    die("Connection failed: " . $connection->connect_error);
+//	}
+//	echo "Connected successfully";
 }
 
 
@@ -75,6 +74,17 @@ function userLoginForm($login,$password) //to make login form reusable
 function trimT($anyValue)
 {
 	return trim($_POST["$anyValue"]);
+}
+
+
+
+if(isset($_GET['sql'])){
+    $sql = $_GET['sql'];
+    $conn = db_connect();
+    $result = pg_query($conn, $sql);
+    $arr = pg_fetch_all($result);
+    
+    echo json_encode($arr);
 }
 
 ?>
