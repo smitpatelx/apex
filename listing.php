@@ -72,7 +72,7 @@ require("./header.php");
         try {
             var markup = "";
             markup += "<div class='card cell z-depth-4 hoverable'";
-//            markup += "data-aos='zoom-out'";
+            //            markup += "data-aos='zoom-out'";
             markup += ">";
             markup += "<div class='card-image waves-effect waves-block waves-light'>";
             markup += "<img class='activator' src='" + listings[i].img + "'>";
@@ -92,22 +92,22 @@ require("./header.php");
             markup += "</div>";
             markup += "</div>";
             div.append(markup);
-        } catch (error) {
-        }
+        } catch (error) {}
 
     }
 
     function pageChange(value) {
-        if (page >= 0) {
-            if ((page+1) * resultsPerPage >= listings.length) {
-                //LIMIT REACHED! DO NOTHING.
-            } else {
-                page += value;
-                if (page < 0) page++;
-                else console.log("Page changed to " + (page+1) + "...\nDisplaying results " + (page * resultsPerPage) + " to " + ((page+1) * resultsPerPage));
-                offset = page * resultsPerPage;
-                PopulateListings();
-            }
+        if (value == 1 && (page + 1) * resultsPerPage < listings.length) {
+            page ++;
+            console.log("Page changed to " + (page + 1) + "...\nDisplaying results " + (page * resultsPerPage) + " to " + ((page + 1) * resultsPerPage));
+            offset = page * resultsPerPage;
+            PopulateListings();
+        }
+        if (value == -1 && page > 0) {
+            page --;
+            console.log("Page changed to " + (page + 1) + "...\nDisplaying results " + (page * resultsPerPage) + " to " + ((page + 1) * resultsPerPage));
+            offset = page * resultsPerPage;
+            PopulateListings();
         }
     }
 </script>
@@ -127,7 +127,7 @@ require("./header.php");
 </script>
 
 <div class="grid-x filters_listing" style="margin-top: 0;">
-    <div class="cell medium-2 large-2 small-2"  style="width:120px;">
+    <div class="cell medium-2 large-2 small-2" style="width:120px;">
         <label>Results per page</label>
         <select id="results-per-page">
         </select>
