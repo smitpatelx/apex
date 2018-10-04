@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
           <div class="row">
             <div class="input-field col s12">
             <input type="hidden" id="requestType" name="requestType" value="login"> 
-              <input id="email" name="email" type="email" class="validate">
+              <input id="email" name="email" type="email" class="validate" value = "<?php echo $email; ?>">
               <label for="email">Email</label>
             </div>
           </div>
