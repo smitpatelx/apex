@@ -28,6 +28,9 @@ require("./header.php");
                 <li>
                     <a href="#" class="usersbtn_dashboard"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></a>
                 </li>
+                <li>
+                    <a href="#" class="newpostbtn_dashboard"><i class="fas fa-plus mr-3"></i><p class='hide-on-med-and-down'>New Post</p></a>
+                </li>
             </ul>
         </div>
     </div>   
@@ -119,10 +122,10 @@ require("./header.php");
                         });
                     </script>
                 </div>
-            </div>        
+            </div>
             <div class="pass_dashboard center dashdoard_container">
                 <div class='grid-x'>
-                    <h2 class='cell medium-5 medium-offset-3 center red-text dosis'>Change Password</h2>
+                    <h2 class='cell medium-5 medium-offset-3 center red-text dosis'>Create Post</h2>
                     <form class='cell medium-5 medium-offset-3 center row' action='dashboard.php'>
                         <div class="input-field col s6">
                             <input placeholder="Current Password" id="current_password" type="password" class="validate">
@@ -139,13 +142,45 @@ require("./header.php");
                         </div>
                     </form>
                 </div>
+            </div>        
+            <div class=" create_post_dashboard center dashdoard_container">
+                <div class='grid-x'>
+                    <h2 class='cell medium-5 medium-offset-4 center red-text dosis'>Create New Post</h2>
+                    <form class='cell medium-5 medium-offset-4 center row' action='dashboard.php'>
+                        <div class="input-field col s12">
+                            <input placeholder="Post Heading" type="text" class="validate">
+                            <label for="first_name">Post Heading</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Location" type="password" class="validate">
+                            <label for="last_name">Location</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="$$$$" type="password" class="validate">
+                            <label for="last_name">Price</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="sqft" type="password" class="validate">
+                            <label for="last_name">Total Area</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Contact" type="password" class="validate">
+                            <label for="last_name">Contact</label>
+                        </div>
+                        <div class='input-field col s12 center'>
+                            <button class="btn waves-effect waves-light cayan lighten-1" type="submit" name="action">
+                                <i class="fas fa-check right"></i> POST
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="users_dashboard center dashdoard_container">
                 <h2 class='dosis'><i class="fas fa-user prefix"></i> Users</h2>
                 <form>                 
                     <div class="input-field">
-                    <input id="icon_prefix" type="text" class="validate users_search">
-                    <label for="icon_prefix">Search Any Fields</label>
+                        <i class="fab fa-searchengin fa-2x prefix" style="left:0;"></i>
+                        <input type="text" class="validate users_search" placeholder="Search Any Fields">
                     </div>
                 </form>
                 <div class='users_result'>
@@ -193,9 +228,8 @@ require("./header.php");
                     <h4 class='dosis center cayan-text text-lighten-1'>LIVE SEARCH</h4>
                     <form>                 
                         <div class="input-field">
-                        <i class="fas fa-search-location prefix"></i>
-                        <input id="icon_prefix" type="text" class="validate posts_search">
-                        <label for="icon_prefix">Search Any Value</label>
+                            <i class="fab fa-searchengin fa-2x prefix" style="left:0;"></i>
+                            <input type="text" class="validate posts_search" placeholder="Search Any Value">
                         </div>
                     </form>
                     <div class='result'>
