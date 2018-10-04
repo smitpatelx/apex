@@ -14,32 +14,31 @@ $(document).ready(function () {
     $('.slider').slider();
     $('.parallax').parallax();
     $('select').formSelect();
-
 });
 //MATERIALIZE @end
 
 //FOR LOADING SCREEN 
-//$body = $("body");
+$body = $("body");
 
-//$(document).on({
-//    ajaxStart: function () {
-//        $body.addClass("loading_wrap");
-//    },
-//    ajaxStop: function () {
-//        $body.removeClass("loading_wrap");
-//    }
-//});
-//
-//$(window).on('load', function () {
-//    $('.preloader-background').delay(1400).fadeOut('slow');
-//
-//    $('.loading-text')
-//        .delay(1350)
-//        .fadeOut('slow');
-//    $('.preloader-wrapper')
-//        .delay(1350)
-//        .fadeOut('slow');
-//});
+$(document).on({
+    ajaxStart: function () {
+        $body.addClass("loading_wrap");
+    },
+    ajaxStop: function () {
+        $body.removeClass("loading_wrap");
+    }
+});
+
+// $(window).on('load', function () {
+//     $('.preloader-background').delay(1400).fadeOut('slow');
+
+//     $('.loading-text')
+//         .delay(1350)
+//         .fadeOut('slow');
+//     $('.preloader-wrapper')
+//         .delay(1350)
+//         .fadeOut('slow');
+// });
 
 //FOR LOADING SCREEN  @end
 
@@ -94,6 +93,7 @@ $(document).ready(function () {
         $(".pass_dashboard").hide(400);
         $(".users_dashboard").hide(400);
         $(".result").hide(400);
+        
     });
 });
 //FOR DASHBOARD @end
