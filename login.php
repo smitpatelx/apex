@@ -27,15 +27,71 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
   $firstname = "First Name";
   $lastname = "Last Name";
   $email = "Email";
+  $password = "";
 
+  //holds class info for login/register, to be changed for sticky forms so the currently used form will be showed, so you won't need to needlessly switch to the form every time
+  $loginClassInfo = "active blue-text";
+  $registerClassInfo = "blue-text";
 
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-  $requestType = $_POST['requestType'];
-  //if a request is submitted
+  $username = "User Name";
+  $firstname = "First Name";
+  $lastname = "Last Name";
+  $email = "Email";
+  $password = "";
 
-  echo $requestType;
+
+  $loginClassInfo = "active blue-text";
+  $registerClassInfo = "blue-text";
+  //if a frm submit(post) is recieved
+
+  //get requestType (if it is a login, or register) and store in variable
+  $requestType = $_POST['requestType'];
+
+  //if a login request is recieved
+  if ($requestType == "login")
+  {
+    if (isset($_POST['email']) && isset($_POST['password']))
+    {
+      $email = trim($_POST['email']);
+      $password = trim($_POST($_POST['password']));
+
+
+      //todo
+      //  do something with the data
+    }    
+
+
+  } 
+  //if a register request is recieved
+  else if ($requestType == "register")
+  {
+
+    $loginClassInfo = "blue-text";
+    //make the register form the currently active form
+    $registerClassInfo = "active blue-text";
+
+    //gathering posted data
+    if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password'])) {
+      $firstname = trim($_POST['first_name']);
+      $lastname = trim($_POST['last_name']);
+      $email = trim($_POST['email']);
+      $password = trim($_POST['password']);
+
+
+      //todo
+      //  do something with the data
+
+
+
+    } else {
+      echo "Something went wrong! Input all fields and try again.";
+    }
+
+  }
+  
 
 }
 
@@ -45,33 +101,33 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 <div class="grid-x center">
 
         <ul id="tabs-swipe-demo col l4 offset-4" class="tabs center">
-            <li class="tab center"><a class="active blue-text" href="#sugn-up">Sign In</a></li>
-            <li class="tab center"><a href="#sign-in" class="blue-text">Sign UP</a></li>
+            <li class="tab center"><a class="<?php echo $loginClassInfo;?>" href="#sign-in">Sign In</a></li>
+            <li class="tab center"><a href="#sign-up" class="<?php echo $registerClassInfo; ?>">Sign UP</a></li>
         </ul>
 
-      <div id="sign-in" class="col s12 cell large-8 large-offset-2">
+      <div id="sign-up" class="col s12 cell large-8 large-offset-2">
         <div class="row my-4">
         <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s6">
               <input type="hidden" id="requestType" name="requestType" value="register"> 
-              <input placeholder="First Name" id="first_name" type="text" class="validate">
-              <label for="first_name">First Name</label>
+              <input placeholder="First Name" value = "<?php echo $firstname; ?>" id="first_name" name="first_name" type="text" class="validate">
+              <label class="active" for="first_name">First Name</label>
             </div>
             <div class="input-field col s6">
-              <input placeholder="Last Name" id="last_name" type="text" class="validate">
+              <input placeholder="Last Name" value = "<?php echo $lastname; ?>" id="last_name" name="last_name" type="text" class="validate">
               <label for="last_name">Last Name</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="password" type="password" class="validate">
+              <input id="password" type="password" name="password" class="validate">
               <label for="password">Password</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="email" type="email" class="validate">
+              <input id="email" name="email" value = "<?php echo $email; ?>" type="email" class="validate">
               <label for="email">Email</label>
             </div>
           </div>
@@ -89,20 +145,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
       </div>
 
 
-      <div id="sugn-up" class="col s12 cell large-8 large-offset-2">
+      <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
         <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s12">
             <input type="hidden" id="requestType" name="requestType" value="login"> 
-              <input id="email" type="email" class="validate">
+              <input id="email" name="email" type="email" class="validate">
               <label for="email">Email</label>
             </div>
           </div>
 
         <div class="row">
             <div class="input-field col s12">
-              <input id="password" type="password" class="validate">
+              <input id="password" name="password" type="password" class="validate">
               <label for="password">Password</label>
             </div>
         </div>
