@@ -29,25 +29,6 @@ require("./header.php");
                     <a href="#" class="usersbtn_dashboard"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></a>
                 </li>
             </ul>
-            <!-- <ul id="slide-out" class="admin_nav">
-                <li>
-                <div class="user-view hide-on-med-and-down">
-                    <div class="background user-dashboard-img">
-                        <img src="./assets/bg/1511.jpg" class="full-width">
-                    
-                        <a href="#user" class='welcomebtn_dashboard'><img class="circle" src="./assets/list-images/profile.jpg"></a>
-                    </div>
-                    
-                </div>
-                </li>
-                <a href="#" class="welcomebtn_dashboard my-2"><li class=" py-2"><i class="fas fa-user mr-3"></i><p class='hide-on-med-and-down'>Smit Patel</p></li></a>
-                <a href="#" class="welcomebtn_dashboard my-2"><li class=" py-2"><i class="fas fa-at mr-3"></i><p class='hide-on-med-and-down'>admin@netdevv.com</p></li></a>
-                <li><div class="divider black"></div></li>
-                <a href="#" class=" my-2 postbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-pen mr-3"></i><p class='hide-on-med-and-down'>Posts</p></li></a>
-                <a href="#" class=" my-2 passbtn_dashboard"><li class="waves-effect list-block pt-2"><i class="fas fa-user-lock mr-3"></i><p class='hide-on-med-and-down'>Change Password</p></li></a>
-                <a class=" my-2 usersbtn_dashboard" href="#!"><li class="waves-effect list-block pt-2"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></li></a>
-            </ul> -->
-            <!-- <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons small">menu</i></a> -->
         </div>
     </div>   
     <div class="grid-x">  
