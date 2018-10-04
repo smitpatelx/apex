@@ -100,7 +100,7 @@ require("./header.php");
             page += value;
             if (page == -1) {
                 page = 0;
-            } else if (page * resultsPerPage > listings.length) {
+            } else if (page * resultsPerPage >= listings.length) {
 
             } else {
                 console.log("page changed to " + page);
