@@ -65,7 +65,7 @@
                     <h4 class="nav-bar-site-text">Apex Listings</h4>
                 </a>
                 
-                <ul id="nav-mobile" class="right hide-on-med-and-down px-3">
+                <ul id="nav-mobile" class="right hide-on-med-and-down px-3 mt-1">
                     <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>

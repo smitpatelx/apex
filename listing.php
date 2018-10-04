@@ -39,7 +39,9 @@ require("./header.php");
             resultsPerPage = $("#results-per-page").val();
             if (resultsPerPage == -1) {
                 resultsPerPage = listings.length;
-
+                $(".btn-small").hide();
+            } else {
+                $(".btn-small").show();
             }
             page = 0;
             console.log("Results per page: " + resultsPerPage);
@@ -69,7 +71,9 @@ require("./header.php");
     function PrintListing(div, i) {
         try {
             var markup = "";
-            markup += "<div class='card cell z-depth-4 hoverable' data-aos='zoom-out'>";
+            markup += "<div class='card cell z-depth-4 hoverable'";
+            //            markup += "data-aos='zoom-out'";
+            markup += ">";
             markup += "<div class='card-image waves-effect waves-block waves-light'>";
             markup += "<img class='activator' src='" + listings[i].img + "'>";
             markup += "</div>";
@@ -88,30 +92,27 @@ require("./header.php");
             markup += "</div>";
             markup += "</div>";
             div.append(markup);
-        } catch (error) {
-
-        }
+        } catch (error) {}
 
     }
 
     function pageChange(value) {
-
-        if (page != -1) {
-            page += value;
-            if (page == -1) {
-                page = 0;
-            } else if (page * resultsPerPage >= listings.length) {
-
-            } else {
-                console.log("page changed to " + page);
-                offset = page * resultsPerPage;
-                PopulateListings();
-            }
+        if (value == 1 && (page + 1) * resultsPerPage < listings.length) {
+            page ++;
+            console.log("Page changed to " + (page + 1) + "...\nDisplaying results " + (page * resultsPerPage) + " to " + ((page + 1) * resultsPerPage));
+            offset = page * resultsPerPage;
+            PopulateListings();
+        }
+        if (value == -1 && page > 0) {
+            page --;
+            console.log("Page changed to " + (page + 1) + "...\nDisplaying results " + (page * resultsPerPage) + " to " + ((page + 1) * resultsPerPage));
+            offset = page * resultsPerPage;
+            PopulateListings();
         }
     }
 </script>
 
-<div class="slides slides_listing">
+<div class="slides slides_listing" style="margin-bottom: 150px;">
     <img src="./assets/illustrations/1a.jpg" alt="bg">
     <img src="./assets/illustrations/2a.jpg" alt="bg">
     <img src="./assets/illustrations/3a.jpg" alt="bg">
@@ -125,8 +126,8 @@ require("./header.php");
 
 </script>
 
-<div class="grid-x grid-margin-x filters_listing">
-    <div class="cell medium-2 large-2 small-2">
+<div class="grid-x filters_listing" style="margin-top: 0;">
+    <div class="cell medium-2 large-2 small-2" style="width:120px;">
         <label>Results per page</label>
         <select id="results-per-page">
         </select>

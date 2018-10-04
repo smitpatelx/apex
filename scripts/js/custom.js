@@ -164,61 +164,6 @@ $(document).ready(function () {
 })
 
 //LISTING
-$(document).ready(function () {
-    if (window.location == 'http://apex.com/listing.php') {
-        if (getCookie("resultsPerPage") == null) {
-            createCookie("resultsPerPage", 12, "1");
-            console.log("resultsPerPage cookie created." + getCookie("resultsPerPage"));
-        }
-        console.log(getCookie("resultsPerPage"));
-    }
-});
-$(".numberOfResults").ready(function () {
-    var index = [12, 24, 48, 0];
-    index = index.indexOf(parseInt(getCookie("resultsPerPage")));
-
-    if (index != -1) {
-        $(".numberOfResults").prop('selectedIndex', index);
-        $('.numberOfResults').formSelect();
-    } else {
-        console.log("No cookie");
-    }
-
-});
-
-function changeResultsPerPage() {
-    $(".dropdown-content").remove();
-    createCookie('resultsPerPage', $('.numberOfResults').val(), 1)
-    console.log("updated cookie to " + $('.numberOfResults').val());
-    location.reload();
-}
-
-function listingQuery(sql){
-    console.log("testest");
-}
-
-
 
 //LISTING @end
 
-
-
-
-
-function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
-}
-
-function createCookie(name, value, days) {
-    var expires;
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
-    } else {
-        expires = "";
-    }
-    document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
-}
