@@ -19,8 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     
     <script src="./scripts/js/jquery.min.js"></script>
-    <script>
-        
+    <script>       
         $(window).on('load', function () {
             $('.preloader-background').delay(1400).fadeOut('slow');
 
@@ -30,14 +29,13 @@
             $('.preloader-wrapper')
                 .delay(1350)
                 .fadeOut('slow');
-        });
-        
+        });      
     </script>
 </head>
 <body>
 
     <div class="navbar-fixed">
-<!--
+
         <div class="preloader-background white">
             <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
             <div class="preloader-wrapper big active">       
@@ -54,7 +52,7 @@
                 </div>
             </div>
         </div>
--->
+
     
         <nav class="nav_bar" role="navigation">
             <div class="nav-wrapper">
