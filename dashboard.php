@@ -54,44 +54,47 @@ require("./header.php");
         <div class="cell large-12 medium-12 small-12 p-5">
             
             <div class="grid-x welcome_dashboard center cayan-text">
-                <?php 
-                $conn = db_connect();
-                $output = "";
-                $sql = "SELECT * FROM users WHERE id = 1";
+                <div class="cell large-12 medium-12 small-12 grid-x">
+                    <?php
+                        
+                        $conn4 = db_connect();
+                        
+                        $sql4 = "SELECT * FROM users WHERE id = 1";
 
-                    $result = pg_query($conn, $sql);
-                    // $records = pg_num_rows($result);
+                        $result4 = pg_query($conn4, $sql4);
+                        // $records = pg_num_rows($result);
 
-                if (pg_num_rows($result) > 0) {
-                    // output data of each row
-                    while($row = pg_fetch_assoc($result)) {
+                        if (pg_num_rows($result4) > 0) {
+                            // output data of each row
+                            while($row = pg_fetch_assoc($result4)) {
 
-                    echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>\n
-                        <h1 class='col m12 dosis'>WELCOME ".$row["first_name"] ." ". $row["last_name"]."</h1>\n
-                    <h3 class='col m12 dosis red-text'>This is your DASHBOARD !</h3> \n
-                    <div class='input-field col m6 toogle_disable'>\n
-                        <input disabled type='text' class='validate' placeholder='First Name' value='".$row["first_name"]."'>\n
-                        <label for='username_dashboard'>First Name</label>\n
-                    </div>\n
-                    <div class='input-field col m6 toogle_disable'>\n
-                        <input disabled type='text' class='validate' placeholder='Last Name' value='".$row["last_name"]."'>\n
-                        <label for='username_dashboard'>Last Name</label>\n
-                    </div>\n           
-                    <div class='input-field col m12 toogle_disable'>\n
-                        <input disabled type='text' class='validate' placeholder='User Name' value='".$row["username"]."'>\n
-                        <label for='username_dashboard'>User Name</label>\n
-                    </div>\n
-                    <div class='input-field col m12 toogle_disable'>\n
-                        <input disabled type='tel' class='validate'  placeholder='xyz@email.com' value='".$row["email"]."'>\n
-                        <label for='email_dashboard'>Email</label>\n
-                    </div>\n\n
-                </form>\n";
-                    }}
+                            echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>\n
+                                <h1 class='col m12 dosis'>WELCOME ".$row["first_name"] ." ". $row["last_name"]."</h1>\n
+                            <h3 class='col m12 dosis red-text'>This is your DASHBOARD !</h3> \n
+                            <div class='input-field col m6 toogle_disable'>\n
+                                <input disabled type='text' class='validate' placeholder='First Name' value='".$row["first_name"]."'>\n
+                                <label for='username_dashboard'>First Name</label>\n
+                            </div>\n
+                            <div class='input-field col m6 toogle_disable'>\n
+                                <input disabled type='text' class='validate' placeholder='Last Name' value='".$row["last_name"]."'>\n
+                                <label for='username_dashboard'>Last Name</label>\n
+                            </div>\n           
+                            <div class='input-field col m12 toogle_disable'>\n
+                                <input disabled type='text' class='validate' placeholder='User Name' value='".$row["username"]."'>\n
+                                <label for='username_dashboard'>User Name</label>\n
+                            </div>\n
+                            <div class='input-field col m12 toogle_disable'>\n
+                                <input disabled type='tel' class='validate'  placeholder='xyz@email.com' value='".$row["email"]."'>\n
+                                <label for='email_dashboard'>Email</label>\n
+                            </div>\n\n
+                        </form>\n";
+                            }}
                     ?>
+                </div>
                 <div class="input-field row cell medium-4 medium-offset-4">
-                        <button class="col m5 mx-3 btn btn-submit btn_toogle_disable">CHANGE</button>
-                        <button class="col m5 mx-3 btn btn-submit btn_username_save">SAVE</button>
-                        <!-- <input type="button" class="btn btn-submit btn_toogle_disable" value="CHANGE"> -->
+                    <button class="col m5 mx-3 btn btn-submit btn_toogle_disable">CHANGE</button>
+                    <button class="col m5 mx-3 btn btn-submit btn_username_save">SAVE</button>
+                    <!-- <input type="button" class="btn btn-submit btn_toogle_disable" value="CHANGE"> -->
                 </div>
             </div>        
             <div class="pass_dashboard center dashdoard_container">
