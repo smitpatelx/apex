@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     if (isset($_POST['email']) && isset($_POST['password']))
     {
       $email = trim($_POST['email']);
-      $password = trim($_POST($_POST['password']));
+      $password = trim($_POST['password']);
 
 
       //todo
