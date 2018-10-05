@@ -188,61 +188,7 @@ require("./header.php");
                         </div>
                     </form>                    
                 </div>
-                <!-- <script>
-                    $('button[name = dsh_post_submit]').on("click", function () {
-
-                            var dsh_post_head = $("input[name=dsh_post_head]").val();
-                            var dsh_post_location = $("input[name=dsh_post_location]").val();
-                            var dsh_post_price = $("input[name=dsh_post_price]").val();
-                            var dsh_post_area = $("input[name=dsh_post_area]").val();
-                            var dsh_post_contact = $("input[name=dsh_post_contact]").val();
-                            var dsh_post_file = $("input[name=dsh_post_file]").val();
-
-                            if (dsh_post_head.length > 0 ||
-                                dsh_post_location.length > 0 ||
-                                dsh_post_price.length > 0 ||
-                                dsh_post_area.length > 0 ||
-                                dsh_post_file.length > 0 ||
-                                dsh_post_contact.length > 0) {
-                                $.get("dashboard_post_save.php", {
-                                    "dsh_post_head": dsh_post_head,
-                                    "dsh_post_location": dsh_post_location,
-                                    "dsh_post_price": dsh_post_price,
-                                    "dsh_post_area": dsh_post_area,
-                                    "dsh_post_file": dsh_post_file,
-                                    "dsh_post_contact": dsh_post_contact
-                                }, function ($data) {
-                                    console.log($data);
-                                    // $(".dashboard_loader").show();
-                                    // $(".create_post_dashboard").hide(400);
-                                    // $(".dashboard_loader").delay(1400).fadeOut('slow');
-                                    // $(".welcome_dashboard").hide(400);
-                                    // $(".pass_dashboard").hide(400);
-                                    // $(".users_dashboard").hide(400);
-                                    // $(".post_dashboard").delay(1400).fadeIn(1000);
-                                    // $(".result").fadeIn(2000);
-                                    // $(".users_result").hide(400);
-
-                                    // //FOR LIVE SEARCH ON DASHBOARD
-                                    // setTimeout(function () {
-                                    //     $.get("dashboard_search.php", {
-                                    //         "search": "%"
-                                    //     }, function ($data) {
-                                    //         $(".result").html($data);
-                                    //     });
-                                    // }, 600);
-                                    //  //FOR LIVE SEARCH ON DASHBOARD @end
-                                })
-                            } else{
-                                console.log(dsh_post_head + 'is not correct');
-                                console.log(dsh_post_location + 'is not correct');
-                                console.log(dsh_post_price + 'is not correct');
-                                console.log(dsh_post_area + 'is not correct');
-                                console.log(dsh_post_contact + 'is not correct');
-                                console.log(dsh_post_file + 'is not correct');
-                            }
-                        });
-                </script> -->
+                
             </div>
             <div class="users_dashboard center dashdoard_container">
                 <h2 class='dosis'><i class="fas fa-user prefix"></i> Users</h2>

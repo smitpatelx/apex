@@ -6,7 +6,7 @@ October 2, 2018
 WEBD3201
 **************/ 
 
-    require('./scripts/functions.php');
+    require('./includes/functions.php');
     $errors = []; // Store all foreseen and unforseen errors here
 
     $dsh_post_head = trimT('dsh_post_head');

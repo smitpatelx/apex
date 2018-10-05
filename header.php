@@ -6,7 +6,7 @@ October 2, 2018
 WEBD3201
 **************/
 
-require('./scripts/functions.php');
+require('./includes/functions.php');
 ob_start();
 
 ?>
@@ -23,13 +23,13 @@ ob_start();
     <link href="https://fonts.googleapis.com/css?family=Arima+Madurai|Montserrat|Pacifico|Rubik" rel="stylesheet">
     <link rel="stylesheet" href="./style/main.min.css">
     <link rel="stylesheet" href="./style/foundation/css/foundation.min.css">
-    <link rel="stylesheet" href="./style/custom.css">
+    <link rel="stylesheet" href="./style/web3201.css">
     <link rel="stylesheet" href="./style/aos.css">
     <link rel="stylesheet" href="./style/slick.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     
-    <script src="./scripts/js/jquery.min.js"></script>
+    <script src="./includes/js/jquery.min.js"></script>
     <script>       
         $(window).on('load', function () {
             $('.preloader-background').delay(1400).fadeOut('slow');
@@ -81,22 +81,13 @@ ob_start();
                     <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="register.php" class="nav-mobile-text">Register</a></li>
-                    <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
+                    <!-- <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li> -->
                     <li class="waves-effect mx-2"><a href="logout.php" class="nav-mobile-text"><i class="fas fa-sign-out-alt fa-x"></i></a></li>
                 </ul>
             </div>
         </nav>
     </div>
         <ul class="sidenav" id="mobile-demo">
-            <!-- <li class="center-align">
-                <form class="center container">
-                    <div class="input-field blue-grey">
-                    <input class="center-align black-text" id="search1" type="search" placeholder="SEARCH" required>
-                    <label class="label-icon m-2 p-1" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                    </div>
-                </form>
-            </li> -->
             <li class="center-align"><a href="index.php">Home</a></li>
             <li class="center-align"><a href="listing.php">Listing</a></li>
             <li class="center-align"><a href="login.php">Login</a></li>

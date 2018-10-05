@@ -18,7 +18,7 @@ WEBD3201
     </thead>
     <tbody class='transition-1'>
 <?php
-require("./scripts/functions.php");
+require("./includes/functions.php");
 
 
     $conn2 = db_connect();

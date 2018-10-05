@@ -32,7 +32,7 @@
                         <a href="http://opentech2.durhamcollege.org/pufferd/webd3201/">Course WEBD3201</a>
                     </h5>
                     <h5 class="col l6 offset-l3" style="margin-top:200px;">
-                        All rights reserved # NETDEVV TEAM
+                        All rights reserved # GROUP-19
                     </h5>
                     </div>
                     <div class="modal-footer row">
@@ -44,7 +44,7 @@
         </div>
         <div class="footer-copyright secondry">
             <div class="container center footer-made-by">
-                Made with <i class="fas fa-heart" style="color:red;"></i> by <a href="http://www.netdevv.com">NETDEVV</a>
+                Made with <i class="fas fa-heart" style="color:red;"></i> by <a href="#">GROUP-19</a>
             </div>
         </div>
     </footer>

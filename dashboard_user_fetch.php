@@ -6,7 +6,7 @@ October 2, 2018
 WEBD3201
 **************/ 
 
-    require('./scripts/functions.php');
+    require('./includes/functions.php');
     
     $conn5 = db_connect();
     $first_name_dashboard = "trim(LOWER('$_GET[first_name_dashboard]'))";

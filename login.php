@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 
 ?>
 
-<div class="grid-x center my-4">
+<div class="grid-x center my-4 ml-4">
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
@@ -133,6 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
                 <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Sign In
                     <i class="material-icons right">lock</i>
                 </button>
+                <a class="btn waves-effect waves-light blue lighten-1" href="./register.php">Register
+                    <i class="fas fa-user-plus ml-1"></i>
+                </a>
             </div>
         </div>
 

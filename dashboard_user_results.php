@@ -18,7 +18,7 @@ WEBD3201
     </thead>
     <tbody class='transition-1'>
 <?php
-    require("./scripts/functions.php");
+    require("./includes/functions.php");
 
     $conn7 = db_connect();
     $search7 = "trim(LOWER('$_GET[search7]%'))";
