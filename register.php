@@ -1,11 +1,11 @@
 <?php
-/*************
-Front End: Smit Patel
-Backend: Blake Philips, Dylan Lopez
-Lab 10: Database/PHP Lab - User Registration
-October 2, 2018
-WEBD3201
-**************/
+/*
+FILE:                   login.php
+TITLE:                  Apex Listings - User Login Page
+AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
+LAST MODIFIED:          October 4, 2018
+DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
+**/
 
 $title = "Register";
 $file = "dashboard.php";

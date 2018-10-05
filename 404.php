@@ -1,10 +1,11 @@
 <?php
-/*************
-Smit Patel
-Lab 10: Database/PHP Lab - User Registration
-09 April 2018
-WEBD2201
-**************/
+/*
+FILE:                       login.php
+TITLE:                      Apex Listings - User Login Page
+AUTHORS:                    Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
+LAST MODIFIED:        October 4, 2018
+DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
+**/
 $title = "404";
 $file = "index.php";
 $date = "Sept 14 2018";

@@ -1,4 +1,10 @@
-
+<!-- /*
+FILE:                       login.php
+TITLE:                      Apex Listings - User Login Page
+AUTHORS:                    Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
+LAST MODIFIED:        October 4, 2018
+DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
+**/ -->
     </div>
 
     <footer class="page-footer secondry" style="position:relative;overflow:hidden;">
@@ -54,10 +60,10 @@
     <script src="./scripts/js/materialize.min.js"></script>
     <script src="./scripts/js/parallax.min.js"></script>
     <script src="./scripts/js/custom.js"></script> -->
-    <script src="./scripts/js/vendors.js"></script>
-    <script src="./scripts/js/aos.js"></script>
-    <script src="./scripts/js/slick.min.js"></script>
-    <script src="./scripts/js/custom.js"></script>
+    <script src="./includes/js/vendors.js"></script>
+    <script src="./includes/js/aos.js"></script>
+    <script src="./includes/js/slick.min.js"></script>
+    <script src="./includes/js/custom.js"></script>
     
     <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script> -->
 

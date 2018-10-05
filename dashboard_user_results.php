@@ -1,9 +1,10 @@
-<!-- /*************
-Author: Smit Patel
-Deliverable 1 - dashboard_user_results.php
-October 2, 2018
-WEBD3201
-**************/ -->
+<!-- /*
+FILE:                   login.php
+TITLE:                  Apex Listings - User Login Page
+AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
+LAST MODIFIED:          October 4, 2018
+DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
+**/ -->
 <div class="scroll-table-y scroll_snap">
 <table class="highlight centered responsive-table">
     <thead class='scroll_snap_item'>

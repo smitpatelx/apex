@@ -1,10 +1,11 @@
 <?php
-/*************
-Author: Smit Patel
-Deliverable 1 - header.php
-October 2, 2018
-WEBD3201
-**************/
+/*
+FILE:                       login.php
+TITLE:                      Apex Listings - User Login Page
+AUTHORS:                    Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
+LAST MODIFIED:        October 4, 2018
+DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
+**/
 
 require('./includes/functions.php');
 ob_start();
@@ -70,7 +71,8 @@ session_start();
             <div class="nav-wrapper">
                 <!-- <img src="./assets/logo/bandcamp-brands.svg" alt="s" class="nav-bar-site-logo hide-on-med-and-down"> -->
                 <div class="brand-logo-s">
-                    <i class="fab fa-strava fa-3x hide-on-med-and-down nav-bar-site-logo"></i>
+                    <!-- <i class="fab fa-strava fa-3x hide-on-med-and-down nav-bar-site-logo"></i> -->
+                    <img src="./assets/logo/logo.png" class="hide-on-med-and-down nav-bar-site-logo" alt="APEX">
                 </div>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="index.php" class="brand-logo stretch-it" data-splitting>

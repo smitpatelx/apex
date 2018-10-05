@@ -1,12 +1,11 @@
 <?php
-/*************
-FILE: 						login.php
-TITLE:						Apex Listings - User Login Page
-AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
-LAST MODIFIED BY: Smit Patel
-LAST MODIFIED:		October 4, 2018
-DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
-**************/
+/*
+FILE:                   login.php
+TITLE:                  Apex Listings - User Login Page
+AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
+LAST MODIFIED:          October 4, 2018
+DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
+**/
 
 $title = "Listing Display";
 $file = "listing-display.php";

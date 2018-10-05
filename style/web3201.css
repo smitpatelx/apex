@@ -130,41 +130,6 @@ body {
   transition: all .5s;
 }
 
-.nav-bar-site-logo {
-  -webkit-animation-duration: 2s;
-          animation-duration: 2s;
-  -webkit-animation-name: logo-anim;
-          animation-name: logo-anim;
-  -webkit-animation-delay: 0s;
-          animation-delay: 0s;
-  -webkit-animation-direction: alternate;
-          animation-direction: alternate;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes logo-anim {
-  0% {
-    -webkit-transform: scale(1, 1) rotate3d(0);
-            transform: scale(1, 1) rotate3d(0);
-  }
-  100% {
-    -webkit-transform: scale(0.9, 0.9) rotate3d(1, 0, 0, 180deg);
-            transform: scale(0.9, 0.9) rotate3d(1, 0, 0, 180deg);
-  }
-}
-
-@keyframes logo-anim {
-  0% {
-    -webkit-transform: scale(1, 1) rotate3d(0);
-            transform: scale(1, 1) rotate3d(0);
-  }
-  100% {
-    -webkit-transform: scale(0.9, 0.9) rotate3d(1, 0, 0, 180deg);
-            transform: scale(0.9, 0.9) rotate3d(1, 0, 0, 180deg);
-  }
-}
-
 #nav-mobile li:hover {
   background: white;
   color: #008b9e;
