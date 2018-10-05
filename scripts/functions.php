@@ -34,8 +34,6 @@ function trimTL($anyValue)
 	return trim($_POST["$anyValue"]);
 }
 
-
-
 if(isset($_GET['sql'])){
     $sql = $_GET['sql'];
     $conn = db_connect();
