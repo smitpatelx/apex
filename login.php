@@ -6,12 +6,12 @@ Lab 10: Database/PHP Lab - User Registration
 October 2, 2018
 WEBD3201
 **************/
-$title = "Login Page";
-$file = "login.php";
-$date = "October 2 2018";
-$banner = "Log in";
-$desc = "Login Page of Apex";
-require("./header.php");
+
+$title = "Dashboard";
+$file = "dashboard.php";
+$date = "Sept 14 2018";
+$banner = "Dashboard";
+$desc = "Dashboard Page of QualityLife";
 ?>
 
 <?php

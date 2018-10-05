@@ -1,4 +1,11 @@
 <?php
+ /*************
+Author: Smit Patel
+Deliverable 1 - dashboard_user_fetch.php
+October 2, 2018
+WEBD3201
+**************/ 
+
     require('./scripts/functions.php');
     
     $conn5 = db_connect();

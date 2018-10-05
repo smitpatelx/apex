@@ -1,7 +1,23 @@
+<?php
+/*************
+Author: Smit Patel
+Deliverable 1 - header.php
+October 2, 2018
+WEBD3201
+**************/
+
+$title = "Dashboard";
+$file = "dashboard.php";
+$date = "Sept 14 2018";
+$banner = "Dashboard";
+$desc = "Dashboard Page of QualityLife";
+require('./scripts/functions.php');
+ob_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require('./scripts/functions.php'); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -69,8 +85,8 @@
                     <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
+                    <!-- <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li> -->
                     <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
-                    <li class="waves-effect my-2 mx-2"><a href="dashboard.php" class="nav-mobile-text">Dashboard</a></li>
                 </ul>
             </div>
         </nav>

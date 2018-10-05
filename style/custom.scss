@@ -1,3 +1,9 @@
+/*************
+Author: Smit Patel
+Deliverable 1 - custom.css
+October 2, 2018
+WEBD3201
+**************/
 
 $primary: #00e0fe;
 $secondry: #008b9e;
@@ -427,7 +433,7 @@ flex: 1 0 auto;
 .slides_listing {
     width:100%;
     position: relative;
-    height:30em;
+    height:20em;
     filter:brightness(80%);
     transform: translateY(-3vh);
     z-index: -20;
@@ -437,11 +443,12 @@ flex: 1 0 auto;
     overflow: hidden;
 
     img{
-        width: 100vw;
+        width: 60em;
         transform: scale(1, 1.2);
         height:50em;
         overflow: hidden;
-        margin-top: 10em;
+        margin-top: -10em;
+        // filter: blur(2px);
     }
 }
 

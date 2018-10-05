@@ -1,3 +1,9 @@
+ <!-- /*************
+Author: Smit Patel
+Deliverable 1 - dashboard_search.php
+October 2, 2018
+WEBD3201
+**************/  -->
 <div class="scroll-table-y scroll_snap">
 <table class="highlight centered responsive-table">
     <thead class='scroll_snap_item'>
