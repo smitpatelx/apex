@@ -1,11 +1,12 @@
 <?php
-/*
-FILE:                   login.php
-TITLE:                  Apex Listings - User Login Page
-AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
-LAST MODIFIED:          October 4, 2018
-DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
-**/
+/*************
+FILE: 						login.php
+TITLE:						Apex Listings - User Login Page
+AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
+LAST MODIFIED BY: Dylan Lopez
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
+**************/
 
 $title = "Login";
 $file = "dashboard.php";
@@ -16,96 +17,73 @@ $desc = "Dashboard Page of QualityLife";
 require('header.php');
 ?>
 
+
 <?php
-//LOGIN FUNCTIONALITY
-//Authors: Blake, Dylan
-
-if ($_SERVER["REQUEST_METHOD"] == "GET")
-{
-  //default for when page loads first time
-
-  //initialize variables to be echo'ed into the
-  $login = ""; // DL - initializing login id variable
-  $username = "User Name";
-  $firstname = "First Name";
-  $lastname = "Last Name";
-  $email = "Email";
-  $password = "";
-
-  //holds class info for login/register, to be changed for sticky forms so the currently used form will be showed, so you won't need to needlessly switch to the form every time
-  $loginClassInfo = "active blue-text";
-  $registerClassInfo = "blue-text";
-
-
-} else if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-  $username = "User Name";
-  $firstname = "First Name";
-  $lastname = "Last Name";
-  $email = "Email";
-  $password = "";
-
-
-  $loginClassInfo = "active blue-text";
-  $registerClassInfo = "blue-text";
-  //if a frm submit(post) is recieved
-
-  //get requestType (if it is a login, or register) and store in variable
-  $requestType = $_POST['requestType'];
-
-  //if a login request is recieved
-  if ($requestType == "login")
+  
+  if ($_SERVER["REQUEST_METHOD"] == "GET")
   {
-    if (isset($_POST['email']) && isset($_POST['password']))
+    $loginid = "";
+    $password= "";
+  }
+    else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-      $login = trim($_POST['id_login']); // DL - added variable to hold id to be retreived from the form
-      $email = trim($_POST['email']);
-      $password = trim($_POST['password']);
+      if (isset($_POST['id']) && isset($_POST['password']))
+      {
+        $loginid = trim($_POST['id']);
+        $password = md5(trim($_POST['password']));
+
+        $dbconn = db_connect();
+        // echo $password;
+
+        // Preparing query for execution
+        $stmt1 = pg_prepare($dbconn, 'update_last_query', "UPDATE users
+                                                SET last_access = '".date("Y-m-d",time())."'
+                                                WHERE id = $1 AND password = $2");
+  
+        // Execute the prepared query
+      $result1 = pg_execute($dbconn, 'update_last_query', array('".$loginid"', '".$password."'));
+  
+      pg_query($dbconn, $result1);
+  
+      // Deciding which landing page to be redirected to
+          $stmt2 = pg_prepare($conn, 'select_user_type_query', 'SELECT user_type,
+                                                                FROM USERS
+                                                                WHERE id = $1 AND password = $2');
+  
+          $result2 = pg_execute($conn, 'select_user_type_query', array('".$loginid"', '".$password."'));
+  
+          $currentUserType = pg_fetch_array($result2,0);
+              if ($_SESSION['user_type'] == "s"){
+                header("LOCATION: ./admin.php");
+             }
+             if ($_SESSION['user_type'] == "a"){
+             header("LOCATION: ./dashboard.php");
+             }
+             if ($_SESSION['user_type'] == "s"){
+            header("LOCATION: ./admin.php");
+              }
+              if ($_SESSION['user_type'] == "c"){
+             header("LOCATION: ./welcome.php");
+             }
 
 
-      //todo
-      //  do something with the data
+
+
+      }
     }
 
 
-  }
-  //if a register request is recieved
-  else if ($requestType == "register")
-  {
-
-    $loginClassInfo = "blue-text";
-    //make the register form the currently active form
-    $registerClassInfo = "active blue-text";
-
-    //gathering posted data
-    if (isset($_POST['first_name']) && isset($_POST['last_name']) && isset($_POST['email']) && isset($_POST['password'])) {
-      $firstname = trim($_POST['first_name']);
-      $lastname = trim($_POST['last_name']);
-      $email = trim($_POST['email']);
-      $lastaccess = trim($_POST['last_access']);
-      //$password = trim($_POST['password']);
-
-      // Connecting the database using predefined function
-      $dbconn = db_connect();
-
-      // Preparing query for execution
-      $stmtLastAccess = pg_prepare($dbconn, 'my_query', "UPDATE users
-                                              SET last_access = '".date("Y-m-d",time())."'
-                                              WHERE id = $1 AND password = $2");
-
-      // Execute the prepared query
-
-    } else {
-      echo "Something went wrong! Input all fields and try again.";
-    }
-
-  }
 
 
-}
+  
+
+
+
 
 
 ?>
+
+
 
 <div class="grid-x center my-4 ml-4">
 
@@ -114,9 +92,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
         <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s12">
-            <input type="hidden" id="requestType" name="requestType" value="login">
-              <input id="email" name="email" type="email" class="validate" value = "<?php echo $email; ?>">
-              <label for="email">Email</label>
+              <input id="id" name="id"  class="validate" value = "<?php echo $loginid; ?>">
+              <label for="id">User ID</label>
             </div>
           </div>
 

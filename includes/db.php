@@ -1,33 +1,18 @@
 <?php
-/*************
-Author: Smit Patel
-Deliverable 1 - db.php
-October 2, 2018
-WEBD3201
-**************/
 
-// function db_connect() {
 
-// define("DB_SERVER", "127.0.0.1");
-// define("DB_USER", "smit");
-// define("DB_PASSWORD", "smitpatelx");
-// define("DB_DATABASE", "qualitylife_db");
+define("DB_HOST", "127.0.0.1");
+define("DB_NAME","group19_db");
+define("DB_PORT", "5432");
+define("DB_PASSWORD", "apexscdb18");
+define("DB_USER", "group19_admin");
 
-// $connection = mysqli_connect(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
-// return $connection;
 
-// // Check connection
-// 	if ($connection->connect_error) 
-//         {
-//             die("Connection failed: " . $connection->connect_error);
-//         }
-//         echo "Connected successfully";
-// }
 
 function db_connect() //to connect database
 {
-$connection = pg_connect("host=127.0.0.1 dbname=group19_db user=group19_admin password=apexscdb18"); 
-return $connection; 
+$connection = pg_connect(DB_HOST, DB_NAME, DB_PORT, DB_PASSWORD, DB_USER);
+return $connection;
 
 }
 
