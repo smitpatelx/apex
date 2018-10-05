@@ -1,10 +1,11 @@
 <?php
 /*************
-Front End: Smit Patel
-Backend: Blake Philips, Dylan Lopez
-Lab 10: Database/PHP Lab - User Registration
-October 2, 2018
-WEBD3201
+FILE: 						login.php
+TITLE:						Apex Listings - User Login Page
+AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
+LAST MODIFIED BY: Dylan Lopez
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
 **************/
 
 $title = "Login";
@@ -19,12 +20,13 @@ require('header.php');
 <?php
 //LOGIN FUNCTIONALITY
 //Authors: Blake, Dylan
- 
+
 if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
   //default for when page loads first time
 
-  //initialize variables to be echo'ed into the 
+  //initialize variables to be echo'ed into the
+  $login = ""; // DL - initializing login id variable
   $username = "User Name";
   $firstname = "First Name";
   $lastname = "Last Name";
@@ -57,16 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
   {
     if (isset($_POST['email']) && isset($_POST['password']))
     {
+      $login = trim($_POST['id_login']); // DL - added variable to hold id to be retreived from the form
       $email = trim($_POST['email']);
-      $password = trim($_POST($_POST['password']));
+      $password = trim($_POST['password']);
 
 
       //todo
       //  do something with the data
-    }    
+    }
 
 
-  } 
+  }
   //if a register request is recieved
   else if ($requestType == "register")
   {
@@ -80,20 +83,25 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
       $firstname = trim($_POST['first_name']);
       $lastname = trim($_POST['last_name']);
       $email = trim($_POST['email']);
-      $password = trim($_POST['password']);
+      $lastaccess = trim($_POST['last_access'])
+      //$password = trim($_POST['password']);
 
+      // Connecting the database using predefined function
+      $dbconn = db_connect();
 
-      //todo
-      //  do something with the data
+      // Preparing query for execution
+      $stmtLastAccess = pg_prepare($dbconn, 'my_query', "UPDATE users
+                                              SET last_access = '".date("Y-m-d",time())."'
+                                              WHERE id = $1 AND password = $2");
 
-
+      // Execute the prepared query
 
     } else {
       echo "Something went wrong! Input all fields and try again.";
     }
 
   }
-  
+
 
 }
 
@@ -107,8 +115,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
         <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s12">
-            <input type="hidden" id="requestType" name="requestType" value="login"> 
-              <input id="email" name="email" type="email" class="validate">
+            <input type="hidden" id="requestType" name="requestType" value="login">
+              <input id="email" name="email" type="email" class="validate" value = "<?php echo $email; ?>">
               <label for="email">Email</label>
             </div>
           </div>
@@ -127,12 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
                 </button>
             </div>
         </div>
-      
+
         </form>
       </div>
       </div>
 
- 
+
 </div>
 
 <?php

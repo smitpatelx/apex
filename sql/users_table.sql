@@ -1,20 +1,19 @@
 ﻿/*************
-Smit Patel
-FILE: listing.sql
-15 09 2018
-WEBD - II
+FILE: 						listing.sql
+TITLE:						Apex Listings - User Tables Creation Script
+AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
+LAST MODIFIED BY: Dylan Lopez
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Creates users class for PostGreSQL database
 **************/
 
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users(
-	id INT PRIMARY KEY,
-	first_name VARCHAR(50) NOT NULL,
-	last_name VARCHAR(50) NOT NULL,
-	username VARCHAR(50) NOT NULL,
-	email VARCHAR(50) NOT NULL,
-	gender VARCHAR(50) NOT NULL,
-	phone VARCHAR(50) NOT NULL
+CREATE TABLE users (
+    user_id VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(32) NOT NULL,
+    user_type VARCHAR(2) NOT NULL,
+    email_address VARCHAR(255) NOT NULL,
+    enrol_date DATE NOT NULL,
+    last_access DATE NOT NULL
 );
-
-insert into users (id, first_name, last_name, username, email, phone, gender) values (1, 'Smit', 'Patel', 'smitpatel99', 'admin@netdevv.com', '999-999-0000', 'Male');
