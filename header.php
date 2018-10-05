@@ -8,6 +8,7 @@ WEBD3201
 
 require('./scripts/functions.php');
 ob_start();
+session_start();
 
 ?>
 <!DOCTYPE html>
