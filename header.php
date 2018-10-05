@@ -6,11 +6,6 @@ October 2, 2018
 WEBD3201
 **************/
 
-$title = "Dashboard";
-$file = "dashboard.php";
-$date = "Sept 14 2018";
-$banner = "Dashboard";
-$desc = "Dashboard Page of QualityLife";
 require('./scripts/functions.php');
 ob_start();
 
@@ -78,14 +73,14 @@ ob_start();
                 </div>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="index.php" class="brand-logo stretch-it" data-splitting>
-                    <h4 class="nav-bar-site-text">Apex Listings</h4>
+                    <h4 class="nav-bar-site-text"><?php echo $banner; ?></h4>
                 </a>
                 
                 <ul id="nav-mobile" class="right hide-on-med-and-down px-3 mt-1">
                     <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
-                    <!-- <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li> -->
+                    <li class="waves-effect my-2 mx-2"><a href="register.php" class="nav-mobile-text">Register</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
                 </ul>
             </div>

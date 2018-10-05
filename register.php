@@ -7,10 +7,10 @@ October 2, 2018
 WEBD3201
 **************/
 
-$title = "Login";
+$title = "Register";
 $file = "dashboard.php";
 $date = "Sept 14 2018";
-$banner = "Login";
+$banner = "Register";
 $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
@@ -102,37 +102,45 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 
 <div class="grid-x center">
 
-      <div id="sign-in" class="col s12 cell large-8 large-offset-2">
-        <div class="cell large-4 large-offset-4 row">
+      <div id="sign-up" class="col s12 cell large-8 large-offset-2">
+        <div class="row my-4">
         <form class="col s12" method = "post">
           <div class="row">
+            <div class="input-field col s6">
+              <input type="hidden" id="requestType" name="requestType" value="register"> 
+              <input placeholder="First Name" value = "<?php echo $firstname; ?>" id="first_name" name="first_name" type="text" class="validate">
+              <label class="active" for="first_name">First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="Last Name" value = "<?php echo $lastname; ?>" id="last_name" name="last_name" type="text" class="validate">
+              <label for="last_name">Last Name</label>
+            </div>
+          </div>
+          <div class="row">
             <div class="input-field col s12">
-            <input type="hidden" id="requestType" name="requestType" value="login"> 
-              <input id="email" name="email" type="email" class="validate">
+              <input id="password" type="password" name="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" name="email" value = "<?php echo $email; ?>" type="email" class="validate">
               <label for="email">Email</label>
             </div>
           </div>
-
-        <div class="row">
+          <div class="row">
             <div class="input-field col s12">
-              <input id="password" name="password" type="password" class="validate">
-              <label for="password">Password</label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12">
-                <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Sign In
-                    <i class="material-icons right">lock</i>
+                <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Sign Up
+                    <i class="material-icons right">send</i>
                 </button>
             </div>
-        </div>
-      
+          </div>
+           
+
         </form>
       </div>
       </div>
 
- 
 </div>
 
 <?php

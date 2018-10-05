@@ -6,10 +6,10 @@ October 2, 2018
 WEBD3201
 **************/
 
-$title = "Dashboard";
+$title = "Admin";
 $file = "dashboard.php";
 $date = "Sept 14 2018";
-$banner = "Dashboard";
+$banner = "Admin";
 $desc = "Dashboard Page of QualityLife";
 require("./header.php");
 ?>

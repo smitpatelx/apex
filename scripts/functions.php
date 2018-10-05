@@ -9,8 +9,8 @@ WEBD3201
 
 date_default_timezone_set('America/Toronto');
 
-require('./db.php');
-require('./constants.php');
+require('db.php');
+require('constants.php');
 
 function displayCopyrightInfo() //to display copyright information in footer file
 {
