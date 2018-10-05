@@ -82,6 +82,7 @@ ob_start();
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="register.php" class="nav-mobile-text">Register</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li>
+                    <li class="waves-effect mx-2"><a href="logout.php" class="nav-mobile-text"><i class="fas fa-sign-out-alt fa-x"></i></a></li>
                 </ul>
             </div>
         </nav>

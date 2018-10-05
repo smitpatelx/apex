@@ -180,7 +180,7 @@ flex: 1 0 auto;
 }
 
 .nav-bar-site-text {
-    width:240px;
+    width:10em;
     height:64px;
     font-family: Dosis, sans-serif;
     letter-spacing: 3px;
@@ -510,4 +510,10 @@ flex: 1 0 auto;
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
     }
+}
+
+.listing_dis {
+    heigth:10em;
+    position: relative;
+    overflow: hidden;
 }

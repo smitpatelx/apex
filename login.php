@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
       $firstname = trim($_POST['first_name']);
       $lastname = trim($_POST['last_name']);
       $email = trim($_POST['email']);
-      $lastaccess = trim($_POST['last_access'])
+      $lastaccess = trim($_POST['last_access']);
       //$password = trim($_POST['password']);
 
       // Connecting the database using predefined function
@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 
 ?>
 
-<div class="grid-x center">
+<div class="grid-x center my-4">
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
