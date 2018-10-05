@@ -44,34 +44,34 @@ require("./header.php");
                 <div class="cell large-12 medium-12 small-12 grid-x" >
                     <?php
                         
-                        $conn4 = db_connect();
+                        $conn = db_connect();
                         
-                        $sql4 = "SELECT * FROM users WHERE id = 1";
+                        $query_dash_user = "SELECT * FROM users WHERE id = 1";
 
-                        $result4 = pg_query($conn4, $sql4);
+                        $result4 = pg_query($conn, $query_dash_user);
                         // $records = pg_num_rows($result);
-
+                        // error_log(implode(pg_fetch_assoc($result4)));
                         if (pg_num_rows($result4) > 0) {
                             // output data of each row
-                            while($row = pg_fetch_assoc($result4)) {
+                            while($row4 = pg_fetch_assoc($result4)) {
 
                             echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>\n
-                                <h1 class='col m12 dosis'>WELCOME ".$row["first_name"] ." ". $row["last_name"]."</h1>\n
+                                <h1 class='col m12 dosis'>WELCOME ".$row4["first_name"] ." ". $row4["last_name"]."</h1>\n
                             <h3 class='col m12 dosis red-text'>This is your DASHBOARD !</h3> \n
                             <div class='input-field col m6 toogle_disable'>\n
-                                <input disabled type='text' class='validate first_name_dsh' placeholder='First Name' value='".$row["first_name"]."'>\n
+                                <input disabled type='text' class='validate first_name_dsh' placeholder='First Name' value='".$row4["first_name"]."'>\n
                                 <label for='username_dashboard'>First Name</label>\n
                             </div>\n
                             <div class='input-field col m6 toogle_disable'>\n
-                                <input disabled type='text' class='validate last_name_dsh' placeholder='Last Name' value='".$row["last_name"]."'>\n
+                                <input disabled type='text' class='validate last_name_dsh' placeholder='Last Name' value='".$row4["last_name"]."'>\n
                                 <label for='username_dashboard'>Last Name</label>\n
                             </div>\n           
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row["username"]."'>\n
+                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row4["username"]."'>\n
                                 <label for='username_dashboard'>User Name</label>\n
                             </div>\n
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row["email"]."'>\n
+                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row4["email"]."'>\n
                                 <label for='email_dashboard'>Email</label>\n
                             </div>\n\n
                         </form>\n";
@@ -109,7 +109,10 @@ require("./header.php");
                                 $user_name_dashboard.length == 0 ||
                                 $email_dashboard.length == 0 ) {
                                 $.get("dashboard_user_fetch.php", {
-                                    "search": "%"
+                                    "first_name_dashboard": "%",
+                                    "last_name_dashboard": "%",
+                                    "user_name_dashboard": "%",
+                                    "email_dashboard": "%"
                                 }, function ($data) {
                                     // $(".result").html($data);
                                     console.log($data);
@@ -142,38 +145,104 @@ require("./header.php");
                         </div>
                     </form>
                 </div>
-            </div>        
+            </div>
+                  
             <div class=" create_post_dashboard center dashdoard_container">
                 <div class='grid-x'>
                     <h2 class='cell medium-5 medium-offset-4 center red-text dosis'>Create New Post</h2>
-                    <form class='cell medium-5 medium-offset-4 center row' action='dashboard.php'>
+                    <form class='cell medium-5 medium-offset-4 center row' action="dashboard_post_save.php" method='post' enctype="multipart/form-data" autocomplete="on">
                         <div class="input-field col s12">
-                            <input placeholder="Post Heading" type="text" class="validate">
+                            <input placeholder="Post Heading" type="text" name="dsh_post_head" class="validate">
                             <label for="first_name">Post Heading</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Location" type="password" class="validate">
+                            <input placeholder="Location" type="text" name="dsh_post_location" class="validate">
                             <label for="last_name">Location</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="$$$$" type="password" class="validate">
+                            <input placeholder="$$$$" type="text" name="dsh_post_price" class="validate">
                             <label for="last_name">Price</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="sqft" type="password" class="validate">
+                            <input placeholder="sqft" type="text" name="dsh_post_area" class="validate">
                             <label for="last_name">Total Area</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Contact" type="password" class="validate">
+                            <input placeholder="Contact" type="text" name="dsh_post_contact" class="validate">
                             <label for="last_name">Contact</label>
                         </div>
+                        <div class="file-field input-field col s12">
+                            <div class="btn">
+                                <span>File</span>
+                                <input type="file" name="dsh_post_file1">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload one or more files" name="dsh_post_file1">
+                            </div>
+                        </div>
                         <div class='input-field col s12 center'>
-                            <button class="btn waves-effect waves-light cayan lighten-1" type="submit" name="action">
+                            <!-- <input type="submit" class="btn waves-effect waves-light cayan lighten-1" name="submit"> -->
+                            <button class="btn waves-effect waves-light cayan lighten-1" name="dsh_post_submit" type="submit" name="submit">
                                 <i class="fas fa-check right"></i> POST
                             </button>
                         </div>
-                    </form>
+                    </form>                    
                 </div>
+                <!-- <script>
+                    $('button[name = dsh_post_submit]').on("click", function () {
+
+                            var dsh_post_head = $("input[name=dsh_post_head]").val();
+                            var dsh_post_location = $("input[name=dsh_post_location]").val();
+                            var dsh_post_price = $("input[name=dsh_post_price]").val();
+                            var dsh_post_area = $("input[name=dsh_post_area]").val();
+                            var dsh_post_contact = $("input[name=dsh_post_contact]").val();
+                            var dsh_post_file = $("input[name=dsh_post_file]").val();
+
+                            if (dsh_post_head.length > 0 ||
+                                dsh_post_location.length > 0 ||
+                                dsh_post_price.length > 0 ||
+                                dsh_post_area.length > 0 ||
+                                dsh_post_file.length > 0 ||
+                                dsh_post_contact.length > 0) {
+                                $.get("dashboard_post_save.php", {
+                                    "dsh_post_head": dsh_post_head,
+                                    "dsh_post_location": dsh_post_location,
+                                    "dsh_post_price": dsh_post_price,
+                                    "dsh_post_area": dsh_post_area,
+                                    "dsh_post_file": dsh_post_file,
+                                    "dsh_post_contact": dsh_post_contact
+                                }, function ($data) {
+                                    console.log($data);
+                                    // $(".dashboard_loader").show();
+                                    // $(".create_post_dashboard").hide(400);
+                                    // $(".dashboard_loader").delay(1400).fadeOut('slow');
+                                    // $(".welcome_dashboard").hide(400);
+                                    // $(".pass_dashboard").hide(400);
+                                    // $(".users_dashboard").hide(400);
+                                    // $(".post_dashboard").delay(1400).fadeIn(1000);
+                                    // $(".result").fadeIn(2000);
+                                    // $(".users_result").hide(400);
+
+                                    // //FOR LIVE SEARCH ON DASHBOARD
+                                    // setTimeout(function () {
+                                    //     $.get("dashboard_search.php", {
+                                    //         "search": "%"
+                                    //     }, function ($data) {
+                                    //         $(".result").html($data);
+                                    //     });
+                                    // }, 600);
+                                    //  //FOR LIVE SEARCH ON DASHBOARD @end
+                                })
+                            } else{
+                                console.log(dsh_post_head + 'is not correct');
+                                console.log(dsh_post_location + 'is not correct');
+                                console.log(dsh_post_price + 'is not correct');
+                                console.log(dsh_post_area + 'is not correct');
+                                console.log(dsh_post_contact + 'is not correct');
+                                console.log(dsh_post_file + 'is not correct');
+                            }
+                        });
+                </script> -->
             </div>
             <div class="users_dashboard center dashdoard_container">
                 <h2 class='dosis'><i class="fas fa-user prefix"></i> Users</h2>
@@ -188,14 +257,14 @@ require("./header.php");
                 </div>
                 <script>
                     $(".users_search").on("input", function () {
-                        $search6 = $(".users_search").val();
-                        if ($search6.length > 0) {
+                        var search = $(".users_search").val();
+                        if (search.length > 0) {
                             $.get("dashboard_user_results.php", {
-                                "search7": $search6
+                                "search7": search
                             }, function ($data) {
                                 $(".users_result").html($data);
                             })
-                        } else if ($search6.length == 0) {
+                        } else if (search.length == 0) {
                             $.get("dashboard_user_results.php", {
                                 "search7": "%"
                             }, function ($data) {

@@ -72,7 +72,7 @@ require("./header.php");
         try {
             var markup = "";
             markup += "<div class='card cell z-depth-4 hoverable'";
-            //            markup += "data-aos='zoom-out'";
+                       markup += "data-aos='zoom-out'";
             markup += ">";
             markup += "<div class='card-image waves-effect waves-block waves-light'>";
             markup += "<img class='activator' src='" + listings[i].img + "'>";
@@ -112,7 +112,7 @@ require("./header.php");
     }
 </script>
 
-<div class="slides slides_listing" style="margin-bottom: 150px;">
+<div class="slides slides_listing" style="margin-bottom: 70px;">
     <img src="./assets/illustrations/1a.jpg" alt="bg">
     <img src="./assets/illustrations/2a.jpg" alt="bg">
     <img src="./assets/illustrations/3a.jpg" alt="bg">
@@ -121,11 +121,6 @@ require("./header.php");
     <img src="./assets/illustrations/6a.jpg" alt="bg">
 </div>
 
-
-<script>
-
-</script>
-
 <div class="grid-x filters_listing" style="margin-top: 0;">
     <div class="cell medium-2 large-2 small-2" style="width:120px;">
         <label>Results per page</label>
@@ -133,7 +128,7 @@ require("./header.php");
         </select>
     </div>
 </div>
-<div class="grid-x grid-margin-x pb-2">
+<div class="grid-x grid-margin-x pb-4">
     <div class="cell large-1 large-offset-5">
         <a class="btn-small" onclick="pageChange(-1)" style="float: right;"><i class="fas fa-arrow-left"></i></a>
     </div>
@@ -149,7 +144,7 @@ require("./header.php");
     </div>
 </div>
 
-<div class="grid-x grid-margin-x pb-2">
+<div class="grid-x grid-margin-x pt-3 pb-2">
     <div class="cell large-1 large-offset-5">
         <a class="btn-small" onclick="pageChange(-1)" style="float: right;"><i class="fas fa-arrow-left"></i></a>
     </div>

@@ -1,5 +1,5 @@
 <?php 
-
+date_default_timezone_set('America/Toronto');
 // function db_connect() {
 
 // define("DB_SERVER", "127.0.0.1");
@@ -72,6 +72,11 @@ function userLoginForm($login,$password) //to make login form reusable
 	define('MAXIMUM_EMAIL_LENGTH', '255' );
 
 function trimT($anyValue)
+{
+	return trim($_POST["$anyValue"]);
+}
+
+function trimTL($anyValue)
 {
 	return trim($_POST["$anyValue"]);
 }
