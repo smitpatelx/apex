@@ -62,11 +62,14 @@ session_start();
     
         <nav class="nav_bar" role="navigation">
             <div class="nav-wrapper">
-                <!-- <img src="./assets/logo/bandcamp-brands.svg" alt="s" class="nav-bar-site-logo hide-on-med-and-down"> -->
                 <div class="brand-logo-s">
-                    <!-- <i class="fab fa-strava fa-3x hide-on-med-and-down nav-bar-site-logo"></i> -->
                     <img src="./assets/logo/logo.png" class="hide-on-med-and-down nav-bar-site-logo" alt="APEX">
                 </div>
+                <script>
+                    $('.nav-bar-site-logo').on('click',function() {
+                        window.location.href = "./index.php";
+                    });
+                </script>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <a href="index.php" class="brand-logo stretch-it" data-splitting>
                     <h4 class="nav-bar-site-text"><?php echo $banner; ?></h4>
