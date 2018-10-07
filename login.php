@@ -67,8 +67,8 @@ require('header.php');
              if ($_SESSION['user_type_s'] == "a"){
                 header("LOCATION: ./dashboard.php");
              }
-             if ($_SESSION['user_type_s'] == "s"){
-                header("LOCATION: ./admin.php");
+             if ($_SESSION['user_type_s'] == "d"){
+                header("LOCATION: ./406.php");
               }
               if ($_SESSION['user_type_s'] == "c"){
                 header("LOCATION: ./welcome.php");

@@ -32,3 +32,12 @@ CREATE TABLE users (
     enrol_date DATE NOT NULL,
     last_access DATE NOT NULL
 );
+
+-- 4	smitpatelx	1004c3d449a4002d2e167a7e0a3c063e	s	Smit	Patel	root@rootuser.com	2018-10-07	2018-10-07
+-- 3	smitpatelc	1004c3d449a4002d2e167a7e0a3c063e	c	rocky	handsome	rocky@admin.com	2018-10-07	2018-10-07
+-- 2	smitpatel2	1004c3d449a4002d2e167a7e0a3c063e	a	smit	patel	root@root.com	2018-10-07	2018-10-07
+-- 1	smitpatel	1004c3d449a4002d2e167a7e0a3c063e	a	Smit	Patel	root@rootuser.com	2018-10-07	2018-10-07
+INSERT INTO users (user_id, user_name, password, user_type, first_name, last_name, email_address, enrol_date, last_access) VALUES (1,    'usera',	'1004c3d449a4002d2e167a7e0a3c063e',	'a',	'Smit',	'Patel',	'root@rootuser.com',	'2018-10-07'::date,	'2018-10-07'::date);
+INSERT INTO users (user_id, user_name, password, user_type, first_name, last_name, email_address, enrol_date, last_access) VALUES (2,    'userc',	'1004c3d449a4002d2e167a7e0a3c063e',	'c',	'Smit',	'Patel',	'root@rootuser.co',	'2018-10-07'::date,	'2018-10-07'::date);
+INSERT INTO users (user_id, user_name, password, user_type, first_name, last_name, email_address, enrol_date, last_access) VALUES (3,    'users',	'1004c3d449a4002d2e167a7e0a3c063e',	's',	'Smit',	'Patel',	'root@rootuser.c',	'2018-10-07'::date,	'2018-10-07'::date);
+INSERT INTO users (user_id, user_name, password, user_type, first_name, last_name, email_address, enrol_date, last_access) VALUES (4,    'userd',	'1004c3d449a4002d2e167a7e0a3c063e',	'd',	'Smit',	'Patel',	'root@rootuser.ca',	'2018-10-07'::date,	'2018-10-07'::date);

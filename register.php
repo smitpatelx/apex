@@ -54,49 +54,55 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
   $errors = [];
   
   if (isset($firstname) && isset($lastname) && isset($username) && isset($user_type) && isset($email) && isset($password) ) {
-    $conn = db_connect();
-    $sql_u = "SELECT * FROM users WHERE user_name='$username'";
-  	$sql_e = "SELECT * FROM users WHERE email_address='$email'";
-    $res_u = pg_query($conn, $sql_u);
-  	$res_e = pg_query($conn, $sql_e);
 
-    if (pg_num_rows($res_u) > 0) {
-      $errors[0] = "Sorry... username already taken"; 	
-  	}else if(pg_num_rows($res_e) > 0){
-      $errors[1] = "Sorry... email already taken";      	
-    }   
-    else if (empty($errors)){
+    if (($firstname == "") && ($lastname == "") && ($username == "") && ($user_type == "") && ($email == "") && ($password == "") ) {
       
-      $user_redirection = "";
-      //check user_type
-      if ($user_type == "a")
-      {
-        $user_redirection = "dashboard.php";
-      }
-      else if ($user_type == "c")
-      {
-        $user_redirection = "welcome.php";
+        $conn = db_connect();
+        $sql_u = "SELECT * FROM users WHERE user_name='$username'";
+        $sql_e = "SELECT * FROM users WHERE email_address='$email'";
+        $res_u = pg_query($conn, $sql_u);
+        $res_e = pg_query($conn, $sql_e);
+
+        if (pg_num_rows($res_u) > 0) {
+          $errors[0] = "Sorry... username already taken"; 	
+        }else if(pg_num_rows($res_e) > 0){
+          $errors[1] = "Sorry... email already taken";      	
+        }   
+        else if (empty($errors)){
+          
+          $user_redirection = "";
+          //check user_type
+          if ($user_type == "a")
+          {
+            $user_redirection = "dashboard.php";
+          }
+          else if ($user_type == "c")
+          {
+            $user_redirection = "welcome.php";
+          }
+
+          $save = "INSERT INTO users (first_name, last_name, user_name, email_address, password, user_type, enrol_date, last_access) 
+              VALUES ('".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$password."', '".$user_type."', '".$enrol_date."' ,'".$enrol_date."')";
+          $results = pg_query($conn, $save);
+          $_SESSION['username_s'] = $username;
+          $_SESSION['user_type_s'] = $user_type;
+          header('Location: '.$user_redirection.'');
+          
+          }
+          else
+          {
+            $errors[3] = "Something went wrong! Try Again";
+          }
+    
+      } else {
+      $errors[4] = "Make sure any input field is not blank";
+      
       }
 
-      $save = "INSERT INTO users (first_name, last_name, user_name, email_address, password, user_type, enrol_date, last_access) 
-          VALUES ('".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$password."', '".$user_type."', '".$enrol_date."' ,'".$enrol_date."')";
-      $results = pg_query($conn, $save);
-      $_SESSION['username_s'] = $username;
-      $_SESSION['user_type_s'] = $user_type;
-      header('Location: '.$user_redirection.'');
+    } else {
+      $errors[2] = "Input all fields and try again.";
       
     }
-    else
-    {
-      $errors[3] = "Something went wrong! Try Again";
-    }
-    
-
-
-  } else {
-    $errors[2] = "Input all fields and try again.";
-    
-  }
 
    foreach ($errors as $error) {
         echo "<script> M.toast({html: '".$error."', classes: 'rounded'})</script>" . "\n";
@@ -141,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
             </div>
             <div class="input-field col s6">
               <select name="user_type">
-                <option value="" disabled selected>Choose User Type</option>
+                <!-- <option value=" " disabled selected>Choose User Type</option> -->
                 <option value="c">Clients</option>
                 <option value="a">Agent</option>
               </select>

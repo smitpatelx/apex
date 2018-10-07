@@ -63,7 +63,7 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != "s"){
                         
                         $conn = db_connect();
                         
-                        $query_dash_user = "SELECT * FROM users WHERE id = 1";
+                        $query_dash_user = "SELECT * FROM users WHERE users.user_name = '".$_SESSION['username_s']."'";
 
                         $result4 = pg_query($conn, $query_dash_user);
                         // $records = pg_num_rows($result);
@@ -74,7 +74,7 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != "s"){
 
                             echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>\n
                                 <h1 class='col m12 dosis'>WELCOME ".$row4["first_name"] ." ". $row4["last_name"]."</h1>\n
-                            <h3 class='col m12 dosis red-text'>This is your DASHBOARD !</h3> \n
+                            <h3 class='col m12 dosis red-text'>This is your Admin Panel !</h3> \n
                             <div class='input-field col m6 toogle_disable'>\n
                                 <input disabled type='text' class='validate first_name_dsh' placeholder='First Name' value='".$row4["first_name"]."'>\n
                                 <label for='username_dashboard'>First Name</label>\n
@@ -84,11 +84,11 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != "s"){
                                 <label for='username_dashboard'>Last Name</label>\n
                             </div>\n           
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row4["username"]."'>\n
+                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row4["user_name"]."'>\n
                                 <label for='username_dashboard'>User Name</label>\n
                             </div>\n
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row4["email"]."'>\n
+                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row4["email_address"]."'>\n
                                 <label for='email_dashboard'>Email</label>\n
                             </div>\n\n
                         </form>\n";
