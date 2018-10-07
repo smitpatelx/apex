@@ -20,7 +20,18 @@ if (empty($_SESSION['username_s'])){
 }
 
 ?>
+    <script>       
+        $(window).on('load', function () {
+            $('.preloader-background').delay(1400).fadeOut('slow');
 
+            $('.loading-text')
+                .delay(1350)
+                .fadeOut('slow');
+            $('.preloader-wrapper')
+                .delay(1350)
+                .fadeOut('slow');
+        });      
+    </script>
     <div class="row">       
         <div class="col l12 m12 s12 center pr-3 dashboard_panel">
             <ul class="">

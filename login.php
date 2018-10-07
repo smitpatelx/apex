@@ -17,7 +17,11 @@ $desc = "Dashboard Page of QualityLife";
 require('header.php');
 ?>
 
-
+<script>     
+    $(window).on('load', function () {
+        $('.preloader-background').hide();
+    });      
+</script>
 <?php
   
   if ($_SERVER["REQUEST_METHOD"] == "GET")

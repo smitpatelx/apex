@@ -34,14 +34,7 @@ session_start();
     <script src="./includes/js/jquery.min.js"></script>
     <script>       
         $(window).on('load', function () {
-            $('.preloader-background').delay(1400).fadeOut('slow');
-
-            $('.loading-text')
-                .delay(1350)
-                .fadeOut('slow');
-            $('.preloader-wrapper')
-                .delay(1350)
-                .fadeOut('slow');
+            $('.preloader-background').fadeIn('slow');
         });      
     </script>
 </head>

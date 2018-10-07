@@ -13,10 +13,22 @@ $banner = "LISTING";
 $desc = "Listing Page of QualityLife";
 require("./header.php");
 ?>
+    <script>       
+        $(window).on('load', function () {
+            $('.preloader-background').delay(1400).fadeOut('slow');
+
+            $('.loading-text')
+                .delay(1350)
+                .fadeOut('slow');
+            $('.preloader-wrapper')
+                .delay(1350)
+                .fadeOut('slow');
+        });      
+    </script>
 <script>
     var listings;
     var sql = "SELECT * FROM listing_demo ORDER BY listing_demo.id DESC";
-    $.get("./scripts/functions.php", {
+    $.get("./includes/functions.php", {
         "sql": sql
     }, function($data) {
         listings = $data;

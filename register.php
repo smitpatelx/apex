@@ -15,7 +15,11 @@ $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
 ?>
-
+<script>     
+    $(window).on('load', function () {
+        $('.preloader-background').hide();
+    });      
+</script>
 <?php
 //LOGIN FUNCTIONALITY
 //Authors: Blake, Dylan

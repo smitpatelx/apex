@@ -13,7 +13,18 @@ $banner = "HOME";
 $desc = "Home Page of QualityLife";
 require("./header.php");
 ?>
+    <script>       
+        $(window).on('load', function () {
+            $('.preloader-background').delay(1400).fadeOut('slow');
 
+            $('.loading-text')
+                .delay(1350)
+                .fadeOut('slow');
+            $('.preloader-wrapper')
+                .delay(1350)
+                .fadeOut('slow');
+        });      
+    </script>
     <div class="grid-x">
         <div class="cell large-12 medium-12 small-12 home_hero">
             <img src="./assets/bg/bg_dashboard.svg" alt="bg">
