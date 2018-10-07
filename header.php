@@ -30,8 +30,9 @@ session_start();
     <link rel="stylesheet" href="./style/slick.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    
+       
     <script src="./includes/js/jquery.min.js"></script>
+    <script src="./includes/js/vendors.js"></script>
     <script>       
         $(window).on('load', function () {
             $('.preloader-background').fadeIn('slow');

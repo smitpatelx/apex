@@ -23,7 +23,7 @@ require('header.php');
 <?php
 //LOGIN FUNCTIONALITY
 //Authors: Blake, Dylan
- 
+
 if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
   //default for when page loads first time
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
   $email = "";
   $password = "";
   $user_type = "";
-  $errors[] = "";
+  $errors = [];
 
   //holds class info for login/register, to be changed for sticky forms so the currently used form will be showed, so you won't need to needlessly switch to the form every time
   $loginClassInfo = "active blue-text";
@@ -51,9 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
   $password = md5(trim($_POST['password']));
   $user_type = trim($_POST['user_type']);
   $enrol_date= date("Y-m-d",time());
+  $errors = [];
   
   if (isset($firstname) && isset($lastname) && isset($username) && isset($user_type) && isset($email) && isset($password) ) {
-    
     $conn = db_connect();
     $sql_u = "SELECT * FROM users WHERE user_name='$username'";
   	$sql_e = "SELECT * FROM users WHERE email_address='$email'";
@@ -61,19 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
   	$res_e = pg_query($conn, $sql_e);
 
     if (pg_num_rows($res_u) > 0) {
-  	  $errors[0] = "Sorry... username already taken"; 	
+      $errors[0] = "Sorry... username already taken"; 	
   	}else if(pg_num_rows($res_e) > 0){
-  	  $errors[1] = "Sorry... email already taken"; 	
+      $errors[1] = "Sorry... email already taken";      	
     }   
     else if (empty($errors)){
       
       $user_redirection = "";
       //check user_type
-      if ($user_type = "a")
+      if ($user_type == "a")
       {
         $user_redirection = "dashboard.php";
       }
-      else if ($user_type = "c")
+      else if ($user_type == "c")
       {
         $user_redirection = "welcome.php";
       }
@@ -86,17 +86,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
       header('Location: '.$user_redirection.'');
       
     }
+    else
+    {
+      $errors[3] = "Something went wrong! Try Again";
+    }
     
 
 
   } else {
-    $errors[2] = "Something went wrong! Input all fields and try again.";
+    $errors[2] = "Input all fields and try again.";
     
   }
 
-  foreach ($errors as $error) {
-        echo $error . "\n";
+   foreach ($errors as $error) {
+        echo "<script> M.toast({html: '".$error."', classes: 'rounded'})</script>" . "\n";
     }
+  
 
 }
 
@@ -104,7 +109,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 ?>
 
 <div class="grid-x center">
-
       <div id="sign-up" class="col s12 cell large-8 large-offset-2">
         <div class="row my-4">
         <form class="col s12" method ="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="on">
@@ -136,10 +140,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
               <label for="password">Password</label>
             </div>
             <div class="input-field col s6">
-              <select name="user_type" value="<?php echo $user_type; ?>">
+              <select name="user_type">
                 <option value="" disabled selected>Choose User Type</option>
-                <option value="a">Agent</option>
                 <option value="c">Clients</option>
+                <option value="a">Agent</option>
               </select>
               <label>Choose User Type</label>
             </div>

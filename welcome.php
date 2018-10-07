@@ -14,7 +14,11 @@ $banner = "Welcome";
 $desc = "Home Page of QualityLife";
 require("./header.php");
 ?>
-
+<script>     
+    $(window).on('load', function () {
+        $('.preloader-background').hide();
+    });      
+</script>
  <div class="row">
         <div class="col l12 mt-4">
         <div class="card cyan lighten-1 z-depth-4 hoverable">

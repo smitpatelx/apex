@@ -43,36 +43,35 @@ require('header.php');
         // Preparing query for execution
         $stmt1 = pg_prepare($dbconn, 'update_last_query', "UPDATE users
                                                 SET last_access = '".$last_access."'
-                                                WHERE users.user_name = '$1' AND users.password = '$2'");
+                                                WHERE users.user_name = \$1 AND users.password = \$2");
   
         // Execute the prepared query
-      $result1 = pg_execute($dbconn, 'update_last_query', array('$1' => $loginid, '$2' => $password));
+      $result1 = pg_execute($dbconn, 'update_last_query', array($loginid,$password));
   
-      pg_query($dbconn, $result1);
+      // pg_query($dbconn, $result1);
   
       // Deciding which landing page to be redirected to
-          $stmt2 = pg_prepare($conn, 'select_user_type_query', "SELECT user_type,
+          $stmt2 = pg_prepare($dbconn, 'select_user_type_query', "SELECT user_type, user_name 
                                                                 FROM users
-                                                                WHERE users.user_name = '".$loginid."' AND users.password = '".$password."'");
+                                                                WHERE users.user_name = \$1 AND users.password = \$2");
   
-          $result2 = pg_execute($conn, 'select_user_type_query', array($loginid, $password));
+          $result2 = pg_execute($dbconn, 'select_user_type_query', array($loginid, $password));
   
-          $currentUserType = pg_fetch_array($result2,0);
-              if ($_SESSION['user_type'] == "s"){
+          $currentUserType = pg_fetch_array($result2);
+          $_SESSION['user_type_s'] = $currentUserType['user_type'];
+          $_SESSION['username_s'] = $currentUserType['user_name'];
+
+              if ($_SESSION['user_type_s'] == "s"){
                 header("LOCATION: ./admin.php");
-                $_SESSION['username_s'] = $username;
              }
-             if ($_SESSION['user_type'] == "a"){
+             if ($_SESSION['user_type_s'] == "a"){
                 header("LOCATION: ./dashboard.php");
-                $_SESSION['username_s'] = $username;
              }
-             if ($_SESSION['user_type'] == "s"){
+             if ($_SESSION['user_type_s'] == "s"){
                 header("LOCATION: ./admin.php");
-                $_SESSION['username_s'] = $username;
               }
-              if ($_SESSION['user_type'] == "c"){
+              if ($_SESSION['user_type_s'] == "c"){
                 header("LOCATION: ./welcome.php");
-                $_SESSION['username_s'] = $username;
              }
 
 

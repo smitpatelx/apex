@@ -15,7 +15,7 @@ $banner = "Dashboard";
 $desc = "Dashboard Page of QualityLife";
 require("./header.php");
 
-if (empty($_SESSION['username_s'])){
+if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != "a"){
     header('Location: 405.php');
 }
 

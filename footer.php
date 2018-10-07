@@ -60,7 +60,6 @@ DESCRIPTION:            Allows users to login to their profiles or allows new us
     <script src="./scripts/js/materialize.min.js"></script>
     <script src="./scripts/js/parallax.min.js"></script>
     <script src="./scripts/js/custom.js"></script> -->
-    <script src="./includes/js/vendors.js"></script>
     <script src="./includes/js/aos.js"></script>
     <script src="./includes/js/slick.min.js"></script>
     <script src="./includes/js/custom.js"></script>
