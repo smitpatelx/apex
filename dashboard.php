@@ -6,12 +6,19 @@ AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dyl
 LAST MODIFIED:          October 4, 2018
 DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
 **/
+
+
 $title = "Dashboard";
 $file = "dashboard.php";
 $date = "Sept 14 2018";
 $banner = "Dashboard";
 $desc = "Dashboard Page of QualityLife";
 require("./header.php");
+
+if (empty($_SESSION['username_s'])){
+    header('Location: 405.php');
+}
+
 ?>
 
     <div class="row">       
@@ -45,11 +52,11 @@ require("./header.php");
                 <div class="cell large-12 medium-12 small-12 grid-x" >
                     <?php
                         
-                        $conn = db_connect();
+                        $conn3 = db_connect();
                         
-                        $query_dash_user = "SELECT * FROM users WHERE id = 1";
+                        $query_dash_user = "SELECT * FROM users WHERE users.user_name = '".$_SESSION['username_s']."'";
 
-                        $result4 = pg_query($conn, $query_dash_user);
+                        $result4 = pg_query($conn3, $query_dash_user);
                         // $records = pg_num_rows($result);
                         // error_log(implode(pg_fetch_assoc($result4)));
                         if (pg_num_rows($result4) > 0) {
@@ -68,11 +75,11 @@ require("./header.php");
                                 <label for='username_dashboard'>Last Name</label>\n
                             </div>\n           
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row4["username"]."'>\n
+                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row4["user_name"]."'>\n
                                 <label for='username_dashboard'>User Name</label>\n
                             </div>\n
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row4["email"]."'>\n
+                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row4["email_address"]."'>\n
                                 <label for='email_dashboard'>Email</label>\n
                             </div>\n\n
                         </form>\n";

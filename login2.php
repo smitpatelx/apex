@@ -31,44 +31,39 @@ require('header.php');
       {
         $loginid = trim($_POST['id']);
         $password = md5(trim($_POST['password']));
-        $last_access = date("Y-m-d",time());
 
         $dbconn = db_connect();
         // echo $password;
 
         // Preparing query for execution
         $stmt1 = pg_prepare($dbconn, 'update_last_query', "UPDATE users
-                                                SET last_access = '".$last_access."'
-                                                WHERE users.user_name = '$1' AND users.password = '$2'");
+                                                SET last_access = '".date("Y-m-d",time())."'
+                                                WHERE id = $1 AND password = $2");
   
         // Execute the prepared query
-      $result1 = pg_execute($dbconn, 'update_last_query', array('$1' => $loginid, '$2' => $password));
+      $result1 = pg_execute($dbconn, 'update_last_query', array('".$loginid"', '".$password."'));
   
       pg_query($dbconn, $result1);
   
       // Deciding which landing page to be redirected to
-          $stmt2 = pg_prepare($conn, 'select_user_type_query', "SELECT user_type,
-                                                                FROM users
-                                                                WHERE users.user_name = '".$loginid."' AND users.password = '".$password."'");
+          $stmt2 = pg_prepare($conn, 'select_user_type_query', 'SELECT user_type,
+                                                                FROM USERS
+                                                                WHERE id = $1 AND password = $2');
   
-          $result2 = pg_execute($conn, 'select_user_type_query', array($loginid, $password));
+          $result2 = pg_execute($conn, 'select_user_type_query', array('".$loginid"', '".$password."'));
   
           $currentUserType = pg_fetch_array($result2,0);
               if ($_SESSION['user_type'] == "s"){
                 header("LOCATION: ./admin.php");
-                $_SESSION['username_s'] = $username;
              }
              if ($_SESSION['user_type'] == "a"){
-                header("LOCATION: ./dashboard.php");
-                $_SESSION['username_s'] = $username;
+             header("LOCATION: ./dashboard.php");
              }
              if ($_SESSION['user_type'] == "s"){
-                header("LOCATION: ./admin.php");
-                $_SESSION['username_s'] = $username;
+            header("LOCATION: ./admin.php");
               }
               if ($_SESSION['user_type'] == "c"){
-                header("LOCATION: ./welcome.php");
-                $_SESSION['username_s'] = $username;
+             header("LOCATION: ./welcome.php");
              }
 
 
@@ -94,10 +89,10 @@ require('header.php');
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
-        <form class="col s12" method = "post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="on">
+        <form class="col s12" method = "post">
           <div class="row">
             <div class="input-field col s12">
-              <input id="id" name="id"  type="text" class="validate">
+              <input id="id" name="id"  class="validate" value = "<?php echo $loginid; ?>">
               <label for="id">User ID</label>
             </div>
           </div>

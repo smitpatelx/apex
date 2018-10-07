@@ -29,14 +29,6 @@ function trimT($anyValue)
 	return trim($_POST["$anyValue"]);
 }
 
-function trimTL($anyValue)
-{
-	return trim($_POST["$anyValue"]);
-}
-
-
-
-
 
 if(isset($_GET['sql'])){
     $sql = $_GET['sql'];
