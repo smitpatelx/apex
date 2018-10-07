@@ -7,20 +7,6 @@
 
 -- Started on 2018-10-05 18:01:06
 DROP TABLE IF EXISTS listing_demo;
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-SET row_security = off;
-
-SET search_path = public, pg_catalog;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
 --
 -- TOC entry 183 (class 1259 OID 32952)
 -- Name: listing_demo; Type: TABLE; Schema: public; Owner: postgres
@@ -36,9 +22,6 @@ CREATE TABLE listing_demo (
     phone character varying(15) NOT NULL
 );
 
-
-ALTER TABLE listing_demo OWNER TO group19_admin;
-
 --
 -- TOC entry 182 (class 1259 OID 32950)
 -- Name: listing_demo_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -50,9 +33,6 @@ CREATE SEQUENCE listing_demo_id_seq
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
-
-
-ALTER TABLE listing_demo_id_seq OWNER TO group19_admin;
 
 --
 -- TOC entry 2106 (class 0 OID 0)

@@ -44,7 +44,7 @@ session_start();
     <div class="navbar-fixed">
 
         <div class="preloader-background white">
-            <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
+            <!-- <h2 class="center m-4 loading-text" data-splitting>APEX</h2> -->
             <div class="preloader-wrapper big active">       
                 <div class="spinner-layer spinner-cyan-only lighten-1 ">
                     <div class="circle-clipper left">
@@ -82,7 +82,12 @@ session_start();
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="register.php" class="nav-mobile-text">Register</a></li>
                     <!-- <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li> -->
-                    <li class="waves-effect mx-2"><a href="logout.php" class="nav-mobile-text"><i class="fas fa-sign-out-alt fa-x"></i></a></li>
+                    <?php
+                    if (!empty($_SESSION['username_s'])){
+                        echo "<li class='waves-effect mx-2'><a href='logout.php' class='nav-mobile-text'><i class='fas fa-sign-out-alt fa-x'></i></a></li>";
+                    }
+                    ?>
+                    
                 </ul>
             </div>
         </nav>

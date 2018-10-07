@@ -1,26 +1,11 @@
-﻿/*************
-FILE: 						listing.sql
-TITLE:						Apex Listings - User Tables Creation Script
-AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
-LAST MODIFIED BY: Dylan Lopez
-LAST MODIFIED:		October 4, 2018
-DESCRIPTION:			Creates users class for PostGreSQL database
-**************/
-
--- DROP TABLE IF EXISTS users;
-
--- CREATE TABLE users (
---     user_id VARCHAR(20) PRIMARY KEY,
---     password VARCHAR(32) NOT NULL,
---     user_type VARCHAR(2) NOT NULL,
---     email_address VARCHAR(255) NOT NULL,
---     enrol_date DATE NOT NULL,
---     last_access DATE NOT NULL
--- );
-
-
+﻿-- FILE: 						listing.sql
+-- TITLE:						Apex Listings - User Tables Creation Script
+-- AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
+-- LAST MODIFIED BY: Dylan Lopez
+-- LAST MODIFIED:		October 4, 2018
+-- DESCRIPTION:			Creates users class for PostGreSQL database
+ALTER TABLE IF EXISTS users;
 DROP TABLE IF EXISTS users;
-
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(20) NOT NULL,
@@ -32,7 +17,6 @@ CREATE TABLE users (
     enrol_date DATE NOT NULL,
     last_access DATE NOT NULL
 );
-
 -- 4	smitpatelx	1004c3d449a4002d2e167a7e0a3c063e	s	Smit	Patel	root@rootuser.com	2018-10-07	2018-10-07
 -- 3	smitpatelc	1004c3d449a4002d2e167a7e0a3c063e	c	rocky	handsome	rocky@admin.com	2018-10-07	2018-10-07
 -- 2	smitpatel2	1004c3d449a4002d2e167a7e0a3c063e	a	smit	patel	root@root.com	2018-10-07	2018-10-07
