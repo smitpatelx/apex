@@ -45,9 +45,6 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != "a"){
                     <a href="#" class="passbtn_dashboard"><i class="fas fa-user-lock mr-3"></i><p class='hide-on-med-and-down'>Change Password</p></a>
                 </li>
                 <li>
-                    <a href="#" class="usersbtn_dashboard"><i class="fas fa-users mr-3"></i><p class='hide-on-med-and-down'>Users</p></a>
-                </li>
-                <li>
                     <a href="#" class="newpostbtn_dashboard"><i class="fas fa-plus mr-3"></i><p class='hide-on-med-and-down'>New Post</p></a>
                 </li>
             </ul>

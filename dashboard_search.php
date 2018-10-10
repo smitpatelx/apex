@@ -5,6 +5,11 @@ AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dyl
 LAST MODIFIED:          October 4, 2018
 DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
 **/  -->
+<?php
+if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != "a" || $_SESSION['user_type_s'] != "s")){
+    header('Location: 405.php');
+}
+?>
 <div class="scroll-table-y scroll_snap">
 <table class="highlight centered responsive-table">
     <thead class='scroll_snap_item'>
