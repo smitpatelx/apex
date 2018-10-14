@@ -6,9 +6,14 @@ LAST MODIFIED:          October 4, 2018
 DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
 **/  -->
 <?php
-if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != "a" || $_SESSION['user_type_s'] != "s")){
-    header('Location: 405.php');
+require("./includes/functions.php");
+session_start();
+
+if (empty($_SESSION['username_s']) || (($_SESSION['user_type_s'] != "a") && ($_SESSION['user_type_s'] != "s"))){
+    header('Location: 405.php');  
 }
+// echo $_SESSION['username_s'];
+// echo $_SESSION['user_type_s'];
 ?>
 <div class="scroll-table-y scroll_snap">
 <table class="highlight centered responsive-table">
@@ -24,7 +29,6 @@ if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != "a" || $_SESS
     </thead>
     <tbody class='transition-1'>
 <?php
-require("./includes/functions.php");
 
 
     $conn2 = db_connect();

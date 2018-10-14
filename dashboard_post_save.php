@@ -6,8 +6,10 @@ AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dyl
 LAST MODIFIED:          October 4, 2018
 DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
 **/
-if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != "a" || $_SESSION['user_type_s'] != "s")){
-    header('Location: 405.php');
+session_start();
+
+if (empty($_SESSION['username_s']) || (($_SESSION['user_type_s'] != "a") && ($_SESSION['user_type_s'] != "s"))){
+    header('Location: 405.php');  
 }
     require('./includes/functions.php');
     $errors = []; // Store all foreseen and unforseen errors here

@@ -6,6 +6,7 @@ LAST MODIFIED:          October 4, 2018
 DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
 **/ -->
 <?php
+session_start();
 if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != "s")){
     header('Location: 405.php');
 }
