@@ -29,6 +29,10 @@ function trimT($anyValue)
 	return trim($_POST["$anyValue"]);
 }
 
+function hashmd5($value)
+{
+    return hash("md5", $value);
+}
 
 if(isset($_GET['sql'])){
     $sql = $_GET['sql'];
