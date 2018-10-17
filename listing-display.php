@@ -1,11 +1,11 @@
+<!--
+FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
+TITLE:						Apex Listings - User Login Page
+AUTHORS:					Smit Patel
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
+-->
 <?php
-/*
-FILE:                   login.php
-TITLE:                  Apex Listings - User Login Page
-AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
-LAST MODIFIED:          October 4, 2018
-DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
-**/
 
 $title = "Listing Display";
 $file = "listing-display.php";
@@ -35,8 +35,8 @@ require('header.php');
                 echo  "<img class='activator' src='".$row["img"]."'>";
                 echo  "</div>";
             echo  "<div class='card-content'>";
-        echo  "<span class='card-title activator grey-text text-darken-4'>".$row["list_heading"]."<i class='material-icons right'>more_vert</i></span>";
-        echo "<span class='card-title grey-text text-darken-4 '>Information<i class='material-icons right'>close</i></span>";
+        echo  "<h2  class='card-title activator grey-text text-darken-4'>Heading: <span>".$row["list_heading"]."</span> </h2>";
+        echo "<span class='card-title grey-text text-darken-4 h3'>Information</span>";
         echo "<ul>";
         echo "<li>Location: ".$row["location"]."</li>";
         echo "<li>Price: $".$row["price"]."</li>";

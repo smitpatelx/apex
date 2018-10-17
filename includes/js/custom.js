@@ -3,6 +3,9 @@ Splitting();
 //FOR SPLITTING JS @end
 
 //MATERIALIZE
+$('.nav-bar-site-logo').on('click', function () {
+    window.location.href = "./index.php";
+});
 $(document).ready(function () {
     $('.sidenav').sidenav();
     $('.carousel').carousel({
@@ -14,6 +17,7 @@ $(document).ready(function () {
     $('.slider').slider();
     $('.parallax').parallax();
     $('select').formSelect();
+    
 });
 //MATERIALIZE @end
 

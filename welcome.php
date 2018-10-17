@@ -1,11 +1,11 @@
+<!--
+FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
+TITLE:						Apex Listings - User Login Page
+AUTHORS:					Smit Patel
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
+-->
  <?php
-/*
-FILE:                   login.php
-TITLE:                  Apex Listings - User Login Page
-AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
-LAST MODIFIED:          October 4, 2018
-DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
-**/
 
 $title = "Home";
 $file = "index.php";
@@ -13,8 +13,13 @@ $date = "Sept 14 2018";
 $banner = "Welcome";
 $desc = "Home Page of QualityLife";
 require("./header.php");
+
+if (empty($_SESSION['username_s'])){
+    header('Location: 405.php');
+    ob_flush();  //Flush output buffer
+}
 ?>
-<script>     
+<script type="text/javascript">     
     $(window).on('load', function () {
         $('.preloader-background').hide();
     });      

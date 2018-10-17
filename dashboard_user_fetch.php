@@ -1,13 +1,15 @@
+<!--
+FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
+TITLE:						Apex Listings - User Login Page
+AUTHORS:					Smit Patel
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
+-->
 <?php
-/*
-FILE:                   login.php
-TITLE:                  Apex Listings - User Login Page
-AUTHORS:                Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
-LAST MODIFIED:          October 4, 2018
-DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
-**/
-if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != "s")){
+
+if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != ADMIN){
     header('Location: 405.php');
+    ob_flush();  //Flush output buffer
 }
     require('./includes/functions.php');
     

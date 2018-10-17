@@ -5623,7 +5623,7 @@ var
 	// Support: IE <=10 - 11, Edge 12 - 13
 	// In IE/Edge using regex groups here causes severe slowdowns.
 	// See https://connect.microsoft.com/IE/feedback/details/1736512/
-	rnoInnerhtml = /<script|<style|<link/i,
+	rnoInnerhtml = /<script type="text/javascript"|<style|<link/i,
 
 	// checked="checked" or checked
 	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
@@ -9627,7 +9627,7 @@ jQuery.ajaxTransport( "script", function( s ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {
-				script = jQuery( "<script>" ).prop( {
+				script = jQuery( "<script type="text/javascript">" ).prop( {
 					charset: s.scriptCharset,
 					src: s.url
 				} ).on(

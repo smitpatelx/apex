@@ -1,12 +1,12 @@
-<?php
-/*************
-FILE: 						login.php
+<!--
+FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
 TITLE:						Apex Listings - User Login Page
-AUTHORS:					Blake Phillips, Clayton Galliah-Penhale, Dylan Lopez, Smit Patel
-LAST MODIFIED BY: Dylan Lopez
+AUTHORS:					Smit Patel
 LAST MODIFIED:		October 4, 2018
 DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
-**************/
+-->
+
+<?php
 
 $title = "Login";
 $file = "dashboard.php";
@@ -17,20 +17,22 @@ $desc = "Dashboard Page of QualityLife";
 require('header.php');
 ?>
 
-<script>     
+<script type="text/javascript">     
     $(window).on('load', function () {
         $('.preloader-background').hide();
     });      
 </script>
 <?php
   
+  $errors = []; 
+  
   if ($_SERVER["REQUEST_METHOD"] == "GET")
   {
     if(isset($_COOKIE['username']))
     {
       $loginid = $_COOKIE['username'];
-      $password= "";
-      $rememberme= "";
+      $password= "";  
+      $rememberme= "";   
     }
     else{
       $loginid = "";
@@ -40,56 +42,94 @@ require('header.php');
   }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-      if (isset($_POST['id']) && isset($_POST['password']))
+
+      if (isset($_POST['id']) && isset($_POST['password']) ) //if ID and Password not set
       {
+        if (isset($_POST['rememberme']))
+        {
+          $rememberme = $_POST['rememberme'];
+        }
+        
         $loginid = trimT('id');
-        $password = hashmd5(trimT('password'));
-        $rememberme = trimT('rememberme');
-        $last_access = date("Y-m-d",time());
+        $password = trimT('password');
+        
+        
+        if ($loginid != "" && $password != "" ) //if ID and Password is empty
+        {
+          $password = hashmd5($password);
+          $last_access = date("Y-m-d",time());
+          $dbconn = db_connect();
 
-        $dbconn = db_connect();
-        // echo $password;
-
-        // Preparing query for execution
-        $stmt1 = pg_prepare($dbconn, 'update_last_query', "UPDATE users
-                                                SET last_access = '".$last_access."'
-                                                WHERE users.user_name = \$1 AND users.password = \$2");
+          // Deciding which landing page to be redirected to
+          $stmt2 = pg_prepare($dbconn, 'user_login', "SELECT * 
+                                                      FROM users
+                                                      WHERE users.user_name = $1 AND users.password = $2");
   
-        // Execute the prepared query
-        $result1 = pg_execute($dbconn, 'update_last_query', array($loginid,$password));
-    
-        // pg_query($dbconn, $result1);
-  
-        // Deciding which landing page to be redirected to
-          $stmt2 = pg_prepare($dbconn, 'select_user_type_query', "SELECT user_type, user_name 
-                                                                FROM users
-                                                                WHERE users.user_name = \$1 AND users.password = \$2");
-  
-          $result2 = pg_execute($dbconn, 'select_user_type_query', array($loginid, $password));
-  
-          $currentUserType = pg_fetch_array($result2);
-          $_SESSION['user_type_s'] = $currentUserType['user_type'];
-          $_SESSION['username_s'] = $currentUserType['user_name'];
-          if (isset($rememberme))
+          $result2 = pg_execute($dbconn, 'user_login', array($loginid, $password));
+          // echo $result2;
+          if (pg_num_rows($result2) > 0)
           {
-            setcookie('username', $_SESSION['username_s'], time() + (60*60*24*30));
-            //set cookie for 7 days
+            // if(pg_fetch_assoc($result2))
+            // Preparing query for execution
+            $stmt1 = pg_prepare($dbconn, 'user_last_access', "UPDATE users
+                                                  SET last_access = '".$last_access."'
+                                                  WHERE users.user_name = \$1 AND users.password = \$2");
+    
+            // Execute the prepared query
+            $result1 = pg_execute($dbconn, 'user_last_access', array($loginid,$password));
+      
+            // pg_query($dbconn, $result1);
+
+    
+            $currentUserType = pg_fetch_array($result2);
+            $_SESSION['user_type_s'] = $currentUserType['user_type'];
+            $_SESSION['username_s'] = $currentUserType['user_name'];
+            if (isset($rememberme))
+            {
+              setcookie('username', $_SESSION['username_s'], time() + (60*60*24*7));
+              //set cookie for 7 days
+            }
+
+            //Redirect user to their respective pages
+            if ($_SESSION['user_type_s'] == ADMIN){
+              header("LOCATION: ./admin.php");
+              ob_flush();  //Flush output buffer
+            }else if ($_SESSION['user_type_s'] == AGENT){
+              header("LOCATION: ./dashboard.php");
+              ob_flush();  //Flush output buffer
+            }else if ($_SESSION['user_type_s'] == DISABLED){
+              header("LOCATION: ./406.php");
+              ob_flush();  //Flush output buffer
+            }else if ($_SESSION['user_type_s'] == CLIENT){
+              header("LOCATION: ./welcome.php");
+              ob_flush();  //Flush output buffer
+            }
           }
-              if ($_SESSION['user_type_s'] == "s"){
-                header("LOCATION: ./admin.php");
-             }
-             if ($_SESSION['user_type_s'] == "a"){
-                header("LOCATION: ./dashboard.php");
-             }
-             if ($_SESSION['user_type_s'] == "d"){
-                header("LOCATION: ./406.php");
-              }
-              if ($_SESSION['user_type_s'] == "c"){
-                header("LOCATION: ./welcome.php");
-             }
+          else
+          {
+            $errors[] = "Login Id or Password incorrect.";
+          }
+        }
+        else
+        {
+          $errors[] = "One or more fields are empty.";
+        }
+      }
+      else
+      {
+        $errors[] = "One or more fields not set";        
       }
     }
+    else
+    {
+      $errors[] = "No Post Request";
+    }
 
+  //output error as Toast (java script)
+  foreach($errors as $error)
+  {
+    echo "<script>M.toast({html: '".$error."'})</script>";
+  }
 ?>
 
 
@@ -98,7 +138,7 @@ require('header.php');
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
-        <form class="col s12" method = "post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="on">
+        <form class="col s12" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="on">
           <div class="row">
             <div class="input-field col s12">
               <input id="id" name="id" value="<?php echo $loginid ?>" type="text" class="validate">
@@ -115,7 +155,7 @@ require('header.php');
 
         <div class="row">
           <label class="input-field col s12">
-          <input type="checkbox"  name="rememberme" value="<?php echo $rememberme ?>" class="filled-in"/>
+          <input type="checkbox"  name="rememberme" class="filled-in" value="1" />
           <span>Remember Me</span>
           </label>
         </div>
@@ -123,7 +163,7 @@ require('header.php');
         <div class="row">
             <div class="input-field col s12">
                 <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Sign In
-                    <i class="material-icons right">lock</i>
+                    <i class="fas fa-sign-in-alt"></i>
                 </button>
                 <a class="btn waves-effect waves-light blue lighten-1" href="./register.php">Register
                     <i class="fas fa-user-plus ml-1"></i>
@@ -139,4 +179,5 @@ require('header.php');
 <?php
 
 require("./footer.php");
+
 ?>

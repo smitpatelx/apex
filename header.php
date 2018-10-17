@@ -1,11 +1,11 @@
+<!--
+FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
+TITLE:						Apex Listings - User Login Page
+AUTHORS:					Smit Patel
+LAST MODIFIED:		October 4, 2018
+DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
+-->
 <?php
-/*
-FILE:                       login.php
-TITLE:                      Apex Listings - User Login Page
-AUTHORS:                    Blake Phillips, Smit Patel, Clayton Galliah-Penhale, Dylan Lopez
-LAST MODIFIED:        October 4, 2018
-DESCRIPTION:            Allows users to login to their profiles or allows new users to create an account
-**/
 
 require('./includes/functions.php');
 ob_start();
@@ -13,7 +13,7 @@ session_start();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,6 @@ session_start();
     <link rel="stylesheet" href="./style/web3201.css">
     <link rel="stylesheet" href="./style/aos.css">
     <link rel="stylesheet" href="./style/slick.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
        
     <script src="./includes/js/jquery.min.js"></script>
@@ -43,8 +42,8 @@ session_start();
 
     <div class="navbar-fixed">
 
-        <div class="preloader-background white">
-            <!-- <h2 class="center m-4 loading-text" data-splitting>APEX</h2> -->
+        <!-- <div class="preloader-background white">
+            <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
             <div class="preloader-wrapper big active">       
                 <div class="spinner-layer spinner-cyan-only lighten-1 ">
                     <div class="circle-clipper left">
@@ -58,7 +57,7 @@ session_start();
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     
         <nav class="nav_bar" role="navigation">
@@ -75,17 +74,27 @@ session_start();
                 <a href="index.php" class="brand-logo stretch-it" data-splitting>
                     <h4 class="nav-bar-site-text"><?php echo $banner; ?></h4>
                 </a>
-                
+
                 <ul id="nav-mobile" class="right hide-on-med-and-down px-3 mt-1">
                     <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="register.php" class="nav-mobile-text">Register</a></li>
-                    <!-- <li class="waves-effect my-2 mx-2"><a href="admin.php" class="nav-mobile-text">Admin</a></li> -->
+                    <li class="waves-effect my-2 mx-2 dropdown_1">                       
+                        <a href="#" class="nav-mobile-text">Pages</a>                          
+                        <div class="drop_1">
+                            <a href="admin.php">Admin</a>
+                            <a href="dashboard.php">Dashboard</a>
+                            <a href="listing-display.php">Listing Display</a>
+                            <a href="welcome.php">Welcome</a>
+                        </div>
+                    </li>
+                
                     <?php
-                    if (!empty($_SESSION['username_s'])){
-                        echo "<li class='waves-effect mx-2'><a href='logout.php' class='nav-mobile-text'><i class='fas fa-sign-out-alt fa-x'></i></a></li>";
-                    }
+                        //logout btn
+                        if (!empty($_SESSION['username_s'])){
+                            echo "<li class='waves-effect mx-2 my-2'><a href='logout.php' class='nav-mobile-text'><i class='fas fa-sign-out-alt fa-1x'></i></a></li>";
+                        }
                     ?>
                     
                 </ul>
@@ -96,8 +105,13 @@ session_start();
             <li class="center-align"><a href="index.php">Home</a></li>
             <li class="center-align"><a href="listing.php">Listing</a></li>
             <li class="center-align"><a href="login.php">Login</a></li>
-            <li class="center-align"><a href="admin.php">Admin</a></li>
-            <li class="center-align"><a href="dashboard.php">Dashboard</a></li>
+            <li class="center-align"><a href="register.php">Register</a></li>
+            <?php
+                //logout btn
+                if (!empty($_SESSION['username_s'])){
+                    echo "<li class='center-align'><a href='logout.php'><i class='fas fa-sign-out-alt fa-1x'></i></a></li>";
+                }
+            ?>
             <li style="position: absolute;bottom:50px;width:250px;">
                 <div class="footer-copyright">
                     <div class="container center footer-made-by">
