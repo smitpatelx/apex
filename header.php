@@ -6,7 +6,8 @@ LAST MODIFIED:		October 4, 2018
 DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
 -->
 <?php
-
+require('./includes/constants.php');
+require('./includes/db.php');
 require('./includes/functions.php');
 ob_start();
 session_start();
@@ -32,20 +33,20 @@ session_start();
        
     <script src="./includes/js/jquery.min.js"></script>
     <script src="./includes/js/vendors.js"></script>
-    <script>       
-        $(window).on('load', function () {
-            $('.preloader-background').fadeIn('slow');
-        });      
-    </script>
+    <!-- <script type="text/javascript">     
+    $(window).on('load', function () {
+        $('.preloader-background').hide();
+    });      
+    </script> -->
 </head>
 <body>
 
     <div class="navbar-fixed">
 
-        <!-- <div class="preloader-background white">
-            <h2 class="center m-4 loading-text" data-splitting>APEX</h2>
+        <div class="preloader-background white">
+            <!-- <h2 class="center m-4 loading-text" data-splitting>APEX</h2> -->
             <div class="preloader-wrapper big active">       
-                <div class="spinner-layer spinner-cyan-only lighten-1 ">
+                <div class="spinner-layer spinner-black-only">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>
@@ -57,7 +58,7 @@ session_start();
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     
         <nav class="nav_bar" role="navigation">
@@ -70,7 +71,7 @@ session_start();
                         window.location.href = "./index.php";
                     });
                 </script>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger mt-2"><i class="fas fa-bars fa-2x"></i></a>
                 <a href="index.php" class="brand-logo stretch-it" data-splitting>
                     <h4 class="nav-bar-site-text"><?php echo $banner; ?></h4>
                 </a>
@@ -87,6 +88,12 @@ session_start();
                             <a href="dashboard.php">Dashboard</a>
                             <a href="listing-display.php">Listing Display</a>
                             <a href="welcome.php">Welcome</a>
+                            <?php
+                                //logout btn
+                                if (!empty($_SESSION['username_s'])){
+                                    echo "<a href='change-password.php'>Change Password</a>";
+                                }
+                            ?>
                         </div>
                     </li>
                 

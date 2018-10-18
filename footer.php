@@ -45,8 +45,10 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
     <script type="text/javascript" src="./scripts/js/custom.js"></script> -->
     <script type="text/javascript" src="./includes/js/aos.js"></script>
     <script type="text/javascript" src="./includes/js/slick.min.js"></script>
-    <script type="text/javascript" src="./includes/js/custom.js"></script>
+    <script type="text/javascript" src="./includes/js/particles.min.js"></script>
     <script type="text/javascript" src="./includes/js/fa.min.js"></script>
+    <script type="text/javascript" src="./includes/js/custom.js"></script>
+    
     <!-- <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script> -->
 
 </body>

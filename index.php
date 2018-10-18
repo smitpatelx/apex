@@ -28,7 +28,8 @@ require("./header.php");
     </script>
     <div class="grid-x">
         <div class="cell large-12 medium-12 small-12 home_hero">
-            <img src="./assets/bg/bg_dashboard.svg" alt="bg">
+            <!-- <img src="./assets/bg/bg_dashboard.svg" alt="bg"> -->
+            <div id="particles-js1"></div>
             <h1 class="dosis center white-text" data-aos="fade-up" data-aos-delay="2300" data-aos-duration="1500" data-splitting>APEX</h1>
             <p class="dosis center white-text" data-aos="fade-down" data-aos-delay="2300" data-aos-duration="1500" data-splitting>
                 This project is created as per the requirements mention in

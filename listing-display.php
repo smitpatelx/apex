@@ -15,7 +15,11 @@ $desc = "Listing Display Page";
 
 require('header.php');
 ?>
-
+<script type="text/javascript">     
+    $(window).on('load', function () {
+        $('.preloader-background').hide();
+    });      
+</script>
 <?php 
   $conn = db_connect();
   $output = "";

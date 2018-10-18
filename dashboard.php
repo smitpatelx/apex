@@ -143,20 +143,24 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                 </div>
             </div>
             <div class="pass_dashboard center dashdoard_container">
-                <div class='grid-x'>
-                    <h2 class='cell medium-5 medium-offset-3 center red-text dosis'>Create Post</h2>
-                    <form class='cell medium-5 medium-offset-3 center row' action='dashboard.php'>
-                        <div class="input-field col s6">
-                            <input placeholder="Current Password" id="current_password" type="password" class="validate">
-                            <label for="first_name">Current Password</label>
+                <div class='grid-x center'>
+                    <form class='cell medium-5 medium-offset-4 center row' action='dashboard.php'>
+                        <h2 class='col s12 m12 l12 center red-text dosis'>Change Password</h2>
+                        <div class="input-field col s12 m12 l12 center">
+                            <input placeholder="Current Password" name="current_password" id="current_password" type="password" class="validate">
+                            <label for="current_password">Current Password</label>
                         </div>
-                        <div class="input-field col s6">
-                            <input placeholder="New Password" id="new_password" type="password" class="validate">
-                            <label for="last_name">New Password</label>
+                        <div class="input-field col s12 m12 l12 center">
+                            <input placeholder="New Password" name="new_password" id="new_password" type="password" class="validate">
+                            <label for="new_password">New Password</label>
                         </div>
-                        <div class='input-field col s12 center'>
+                        <div class="input-field col s12 m12 l12 center">
+                            <input placeholder="Confirm Password" name="conform_password" id="conform_password" type="password" class="validate">
+                            <label for="conform_password">Confirm Password</label>
+                        </div>
+                        <div class='input-field col s12 m12 l12 center'>
                             <button class="btn waves-effect waves-light cayan lighten-1" type="submit" name="action">
-                                <i class="material-icons right">lock</i> PROCEED
+                                <i class="fas fa-lock"></i> PROCEED
                             </button>
                         </div>
                     </form>

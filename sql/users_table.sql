@@ -9,10 +9,10 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     user_name VARCHAR(20) NOT NULL,
-    password VARCHAR(32) NOT NULL,
+    password VARCHAR(20) NOT NULL,
     user_type VARCHAR(2) NOT NULL,
     first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR (45) NOT NULL,
+    last_name VARCHAR (30) NOT NULL,
     email_address VARCHAR(255) NOT NULL,
     enrol_date DATE NOT NULL,
     last_access DATE NOT NULL

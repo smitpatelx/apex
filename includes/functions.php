@@ -9,9 +9,6 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 
 date_default_timezone_set('America/Toronto');
 
-require('db.php');
-require('constants.php');
-
 function displayCopyrightInfo() //to display copyright information in footer file
 {
     $output = "";

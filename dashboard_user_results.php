@@ -6,9 +6,12 @@ LAST MODIFIED:		October 4, 2018
 DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
 -->
 <?php
+require('./includes/constants.php');
+require('./includes/db.php');
 session_start();
 if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != ADMIN)){
-    header('Location: 405.php');
+    echo $_SESSION['user_type_s'];
+    // header('Location: 405.php');
     ob_flush();  //Flush output buffer
 }
 ?>

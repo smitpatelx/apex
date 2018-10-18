@@ -14,39 +14,40 @@ $banner = "Change Password";
 $desc = "Change Password Page of QualityLife";
 
 require('header.php');
+
+if (empty($_SESSION['username_s'])){
+    header('Location: 405.php');
+    ob_flush();  //Flush output buffer
+}
 ?>
-
-<div class="grid-x center">
-      <div id="sign-in" class="col s12 cell large-6 large-offset-3 mt-4">
-        <div class="cell large-4 large-offset-4 row">
-        <form class="col s12" method = "post">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="password" name="password" type="password" class="validate">
-              <label for="password">Old Password</label>
-            </div>
+  <script type="text/javascript">     
+      $(window).on('load', function () {
+          $('.preloader-background').hide();
+      });      
+  </script>
+  
+  <div class='grid-x mt-4'>
+      <form class='cell medium-5 medium-offset-4 center row' action='dashboard.php'>
+          <h2 class='col s12 m12 l12 center red-text dosis'>Change Password</h2>
+          <div class="input-field col s12 m12 l12 center">
+              <input placeholder="Current Password" name="current_password" id="current_password" type="password" class="validate">
+              <label for="current_password">Current Password</label>
           </div>
-
-        <div class="row">
-            <div class="input-field col s12">
-              <input id="password" name="password" type="password" class="validate">
-              <label for="password">New Password</label>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="input-field col s12">
-                <button class="btn waves-effect waves-light blue lighten-1" type="submit" name="action">Change
-                    <i class="fas fa-redo-alt ml-2"></i>
-                </button>
-            </div>
-        </div>
-
-        </form>
-      </div>
-      </div>
-</div>
-
+          <div class="input-field col s12 m12 l12 center">
+              <input placeholder="New Password" name="new_password" id="new_password" type="password" class="validate">
+              <label for="new_password">New Password</label>
+          </div>
+          <div class="input-field col s12 m12 l12 center">
+              <input placeholder="Confirm Password" name="conform_password" id="conform_password" type="password" class="validate">
+              <label for="conform_password">Confirm Password</label>
+          </div>
+          <div class='input-field col s12 m12 l12 center'>
+              <button class="btn waves-effect waves-light cayan lighten-1" type="submit" name="action">
+                  <i class="fas fa-lock"></i> PROCEED
+              </button>
+          </div>
+      </form>
+  </div>
 <?php
 require("./footer.php");
 ?>
