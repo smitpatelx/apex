@@ -57,12 +57,23 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             </div>
             
             <div class="grid-x welcome_dashboard center cayan-text">
+<<<<<<< HEAD
                 <div class="cell large-12 medium-12 small-12 grid-x" >
                     <?php
                         
                         $conn3 = db_connect();
                         
                         $query_dash_user = "SELECT * FROM users WHERE users.user_name = '".$_SESSION['username_s']."'";
+=======
+<<<<<<< HEAD
+                <?php 
+                $conn = db_connect();
+                $output = "";
+                $sql = "SELECT * FROM users WHERE id = 1";
+
+                    $result = pg_query($conn, $sql);
+                    // $records = pg_num_rows($result);
+>>>>>>> fdd948c082e01649560a104a05f4a9ea6484d250
 
                         $result4 = pg_query($conn3, $query_dash_user);
                         // $records = pg_num_rows($result);
@@ -93,7 +104,27 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                         </form>\n";
                             }}
                     ?>
+<<<<<<< HEAD
                 </div>
+=======
+=======
+                <form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>  
+                    <h1 class='col m12 dosis'>WELCOME SMIT</h1>
+                    <h3 class='col m12 dosis red-text'>This is your DASH-board !</h3>            
+                    <div class="input-field col m12 toogle_disable ">
+                        <input disabled type="text" class="validate" placeholder="Smit Patel" value="Smit Patel">
+                        <label for="username_dashboard">User Name</label>
+                    </div>
+                    <div class="input-field col m12 toogle_disable">
+                        <input disabled type="tel" class="validate"  placeholder="admin@netdevv.com" value="admin@netdevv.com">
+                        <label for="email_dashboard">Email</label>
+                    </div>
+                    
+                    <!-- <h5 class='dosis'><i class="fas fa-user mr-3"></i>Smit Patel</h5>
+                    <h5 class='dosis'><i class="fas fa-at mr-3"></i>admin@netdevv.com</h5> -->
+                </form>
+>>>>>>> af91c6583f385a8794aeb81b067ee587ecd5af12
+>>>>>>> fdd948c082e01649560a104a05f4a9ea6484d250
                 <div class="input-field row cell medium-4 medium-offset-4">
                     <button class="col m5 mx-3 btn btn-submit btn_toogle_disable">CHANGE</button>
                     <button class="col m5 mx-3 btn btn-submit btn_username_save">SAVE</button>
