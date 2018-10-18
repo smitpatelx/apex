@@ -1,0 +1,68 @@
+cd /var/www/html/webd2201/patels/sql
+cd /var/www/html/webd3201/group19/sql
+
+psql -d group19_db -f listing.sql -U group19_admin
+psql -d group19_db -f listing_demo_2.sql -U group19_admin
+
+
+/****************************************************************/
+psql -d group19_db -U group19_admin
+
+Database: group19_db
+User: group19_admin
+Pass: apexscdb18
+
+ALTER USER group19_admin WITH ENCRYPTED PASSWORD 'apexscdb18';
+
+\q  ------To EXIT
+
+/******************************************************************/
+
+passwd  ------to change password
+
+C:\Windows\Logs\CBS\CBS.log
+
+
+<div class="slider">
+    <ul class="slides">
+      <li>
+        <img class="bg-blur" src="./assets/illustrations/1a.jpg"> <!-- random image -->
+        <div class="caption center-align listing-hero-text">
+          <h3>QUALITY LIFE</h3>
+          <h5 class="light grey-text text-lighten-3">The Power of Deep Roots</h5>
+        </div>
+      </li>
+      <li>
+        <img class="bg-blur" src="./assets/illustrations/2a.jpg"> <!-- random image -->
+        <div class="caption left-align listing-hero-text">
+          <h3>Move to What Moves You</h3>
+          <!-- <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> -->
+        </div>
+      </li>
+      <li>
+        <img class="bg-blur" src="./assets/illustrations/3a.jpg"> <!-- random image -->
+        <div class="caption right-align listing-hero-text">
+          <h3>Client Focused. Results Driven</h3>
+          <!-- <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> -->
+        </div>
+      </li>
+      <li>
+        <img class="bg-blur" src="./assets/illustrations/4a.jpg"> <!-- random image -->
+        <div class="caption center-align listing-hero-text">
+          <h3>A home changes everything</h3>
+          <!-- <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+            <div class="cell large-12 medium-12 small-12 carousel-wrapper">
+                <div class="carousel carousel-slider center z-depth-4">
+                    <a class="carousel-item" href="#one!"><img src="./assets/illustrations/1a.jpg"></a>
+                    <a class="carousel-item" href="#two!"><img src="./assets/illustrations/2a.jpg"></a>
+                    <a class="carousel-item" href="#three!"><img src="./assets/illustrations/3a.jpg"></a>
+                    <a class="carousel-item" href="#four!"><img src="./assets/illustrations/4a.jpg"></a>
+                    <a class="carousel-item" href="#five!"><img src="./assets/illustrations/5a.jpg"></a>
+                    <a class="carousel-item" href="#five!"><img src="./assets/illustrations/6a.jpg"></a>
+                    <a class="carousel-item" href="#five!"><img src="./assets/illustrations/7a.jpg"></a>
+                </div>
+            </div>
