@@ -26,18 +26,22 @@ require('header.php');
   
   $errors = []; 
   
+  $cookies_message = [];
+  
   if ($_SERVER["REQUEST_METHOD"] == "GET")
   {
-    if(isset($_COOKIE['username']))
+    // echo encrypt_array_to_string($_COOKIE['USER']);
+    if(isset($_COOKIE['USER']))
     {
-      $loginid = $_COOKIE['username'];
+      $cookie_user = (implode('user',$_COOKIE['USER']));
+      $loginid = $cookie_user;
       $password= "";  
-      $rememberme= "";   
+      $rememberme= "checked";   
     }
     else{
       $loginid = "";
       $password= "";
-      $rememberme= "";
+      $rememberme= "checked";
     }
   }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -86,8 +90,15 @@ require('header.php');
             $_SESSION['username_s'] = $currentUserType['user_name'];
             if (isset($rememberme))
             {
-              setcookie('username', $_SESSION['username_s'], time() + (60*60*24*7));
-              //set cookie for 7 days
+              $cookie_user = ($_SESSION['username_s']);
+              setcookie('USER[user]', $cookie_user, time() + (60*60*24*7));
+              $cookies_message[] = "Cookie set for 7 days.";
+            }
+            else
+            {
+              unset($_COOKIE['USER[user]']);
+              setcookie( 'USER[user]',  $_SESSION['username_s'], time()-3600);
+              $cookies_message[] = "Cookie Destroyed.";
             }
 
             //Redirect user to their respective pages
@@ -130,6 +141,8 @@ require('header.php');
   {
     echo "<script>M.toast({html: '".$error."'})</script>";
   }
+  // echo "<pre>".print_r($_COOKIE)."</pre>";
+  $_SESSION['cookies_message'] = $cookies_message;
 ?>
 
 
@@ -155,7 +168,7 @@ require('header.php');
 
         <div class="row">
           <label class="input-field col s12">
-          <input type="checkbox"  name="rememberme" class="filled-in" value="1" />
+          <input type="checkbox"  name="rememberme" class="filled-in" value="1" <?php echo $rememberme ?>/>
           <span>Remember Me</span>
           </label>
         </div>

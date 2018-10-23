@@ -75,7 +75,6 @@ require('header.php');
             {
               $user_redirection = "welcome.php";
             }
-
             $save = "INSERT INTO users (first_name, last_name, user_name, email_address, password, user_type, enrol_date, last_access) 
                 VALUES ('".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$password."', '".$user_type."', '".$enrol_date."' ,'".$enrol_date."')";
             $results = pg_query($conn, $save);

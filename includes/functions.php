@@ -49,6 +49,11 @@ function hashmd5($value)
     return hash(MD5, $value);
 }
 
+function dhashmd5($value)
+{
+    return hash($value, MD5);
+}
+
 // if(isset($_GET['sql'])){
 //     $sql = $_GET['sql'];
 //     $conn = db_connect();

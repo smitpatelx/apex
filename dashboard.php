@@ -19,6 +19,7 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
     ob_flush();  //Flush output buffer
 }
 
+// print_r( $cookies_message);
 ?>
     <script type="text/javascript">       
         $(window).on('load', function () {
@@ -275,7 +276,20 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             </div>
         </div>
     </div>
-    
+    <script>
+            var myVar = setTimeout(cookies_message, 3000);
+            
+            function cookies_message() {
+                <?php
+                $cookies_message = $_SESSION['cookies_message'];
+                foreach($cookies_message as $cookie_message)
+                {
+                    // $cookie_message = "<div class='red_alert'>".$cookie_message."</div>";
+                    echo "M.toast({html: '".$cookie_message."', classes:'red'})";
+                }
+                ?>
+            }
+    </script>
 
 <?php
 require("./footer.php");

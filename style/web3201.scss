@@ -194,16 +194,20 @@ flex: 1 0 auto;
     background-color: rgb(255, 0, 0);
 }
 
+.footer-copyright {
+    padding:0 8em !important;
+}
+
 .footer-made-by {
     font-family: Dosis;
     font-size: 1.3rem;
     letter-spacing: 1px;
+    margin:0 0 0 2em !important;
 }
 
 .footer-made-by a {
     text-decoration: none;
     color:white;
-
 }
 
 .transition-1 {
@@ -544,4 +548,14 @@ flex: 1 0 auto;
             display: block;
         }
     }   
+}
+
+.red_alert{
+    color: #fff;
+    background: rgb(196, 19, 19);
+}
+
+.green_alert{
+    color: #fff;
+    background: rgb(53, 145, 11);
 }

@@ -1,3 +1,10 @@
+<?php
+session_start();
+ob_start();
+require('./includes/constants.php');
+require('./includes/db.php');
+require('./includes/functions.php');
+?>
 <!--
 FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
 TITLE:						Apex Listings - User Login Page
@@ -5,14 +12,6 @@ AUTHORS:					Smit Patel
 LAST MODIFIED:		October 4, 2018
 DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
 -->
-<?php
-require('./includes/constants.php');
-require('./includes/db.php');
-require('./includes/functions.php');
-ob_start();
-session_start();
-
-?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -79,7 +78,15 @@ session_start();
                 <ul id="nav-mobile" class="right hide-on-med-and-down px-3 mt-1">
                     <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
                     <li class="waves-effect my-2 mx-2"><a href="listing.php" class="nav-mobile-text">Listing</a></li>
-                    <li class="waves-effect my-2 mx-2"><a href="login.php" class="nav-mobile-text">Login</a></li>
+                    <?php
+                        //logout btn
+                        if (!empty($_SESSION['username_s'])){
+                            echo "<li class='waves-effect mx-2 my-2'><a href='logout.php' class='nav-mobile-text'>Log Out</a></li>";
+                        }
+                        else{
+                            echo "<li class='waves-effect my-2 mx-2'><a href='login.php' class='nav-mobile-text'>Login</a></li>";
+                        }
+                    ?>
                     <li class="waves-effect my-2 mx-2"><a href="register.php" class="nav-mobile-text">Register</a></li>
                     <li class="waves-effect my-2 mx-2 dropdown_1">                       
                         <a href="#" class="nav-mobile-text">Pages</a>                          
@@ -95,15 +102,7 @@ session_start();
                                 }
                             ?>
                         </div>
-                    </li>
-                
-                    <?php
-                        //logout btn
-                        if (!empty($_SESSION['username_s'])){
-                            echo "<li class='waves-effect mx-2 my-2'><a href='logout.php' class='nav-mobile-text'><i class='fas fa-sign-out-alt fa-1x'></i></a></li>";
-                        }
-                    ?>
-                    
+                    </li>                
                 </ul>
             </div>
         </nav>
