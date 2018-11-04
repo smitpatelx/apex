@@ -37,16 +37,16 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         <div class="col l12 m12 s12 center pr-3 dashboard_panel">
             <ul class="">
                 <li>
-                    <a href="#" class='welcomebtn_dashboard img_c_1'><img class="" src="./assets/list-images/profile.jpg"></a>
+                    <a href="#" class='welcomebtn_dashboard img_c_1'><img class="" src="./assets/list-images/profile.jpg" alt="profile" /></a>
                 </li>
                 <li>
-                    <a href="#" class="postbtn_dashboard"><i class="fas fa-pen mr-3"></i><p class='hide-on-med-and-down'>Posts</p></li></a>
+                    <a href="#" class="postbtn_dashboard"><i class="fas fa-pen mr-3"></i>Posts</a>
                 </li>
                 <li>
-                    <a href="#" class="passbtn_dashboard"><i class="fas fa-user-lock mr-3"></i><p class='hide-on-med-and-down'>Change Password</p></a>
+                    <a href="#" class="passbtn_dashboard"><i class="fas fa-user-lock mr-3"></i>Change Password</a>
                 </li>
                 <li>
-                    <a href="#" class="newpostbtn_dashboard"><i class="fas fa-plus mr-3"></i><p class='hide-on-med-and-down'>New Post</p></a>
+                    <a href="#" class="newpostbtn_dashboard"><i class="fas fa-plus mr-3"></i>New Post</a>
                 </li>
             </ul>
         </div>
@@ -72,23 +72,23 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                             // output data of each row
                             while($row4 = pg_fetch_assoc($result4)) {
 
-                            echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont'>\n
+                            echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont' action='javascript:void(0);'>\n
                                 <h1 class='col m12 dosis'>WELCOME ".$row4["first_name"] ." ". $row4["last_name"]."</h1>\n
                             <h3 class='col m12 dosis red-text'>This is your DASHBOARD !</h3> \n
                             <div class='input-field col m6 toogle_disable'>\n
-                                <input disabled type='text' class='validate first_name_dsh' placeholder='First Name' value='".$row4["first_name"]."'>\n
-                                <label for='username_dashboard'>First Name</label>\n
+                                <input disabled type='text' id='first_name' class='validate first_name_dsh' value='".$row4["first_name"]."'/>\n
+                                <label for='first_name'>First Name</label>\n
                             </div>\n
                             <div class='input-field col m6 toogle_disable'>\n
-                                <input disabled type='text' class='validate last_name_dsh' placeholder='Last Name' value='".$row4["last_name"]."'>\n
-                                <label for='username_dashboard'>Last Name</label>\n
+                                <input disabled type='text' id='last_name' class='validate last_name_dsh' value='".$row4["last_name"]."'/>\n
+                                <label for='last_name'>Last Name</label>\n
                             </div>\n           
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='text' class='validate user_name_dsh' placeholder='User Name' value='".$row4["user_name"]."'>\n
-                                <label for='username_dashboard'>User Name</label>\n
+                                <input disabled type='text' id='user_name' class='validate user_name_dsh' value='".$row4["user_name"]."'/>\n
+                                <label for='user_name'>User Name</label>\n
                             </div>\n
                             <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='tel' class='validate email_dsh'  placeholder='xyz@email.com' value='".$row4["email_address"]."'>\n
+                                <input disabled type='text' id='email_dashboard' class='validate email_dsh'  value='".$row4["email_address"]."'/>\n
                                 <label for='email_dashboard'>Email</label>\n
                             </div>\n\n
                         </form>\n";
@@ -148,15 +148,15 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                     <form class='cell medium-5 medium-offset-4 center row' action='dashboard.php'>
                         <h2 class='col s12 m12 l12 center red-text dosis'>Change Password</h2>
                         <div class="input-field col s12 m12 l12 center">
-                            <input placeholder="Current Password" name="current_password" id="current_password" type="password" class="validate">
+                            <input name="current_password" id="current_password" type="password" class="validate"/>
                             <label for="current_password">Current Password</label>
                         </div>
                         <div class="input-field col s12 m12 l12 center">
-                            <input placeholder="New Password" name="new_password" id="new_password" type="password" class="validate">
+                            <input name="new_password" id="new_password" type="password" class="validate"/>
                             <label for="new_password">New Password</label>
                         </div>
                         <div class="input-field col s12 m12 l12 center">
-                            <input placeholder="Confirm Password" name="conform_password" id="conform_password" type="password" class="validate">
+                            <input name="conform_password" id="conform_password" type="password" class="validate"/>
                             <label for="conform_password">Confirm Password</label>
                         </div>
                         <div class='input-field col s12 m12 l12 center'>
@@ -171,39 +171,40 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             <div class=" create_post_dashboard center dashdoard_container">
                 <div class='grid-x'>
                     <h2 class='cell medium-5 medium-offset-4 center red-text dosis'>Create New Post</h2>
-                    <form class='cell medium-5 medium-offset-4 center row' action="dashboard_post_save.php" method='post' enctype="multipart/form-data" autocomplete="on">
+                    <form class='cell medium-5 medium-offset-4 center row' action="dashboard_post_save.php" method='post' enctype="multipart/form-data" >
                         <div class="input-field col s12">
-                            <input placeholder="Post Heading" type="text" name="dsh_post_head" class="validate">
-                            <label for="first_name">Post Heading</label>
+                            <input type="text" id='heading' name="dsh_post_head" class="validate"/>
+                            <label for="heading">Post Heading</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Location" type="text" name="dsh_post_location" class="validate">
-                            <label for="last_name">Location</label>
+                            <input type="text" id='location' name="dsh_post_location" class="validate"/>
+                            <label for="location">Location</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="$$$$" type="text" name="dsh_post_price" class="validate">
-                            <label for="last_name">Price</label>
+                            <input type="text" id='price' name="dsh_post_price" class="validate"/>
+                            <label for="price">Price</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="sqft" type="text" name="dsh_post_area" class="validate">
-                            <label for="last_name">Total Area</label>
+                            <input type="text" id='total_area' name="dsh_post_area" class="validate"/>
+                            <label for="total_area">Total Area</label>
                         </div>
                         <div class="input-field col s6">
-                            <input placeholder="Contact" type="text" name="dsh_post_contact" class="validate">
-                            <label for="last_name">Contact</label>
+                            <input type="text" id='contact' name="dsh_post_contact" class="validate"/>
+                            <label for="contact">Contact</label>
                         </div>
+                        <h5 class="m-2">Upload one or more files</h5>
                         <div class="file-field input-field col s12">
                             <div class="btn">
                                 <span>File</span>
-                                <input type="file" name="dsh_post_file1">
+                                <input type="file" name="dsh_post_file1"/>
                             </div>
                             <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Upload one or more files" name="dsh_post_file1">
+                                <input class="file-path validate" type="text" id="Upload_one_or_more_files" name="dsh_post_file1"/>                               
                             </div>
                         </div>
                         <div class='input-field col s12 center'>
                             <!-- <input type="submit" class="btn waves-effect waves-light cayan lighten-1" name="submit"> -->
-                            <button class="btn waves-effect waves-light cayan lighten-1" name="dsh_post_submit" type="submit" name="submit">
+                            <button class="btn waves-effect waves-light cayan lighten-1" name="dsh_post_submit" type="submit">
                                 <i class="fas fa-check right"></i> POST
                             </button>
                         </div>
@@ -213,10 +214,11 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             </div>
             <div class="users_dashboard center dashdoard_container">
                 <h2 class='dosis'><i class="fas fa-user prefix"></i> Users</h2>
-                <form>                 
+                <form action="javascript:void(0);">                 
                     <div class="input-field">
                         <i class="fab fa-searchengin fa-2x prefix" style="left:0;"></i>
-                        <input type="text" class="validate users_search" placeholder="Search Any Fields">
+                        <input type="text" class="validate users_search" id="Search_Any_Fields"/>
+                        <label for="Search_Any_Fields">Search Any Fields</label>
                     </div>
                 </form>
                 <div class='users_result'>
@@ -262,10 +264,11 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             <div class="post_dashboard dashdoard_container">
                 <div>
                     <h4 class='dosis center cayan-text text-lighten-1'>LIVE SEARCH</h4>
-                    <form>                 
+                    <form  action="javascript:void(0);">                 
                         <div class="input-field">
                             <i class="fab fa-searchengin fa-2x prefix" style="left:0;"></i>
-                            <input type="text" class="validate posts_search" placeholder="Search Any Value">
+                            <input type="text" class="validate posts_search" id="Search_Any_Value" />
+                            <label for="Search_Any_Value">Search Any Value</label>
                         </div>
                     </form>
                     <div class='result'>
@@ -276,7 +279,7 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             </div>
         </div>
     </div>
-    <script>
+    <script type="text/javascript">
             var myVar = setTimeout(cookies_message, 3000);
             
             function cookies_message() {

@@ -15,6 +15,7 @@ $banner = "Login";
 $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
+
 ?>
 
 <script type="text/javascript">     
@@ -23,7 +24,7 @@ require('header.php');
     });      
 </script>
 <?php
-  
+
   $errors = []; 
   
   $cookies_message = [];
@@ -36,12 +37,12 @@ require('header.php');
       $cookie_user = (implode('user',$_COOKIE['USER']));
       $loginid = $cookie_user;
       $password= "";  
-      $rememberme= "checked";   
+      $rememberme= "checked='checked'";   
     }
     else{
       $loginid = "";
       $password= "";
-      $rememberme= "checked";
+      $rememberme= "checked='checked'";
     }
   }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -88,11 +89,12 @@ require('header.php');
             $currentUserType = pg_fetch_array($result2);
             $_SESSION['user_type_s'] = $currentUserType['user_type'];
             $_SESSION['username_s'] = $currentUserType['user_name'];
+            $_SESSION['last_access_s'] = $currentUserType['last_access'];
             if (isset($rememberme))
             {
               $cookie_user = ($_SESSION['username_s']);
-              setcookie('USER[user]', $cookie_user, time() + (60*60*24*7));
-              $cookies_message[] = "Cookie set for 7 days.";
+              setcookie('USER[user]', $cookie_user, time() + (60*60*24*30));
+              $cookies_message[] = "Cookie set for 30 days.";
             }
             else
             {
@@ -142,6 +144,9 @@ require('header.php');
     echo "<script>M.toast({html: '".$error."'})</script>";
   }
   // echo "<pre>".print_r($_COOKIE)."</pre>";
+  if (!empty($_SESSION['registration_success'])){
+    echo "<script>M.toast({html: '".$_SESSION['registration_success']."'})</script>";
+  }
   $_SESSION['cookies_message'] = $cookies_message;
 ?>
 
@@ -151,17 +156,17 @@ require('header.php');
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
-        <form class="col s12" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="on">
+        <form class="col s12" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           <div class="row">
             <div class="input-field col s12">
-              <input id="id" name="id" value="<?php echo $loginid ?>" type="text" class="validate">
+              <input id="id" name="id" value="<?php echo $loginid ?>" type="text" class="validate"/>
               <label for="id">User ID</label>
             </div>
           </div>
 
         <div class="row">
             <div class="input-field col s12">
-              <input id="password" name="password" value="<?php echo $password ?>" type="password" class="validate">
+              <input id="password" name="password" value="<?php echo $password ?>" type="password" class="validate"/>
               <label for="password">Password</label>
             </div>
         </div>

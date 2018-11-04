@@ -94,7 +94,7 @@ COPY users (user_id, user_name, password, user_type, first_name, last_name, emai
 -- Name: users_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_user_id_seq', 3, true);
+SELECT pg_catalog.setval('users_user_id_seq', 4, true);
 
 
 --

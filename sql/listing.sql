@@ -5,10 +5,11 @@ FILE: listing.sql
 WEBD - II
 **************/
 
-DROP TABLE IF EXISTS listing_demo;
+DROP TABLE IF EXISTS listings;
 
-CREATE TABLE listing_demo(
-	id SERIAL PRIMARY KEY,
+CREATE TABLE listings(
+	listing_id     int not null primary key default nextval('listing_id_seq'),
+    user_id VARCHAR(20) NOT NULL REFERENCES users(id),
 	list_heading VARCHAR(15) NOT NULL,
 	img VARCHAR(50) NOT NULL,
 	location VARCHAR(30) NOT NULL,

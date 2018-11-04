@@ -36,7 +36,7 @@ require('header.php');
         echo "<div class='cell large-6 large-offset-3'>";
             echo  "<div class='card z-depth-4 hoverable' data-aos='zoom-out'>";
                 echo  "<div class='card-image waves-effect waves-block waves-light'>";
-                echo  "<img class='activator' src='".$row["img"]."'>";
+                echo  "<img class='activator' src='".$row["img"]."' alt='".$row["img"]."' />";
                 echo  "</div>";
             echo  "<div class='card-content'>";
         echo  "<h2  class='card-title activator grey-text text-darken-4'>Heading: <span>".$row["list_heading"]."</span> </h2>";

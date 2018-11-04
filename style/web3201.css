@@ -137,10 +137,14 @@ body {
 
 #nav-mobile li:hover {
   background: white;
-  color: #0000;
+  color: black;
   -webkit-transition: background 1s;
   transition: background 1s;
   border-radius: 10px;
+}
+
+#nav-mobile li:hover a {
+  color: black;
 }
 
 .nav_bar {

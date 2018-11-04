@@ -27,12 +27,12 @@ require("./header.php");
         });      
 </script>
 <div class="slides slides_listing" style="margin-bottom: 70px;">
-    <img src="./assets/illustrations/1a.jpg" alt="bg">
-    <img src="./assets/illustrations/2a.jpg" alt="bg">
-    <img src="./assets/illustrations/3a.jpg" alt="bg">
-    <img src="./assets/illustrations/4a.jpg" alt="bg">
-    <img src="./assets/illustrations/5a.jpg" alt="bg">
-    <img src="./assets/illustrations/6a.jpg" alt="bg">
+    <img src="./assets/illustrations/1a.jpg" alt="bg" />
+    <img src="./assets/illustrations/2a.jpg" alt="bg" />
+    <img src="./assets/illustrations/3a.jpg" alt="bg" />
+    <img src="./assets/illustrations/4a.jpg" alt="bg" />
+    <img src="./assets/illustrations/5a.jpg" alt="bg" />
+    <img src="./assets/illustrations/6a.jpg" alt="bg" />
 </div>
 
 <!-- <div class="grid-x filters_listing" style="margin-top: 0;">
@@ -68,7 +68,7 @@ require("./header.php");
 
             echo  "<div class='card cell medium-3 large-3 small-6 z-depth-4 hoverable' data-aos='fade-up' data-aos-offset='200'>";
             echo  "<div class='card-image waves-effect waves-block waves-light'>";
-            echo  "<img class='activator' src='".$row["img"]."'>";
+            echo  "<img class='activator' src='".$row["img"]."' alt='".$row["img"]."' />";
             echo  "</div>";
             echo  "<div class='card-content'>";
             echo  "<span class='card-title activator blue-text text-darken-4'>".$row["list_heading"]."<i class='fas fa-ellipsis-v right'></i></span>";

@@ -44,9 +44,9 @@ require("./header.php");
         </div>
     
         <div class="cell large-12 medium-12 small-12 slides slides_home">
-            <img src="./assets/illustrations/1a.jpg" alt="bg">
-            <img src="./assets/illustrations/2a.jpg" alt="bg">
-            <img src="./assets/illustrations/3a.jpg" alt="bg">
+            <img src="./assets/illustrations/1a.jpg" alt="bg"/>
+            <img src="./assets/illustrations/2a.jpg" alt="bg"/>
+            <img src="./assets/illustrations/3a.jpg" alt="bg"/>
         </div>
     </div>
 

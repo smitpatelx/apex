@@ -54,13 +54,62 @@ function dhashmd5($value)
     return hash($value, MD5);
 }
 
-// if(isset($_GET['sql'])){
-//     $sql = $_GET['sql'];
-//     $conn = db_connect();
-//     $result = pg_query($conn, $sql);
-//     $arr = pg_fetch_all($result);
+function display_phone_number($phonenumber)
+{
+        // Allow only Digits, remove all other characters.
+    $phonenumber = preg_replace("/[^\d]/","",$phonenumber);
     
-//     echo json_encode($arr);
-// }
+    // get phonenumber length.
+    $length = strlen($phonenumber);
+    
+    // if phonenumber = 10
+    if($length == 10) {
+        $phonenumber = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "($1)$2-$3", $phonenumber);
+    }
+    else if($length > 10) {
+        $extra = "";
+        $extra = $length - 10;
+        $nonextra = substr($phonenumber, 0, 10);
+        $phonenumber = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "($1)$2-$3", $nonextra)." ext.".substr($phonenumber, -$extra);
+    }
+
+    return $phonenumber;
+}
+
+function is_valid_postal_code($value)
+{
+    //to remove all whitespace in between
+    $trimvalue = preg_replace('/\s+/', '', $value);
+
+    //to determine valid canada postal code. validation information from https://en.wikipedia.org/wiki/Postal_codes_in_Canada
+    if(preg_match("/^([a-ceghj-npr-tv-z]){1}[0-9]{1}[a-ceghj-npr-tv-z]{1}[0-9]{1}[a-ceghj-npr-tv-z]{1}[0-9]{1}$/i", $trimvalue))
+    { 
+        //postal code is valid
+        return true;
+    }
+    else {
+        //postal code is in-valid
+        return false;
+    }
+}
+
+function valid_phone_number($phonenumber) {
+
+    $phonenumber = preg_replace("/[^\d]/","",$phonenumber);
+
+    $areacode = substr($phonenumber, 0, 3);
+    $exchange = substr($phonenumber, 3, 3);
+    $dial_sequence = substr($phonenumber, 6, 4);
+    
+    if ( ($areacode < MAX_AREA_CODE && $areacode > MIN_AREA_CODE) 
+    && ($exchange < MAX_AREA_CODE && $exchange > MIN_AREA_CODE)
+    && ($dial_sequence < MAX_DIAL_SEQUENCE && $dial_sequence > MIN_DIAL_SEQUENCE)) {
+        //echo "true => ".$phonenumber." => ".$areacode." => ".$exchange." => ".$dial_sequence;
+        return true;
+    } else {
+        //echo "false";
+        return false;
+    }
+}
 
 ?>
