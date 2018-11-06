@@ -6,15 +6,15 @@
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
+    user_id VARCHAR(20) NOT NULL PRIMARY KEY default nextval('user_id_seq'),
     user_name VARCHAR(16) NOT NULL,
     password VARCHAR(34) NOT NULL,
     user_type VARCHAR(2) NOT NULL,
-    first_name VARCHAR(20) NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR (30) NOT NULL,
-    email_address VARCHAR(30) NOT NULL,
-    street_address_1 VARCHAR(30) NOT NULL,
-    street_address_2 VARCHAR(30) NOT NULL, 
+    email_address VARCHAR(40) NOT NULL,
+    street_address_1 VARCHAR(50) NOT NULL,
+    street_address_2 VARCHAR(50) NOT NULL, 
     city VARCHAR(17) NOT NULL, 
     postal_code VARCHAR(6) NOT NULL, 
     primary_phone_number VARCHAR(15) NOT NULL, 
@@ -36,4 +36,4 @@ VALUES (3,'users','1004c3d449a4002d2e167a7e0a3c063e','s','Smit','Patel','root@ro
 INSERT INTO users (user_id, user_name, password, user_type, first_name, last_name, email_address, street_address_1, street_address_2, city, postal_code, primary_phone_number, secondry_phone_number, fax_number, enrol_date, last_access) 
 VALUES (4,'userd','1004c3d449a4002d2e167a7e0a3c063e','d','Smit','Patel','root@rootuser.ca', '38, greenhill ave','34, greenhill ave', 'oshawa', 'l1ol1o', '9999869856', '9966869856', '9966869856','2018-10-07'::date,	'2018-10-07'::date);
 
-SELECT pg_catalog.setval('users_user_id_seq', 4, true);
+SELECT pg_catalog.setval('user_id_seq', 10004, true);

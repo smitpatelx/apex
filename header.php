@@ -86,6 +86,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
                         if (!empty($_SESSION['username_s'])){
                             echo "<li class='waves-effect mx-2 my-2'><a href='logout.php' class='nav-mobile-text'>Log Out</a></li>";
                             echo "<li class='waves-effect mx-2 my-2'><a href='update.php' class='nav-mobile-text'>Update</a></li>";
+                            echo "<li class='waves-effect mx-2 my-2'><a href='listing_create.php' class='nav-mobile-text'>Create Listing</a></li>";
                         }
                         else{
                             echo "<li class='waves-effect my-2 mx-2'><a href='login.php' class='nav-mobile-text'>Login</a></li>";

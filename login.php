@@ -15,7 +15,9 @@ $banner = "Login";
 $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
-
+if (!empty($_SESSION)){
+  user_redirection();
+}
 ?>
 
 <script type="text/javascript">     
@@ -103,20 +105,8 @@ require('header.php');
               $cookies_message[] = "Cookie Destroyed.";
             }
 
-            //Redirect user to their respective pages
-            if ($_SESSION['user_type_s'] == ADMIN){
-              header("LOCATION: ./admin.php");
-              ob_flush();  //Flush output buffer
-            }else if ($_SESSION['user_type_s'] == AGENT){
-              header("LOCATION: ./dashboard.php");
-              ob_flush();  //Flush output buffer
-            }else if ($_SESSION['user_type_s'] == DISABLED){
-              header("LOCATION: ./406.php");
-              ob_flush();  //Flush output buffer
-            }else if ($_SESSION['user_type_s'] == CLIENT){
-              header("LOCATION: ./welcome.php");
-              ob_flush();  //Flush output buffer
-            }
+            //Redirect user to their respective pages, see functions.php
+            user_redirection();
           }
           else
           {
