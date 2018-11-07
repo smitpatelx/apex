@@ -14,7 +14,7 @@ $banner = "Welcome";
 $desc = "Home Page of QualityLife";
 require("./header.php");
 
-if (empty($_SESSION['username_s'])){
+if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != CLIENT){
     header('Location: 405.php');
     ob_flush();  //Flush output buffer
 }
@@ -41,20 +41,7 @@ if (empty($_SESSION['username_s'])){
         </div>
         </div>
 </div>
-<script type="text/javascript">
-    var myVar = setTimeout(cookies_message, 3000);
-    
-    function cookies_message() {
-        <?php
-        $cookies_message = $_SESSION['cookies_message'];
-        foreach($cookies_message as $cookie_message)
-        {
-            // $cookie_message = "<div class='red_alert'>".$cookie_message."</div>";
-            echo "M.toast({html: '".$cookie_message."', classes:'red'})";
-        }
-        ?>
-    }
-</script>
+
 <?php
 require("./footer.php");
 ?>

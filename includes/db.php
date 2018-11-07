@@ -42,7 +42,7 @@ function build_simple_dropdown($value, $sticky){
 
         if (pg_num_rows($result_provinces) > 0) {
             // output data of each row
-            $output .= "<select name='location'>";
+            $output .= "<select name='provinces'>";
             
             while($row = pg_fetch_assoc($result_provinces)) {
                 $output .= "<option value='".$row["province"]."'";
@@ -90,7 +90,7 @@ function build_dropdown($table, $column_1 ,$name_value, $lable, $sticky) {
         $result = pg_query($conn, $sql);
         if (pg_num_rows($result) > 0) {
             // output data of each row
-            $output .= "<select name='$name_value'>";
+            $output .= "<select name='".$name_value."'>";
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<option value='".$row["$column_1"]."'";
 
@@ -108,6 +108,57 @@ function build_dropdown($table, $column_1 ,$name_value, $lable, $sticky) {
 
 }
 
+function build_dropdown2($table, $column_1, $value, $name_value, $lable, $sticky) {
+        $conn = db_connect();
+        $output = "";
+
+        $sql = "SELECT * FROM $table ";
+        $result = pg_query($conn, $sql);
+        if (pg_num_rows($result) > 0) {
+            // output data of each row
+            $output .= "<select name='".$name_value."'>";
+            while($row = pg_fetch_assoc($result)) {
+                $output .= "<option value='".$row["$value"]."'";
+
+                    if ( $row["$column_1"] == $sticky ){
+                        $output .= " selected";
+                    }
+
+                $output .= ">".ucwords($row["$column_1"])."</option>";            
+            }
+            $output .= "</select>";
+            $output .= "<label>$lable</label>";      
+        }
+
+        echo $output;
+
+}
+
+function build_checkbox($table, $column_1 , $sticky) {
+    $conn = db_connect();
+    $output = "";
+
+    $sql = "SELECT * FROM $table ";
+    $result = pg_query($conn, $sql);
+    if (pg_num_rows($result) > 0) {
+        // output data of each row
+        
+        while($row = pg_fetch_assoc($result)) {
+            $output .= "<label class='input-field col s2'>";
+            $output .= "<input type='checkbox'  name='".strtolower($row["$column_1"])."' class='filled-in' value='".strtolower($row["$column_1"])."' ";
+
+                if ( $row["$column_1"] == $sticky ){
+                    $output .= "checked='checked'";
+                }
+
+            $output .= "/>";   
+            $output .= "<span>".ucwords($row["$column_1"])."</span></label>";         
+        }            
+    }
+
+    echo $output;
+}
+
 function build_radio($value, $sticky) {
     $conn = db_connect();
     $output = "";
@@ -118,7 +169,7 @@ function build_radio($value, $sticky) {
         $result = pg_query($conn, $sql);
         if (pg_num_rows($result) > 0) {
             // output data of each row    
-                $output .= "<div id='preferred_contact_method'>";      
+            $output .= "<div id='preferred_contact_method'>";      
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
                 $output .= "<input name='contact_method' type='radio' value='".$row['method']."'";
@@ -141,7 +192,25 @@ function build_radio($value, $sticky) {
             // output data of each row          
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
-                $output .= "<input name='listing_status_".$row['value']."' type='radio' ";
+                $output .= "<input name='listing_status' type='radio' value='".$row['property']."' ";
+
+                    if ( $row['property'] == $sticky ){
+                        $output .= " checked";
+                    }
+                $output .= "/>";   
+                $output .= "<span>".ucwords($row['property'])."</span>";    
+                $output .= "</label></p>";     
+            }          
+        }
+    } else if ($value == "pet_friendly") {
+
+        $sql = "SELECT * FROM pet_friendly ";
+        $result = pg_query($conn, $sql);
+        if (pg_num_rows($result) > 0) {
+            // output data of each row          
+            while($row = pg_fetch_assoc($result)) {
+                $output .= "<p><label>";
+                $output .= "<input name='pet_friendly' type='radio' value='".$row['property']."'  ";
 
                     if ( $row['property'] == $sticky ){
                         $output .= " checked";

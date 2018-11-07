@@ -7,7 +7,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 -->
 <?php
 
-	//Form
+	//Form @start
 	define('MAX_USERNAME_LENGTH', '20' );
 	define('MIN_USERNAME_LENGTH', '6' );
 
@@ -44,6 +44,28 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 	define('MIN_DIAL_SEQUENCE', '0000' );
 	//form constants @ends
 
+	//listing @start
+	define('MAX_FILE', '2097152' );
+
+	define('MAX_HEADING', '60' );
+	define('MIN_HEADING', '6' );
+
+	define('MAX_PRICE', '10' );
+	define('MIN_PRICE', '4' );
+
+	define('MAX_DESC', '1000' );
+	define('MIN_DESC', '60' );
+
+	define('MAX_ADDRESS', '40' );
+	define('MIN_ADDRESS', '6' );
+
+	define('MAX_AREA', '10' );
+	define('MIN_AREA', '4' );
+
+	define('MAX_CONTACT', '15' );
+	define('MIN_CONTACT', '10' );
+	//listing @end
+
 	// User Type Constants
 	define('ADMIN', 's');
 	define('AGENT', 'a');
@@ -64,8 +86,8 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 	define("PHONE", "");
 	define("POSTED_EMAIL", "");
 
-	define("LISTING_STATUS_OPEN", "status_open");
-	define("LISTING_STATUS_CLOSE", "status_close");
-	define("LISTING_STATUS_SOLD", "status_sold");
+	define("LISTING_STATUS_OPEN", "o");
+	define("LISTING_STATUS_CLOSE", "c");
+	define("LISTING_STATUS_SOLD", "s");
 
 ?>

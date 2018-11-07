@@ -49,7 +49,6 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
             </p>
         </div>
     </div>
-    
     <!--  Scripts-->
     <!-- <script type="text/javascript" src="./scripts/js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="./scripts/js/materialize.min.js"></script>

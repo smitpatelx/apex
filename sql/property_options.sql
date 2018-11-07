@@ -1,7 +1,7 @@
-﻿DROP TABLE IF EXISTS property_options;
+﻿DROP TABLE IF EXISTS property_option;
 
 CREATE TABLE property_option(
-value INT PRIMARY KEY,
+value SMALLINT PRIMARY KEY,
 property VARCHAR(30) NOT NULL
 );
 

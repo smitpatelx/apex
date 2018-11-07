@@ -30,6 +30,7 @@ if (!empty($_SESSION['username_s'])){
   //LOGIN FUNCTIONALITY
   //Authors: Blake, Dylan
   $errors = [];
+  $session_message = [];
 
   if ($_SERVER["REQUEST_METHOD"] == "GET")
   {
@@ -37,6 +38,7 @@ if (!empty($_SESSION['username_s'])){
 
     //initialize variables to be echo'ed into the 
     $username = "";
+    $salutation = "";
     $firstname = "";
     $lastname = "";
     $email = "";
@@ -46,27 +48,32 @@ if (!empty($_SESSION['username_s'])){
     $street_address_1 = "";
     $street_address_2 = "";
     $city = "";
+    $province = "";
     $postal_code = "";
     $primary_phone_number = "";
     $secondry_phone_number = "";
     $fax_number = "";
+    $contact_method = "";
 
   } else if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
+    $salutation = trimT('salutation');
     $firstname = trimT('first_name');
     $lastname = trimT('last_name');
     $username = trimT('user_name');
     $email = trimT('email');
     $password = trimT('password');
-    $street_address_1 = trimT('street_address_1');
-    $street_address_2 = trimT('street_address_2');
+    $street_address_1 = post('street_address_1');
+    $street_address_2 = post('street_address_2');
     $city = trimT('city');
+    $province = post('provinces');
     $postal_code = trimT('postal_code');
     $primary_phone_number = trimT('primary_phone_number');
     $secondry_phone_number = trimT('secondry_phone_number');
     $fax_number = trimT('fax_number');
     $con_password = trimT('con_password');
     $user_type = trimT('user_type');
+    $contact_method = trimT('contact_method');
     $enrol_date= date("Y-m-d",time());
     
     $password = hashmd5($password);
@@ -140,11 +147,7 @@ if (!empty($_SESSION['username_s'])){
             $errors[] = "Street address 2 should be between 6 to 30 characters"; 
             $street_address_2 = "";
           } 
-          if (strlen($city) >= MAX_CITY_LENGTH && strlen($city) <= MIN_CITY_LENGTH )
-          {
-            $errors[] = "City should be between 3 to 17 characters"; 
-            $city = "";
-          } 
+           
           if (strlen($postal_code) != POSTAL_CODE_LENGTH)
           {
             $errors[] = "Postal code should be 6 character"; 
@@ -205,29 +208,27 @@ if (!empty($_SESSION['username_s'])){
             $primary_phone_number = display_phone_number($primary_phone_number);
             $secondry_phone_number = display_phone_number($secondry_phone_number);
             $fax_number = display_phone_number($fax_number);
-            //$user_redirection = "";
-            //check user_type
-            // if ($user_type == AGENT)
-            // {
-            //   $user_redirection = "./dashboard.php";
-            // }
-            // else if ($user_type == CLIENT)
-            // {
-            //   $user_redirection = "./welcome.php";
-            // }
-            $save = "INSERT INTO users (first_name, last_name, user_name, email_address, password, user_type, street_address_1,
-            street_address_2, city, postal_code, primary_phone_number, secondry_phone_number, fax_number,  enrol_date, last_access) 
-                VALUES ('".$firstname."', '".$lastname."', '".$username."', '".$email."', '".$password."', '".$user_type."',
-                '".$street_address_1."', '".$street_address_2."', '".$city."', '".$postal_code."', '".$primary_phone_number."', '".$secondry_phone_number."',
-                '".$fax_number."', '".$enrol_date."' ,'".$enrol_date."')";
-            $results = pg_query($conn, $save);
-            $_SESSION['username_s'] = $username;
-            $_SESSION['user_type_s'] = $user_type;
-            $_SESSION['last_access_s'] = $enrol_date;
-            $_SESSION['registration_success'] = "User Registered Successfully";
-            header("Location: login.php");
-            ob_flush();  //Flush output buffer
+
+            $sql = "INSERT INTO users (first_name, last_name, user_name, email_address, password, user_type, street_address_1,
+                    street_address_2, city, postal_code, primary_phone_number, secondry_phone_number, fax_number, province, salutation, 
+                    preferred_contact_method, enrol_date, last_access) 
+                    VALUES ( \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15, \$16, \$17, \$18 )";
             
+            $stmt = pg_prepare($conn, 'user_register', $sql);
+
+            $result = pg_execute($conn, 'user_register', array($firstname, $lastname, $username, $email, $password, $user_type,
+                                $street_address_1, $street_address_2, $city, $postal_code, $primary_phone_number, $secondry_phone_number,
+                                $fax_number, $province, $salutation, $contact_method, $enrol_date ,$enrol_date));
+                                
+            if ( false != $result) {
+              $session_message[] = "User Registered Successfully";
+              $_SESSION['cookies_message'] = $session_message;
+              header("Location: login.php");
+              ob_flush();  //Flush output buffer
+            } else {
+              $errors[] = "User Registration Unsuccessful";
+            }
+                       
             }
             else
             {
@@ -367,5 +368,6 @@ if (!empty($_SESSION['username_s'])){
 </div>
 
 <?php
+
 require("./footer.php");
 ?>

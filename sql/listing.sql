@@ -16,12 +16,13 @@ CREATE TABLE listings(
 	description VARCHAR(1000) NOT NULL,
 	postal_code VARCHAR(6) NOT NULL,
 	images SMALLINT NOT NULL,
+	images_path VARCHAR(100) NOT NULL,
 	city INTEGER NOT NULL,
-	property_options INTEGER NOT NULL,
+	property_options VARCHAR(100) NOT NULL,
 	bedrooms INTEGER NOT NULL,
 	bathrooms INTEGER NOT NULL,
-	address VARCHAR(30) NOT NULL,	
+	address VARCHAR(40) NOT NULL,	
 	area VARCHAR(10) NOT NULL,
 	contact VARCHAR(15) NOT NULL,
-	pets_friendly BOOLEAN NOT NULL
+	pets_friendly VARCHAR(5) NOT NULL
 );

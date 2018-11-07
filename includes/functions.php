@@ -6,7 +6,7 @@ LAST MODIFIED:		October 4, 2018
 DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
 -->
 <?php 
-
+session_start();
 date_default_timezone_set('America/Toronto');
 
 function displayCopyrightInfo() //to display copyright information in footer file
@@ -42,6 +42,11 @@ function callPost() //to reuse POST request method
 function trimT($anyValue)
 {
 	return trim($_POST["$anyValue"]);
+}
+
+function post($anyValue)
+{
+	return $_POST["$anyValue"];
 }
 
 function hashmd5($value)
@@ -128,5 +133,26 @@ function user_redirection() {
     }
 }
 
+function session_message() {
+    if(isset($_SESSION['cookies_message'])) {
+        $output = "";
+        $output .= "<script type='text/javascript'>";
+        $output .= "var myVar = setTimeout(cookies_message, 2000);";
+            
+        $output .= "function cookies_message() {";
+               
+        $cookies_message = $_SESSION['cookies_message'];
+        foreach($cookies_message as $cookie_message)
+        {
+            // $cookie_message = "<div class='red_alert'>".$cookie_message."</div>";
+            $output .= "M.toast({html: '".$cookie_message."', classes:'red'})";
+        }
+        unset($_SESSION["cookies_message"]);
+                              
+        $output .= "}";         
+        $output .= "</script>";
 
+        echo $output;
+    }
+}
 ?>

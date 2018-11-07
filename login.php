@@ -15,9 +15,11 @@ $banner = "Login";
 $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
-if (!empty($_SESSION)){
+if (isset($_SESSION['user_type_s'])){
   user_redirection();
 }
+// echo $_SESSION['user_type_s'];
+// echo $_SESSION['username_s'];
 ?>
 
 <script type="text/javascript">     
@@ -92,6 +94,8 @@ if (!empty($_SESSION)){
             $_SESSION['user_type_s'] = $currentUserType['user_type'];
             $_SESSION['username_s'] = $currentUserType['user_name'];
             $_SESSION['last_access_s'] = $currentUserType['last_access'];
+            $_SESSION['user_id_s'] = $currentUserType['user_id'];
+
             if (isset($rememberme))
             {
               $cookie_user = ($_SESSION['username_s']);
@@ -104,7 +108,7 @@ if (!empty($_SESSION)){
               setcookie( 'USER[user]',  $_SESSION['username_s'], time()-3600);
               $cookies_message[] = "Cookie Destroyed.";
             }
-
+            $_SESSION['cookies_message'] = $cookies_message;
             //Redirect user to their respective pages, see functions.php
             user_redirection();
           }
@@ -133,11 +137,8 @@ if (!empty($_SESSION)){
   {
     echo "<script>M.toast({html: '".$error."'})</script>";
   }
-  // echo "<pre>".print_r($_COOKIE)."</pre>";
-  if (!empty($_SESSION['registration_success'])){
-    echo "<script>M.toast({html: '".$_SESSION['registration_success']."'})</script>";
-  }
-  $_SESSION['cookies_message'] = $cookies_message;
+  $password= "";
+  
 ?>
 
 
@@ -163,8 +164,8 @@ if (!empty($_SESSION)){
 
         <div class="row">
           <label class="input-field col s12">
-          <input type="checkbox"  name="rememberme" class="filled-in" value="1" <?php echo $rememberme ?>/>
-          <span>Remember Me</span>
+            <input type="checkbox"  name="rememberme" class="filled-in" value="1" <?php echo $rememberme ?>/>
+            <span>Remember Me</span>
           </label>
         </div>
 
@@ -185,7 +186,5 @@ if (!empty($_SESSION)){
 </div>
 
 <?php
-
 require("./footer.php");
-
 ?>

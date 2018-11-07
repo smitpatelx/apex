@@ -10,6 +10,6 @@ CREATE TABLE preferred_contact_method (
     method_name VARCHAR(10)
 );
 
-INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('1', 'email', 'E-mail');
-INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('2', 'phone', 'Phone');
-INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('3', 'letter', 'Letter');
+INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('1', 'e', 'E-mail');
+INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('2', 'p', 'Phone');
+INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('3', 'l', 'Letter');

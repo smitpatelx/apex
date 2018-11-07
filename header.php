@@ -1,9 +1,9 @@
 <?php
-session_start();
 ob_start();
 require('./includes/constants.php');
 require('./includes/db.php');
 require('./includes/functions.php');
+
 ?>
 <!--
 FILE: 						<?php echo basename(__FILE__, $_SERVER['PHP_SELF'])."\n"; ?>
@@ -135,3 +135,4 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
         </ul>
     
     <div id="main">
+    <?php session_message(); ?>
