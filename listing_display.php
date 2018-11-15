@@ -21,9 +21,12 @@ require('header.php');
     });      
 </script>
 <?php 
+
+if (isset($_GET["listing_id"])) {
   $conn = db_connect();
   $output = "";
-  $sql = "SELECT * FROM listing_demo WHERE id = 14 ORDER BY listing_demo.id DESC";
+  $listing_id = $_GET["listing_id"];
+  $sql = "SELECT * FROM listings WHERE listing_id = $listing_id ORDER BY listings.created_on DESC";
 
 	$result = pg_query($conn, $sql);
 	// $records = pg_num_rows($result);
@@ -31,29 +34,57 @@ require('header.php');
  if (pg_num_rows($result) > 0) {
     // output data of each row
     while($row = pg_fetch_assoc($result)) {
-        // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-    echo "<div class='grid-x my-4'>";
-        echo "<div class='cell large-6 large-offset-3'>";
-            echo  "<div class='card z-depth-4 hoverable' data-aos='zoom-out'>";
-                echo  "<div class='card-image waves-effect waves-block waves-light'>";
-                echo  "<img class='activator' src='".$row["img"]."' alt='".$row["img"]."' />";
-                echo  "</div>";
-            echo  "<div class='card-content'>";
-        echo  "<h2  class='card-title activator grey-text text-darken-4'>Heading: <span>".$row["list_heading"]."</span> </h2>";
-        echo "<span class='card-title grey-text text-darken-4 h3'>Information</span>";
-        echo "<ul>";
-        echo "<li>Location: ".$row["location"]."</li>";
-        echo "<li>Price: $".$row["price"]."</li>";
-        echo "<li>Space: ".$row["sqft"]." sqft</li>";
-        echo "<li>Contact: ".$row["phone"]."</li>";
-        echo "</ul>";
-        echo  "</div>";
-    echo"</div>";
-    echo"</div>";
-    echo"</div>";
-  }
+        $property_options = [];
+        $property_options = json_decode($row["property_options"]);
+
+        $image_link = "";
+        $image_link = $row["images_path"];
+        if (true == checkRemoteFile($image_link)) {
+            // $image_link = $row["images_path"];
+            $image_link = $image_link;
+        } else {
+            $image_link = "./images/no_image.svg";
+        }
+
+        echo "<div class='grid-x my-4'>";
+            echo "<div class='cell large-6 large-offset-3'>";
+                echo  "<div class='card z-depth-4 hoverable' data-aos='zoom-out'>";
+                    echo  "<div class='card-image waves-effect waves-block waves-light'>";
+                    echo  "<img class='activator' src='".$image_link."' alt='img_".$row["listing_id"]."' />";
+                    echo  "</div>";
+                echo  "<div class='card-content'>";
+            echo  "<h2  class='card-title activator grey-text text-darken-1'><span>".$row["headline"]."</span> </h2>";
+            echo "<span class='card-title grey-text h3 center'>Information</span>";
+            echo "<ul>";
+            echo "<li>Location: ".$row["address"]."</li>";
+            echo "<li>Price: $".$row["price"]."</li>";
+            echo "<li>Space: ".$row["area"]." sqft</li>";
+            echo "<li>Contact: ".$row["contact"]."</li>";
+            echo "<li>Description: ".$row["description"]."</li>";
+            echo "<li>Postal Code: ".$row["postal_code"]."</li>";
+            echo "<li>City: ".$row["city"]."</li>";
+            echo "<li>No. of Bedrooms: ".$row["bedrooms"]."</li>";
+            echo "<li>No. of Bathrooms: ".$row["bathrooms"]."</li>";
+            echo "<li>Pets friendly: ".ucwords($row["pets_friendly"])."</li>";
+
+            echo "<li class='left'>Features:";
+            foreach ($property_options as $options) {
+                echo "<span class='new badge mt-1 waves-effect waves-block waves-light z-depth-4' data-badge-caption='".ucwords($options)."'></span>";
+            }
+            echo "</li>";
+            
+            echo "</ul>";
+            echo  "</div>";
+        echo"</div>";
+        echo"</div>";
+        echo"</div>";
+        }
+    }
+} else {
+    header('Location: listing_search.php');
+    ob_flush();
 }
-  ?>
+?>
 
 <?php
 require("./footer.php");

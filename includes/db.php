@@ -120,7 +120,7 @@ function build_dropdown2($table, $column_1, $value, $name_value, $lable, $sticky
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<option value='".$row["$value"]."'";
 
-                    if ( $row["$column_1"] == $sticky ){
+                    if ( $row["$value"] == $sticky ){
                         $output .= " selected";
                     }
 
@@ -134,7 +134,7 @@ function build_dropdown2($table, $column_1, $value, $name_value, $lable, $sticky
 
 }
 
-function build_checkbox($table, $column_1 , $sticky) {
+function build_checkbox($table, $column_1 , $column_2, $sticky) {
     $conn = db_connect();
     $output = "";
 
@@ -144,10 +144,10 @@ function build_checkbox($table, $column_1 , $sticky) {
         // output data of each row
         
         while($row = pg_fetch_assoc($result)) {
-            $output .= "<label class='input-field col s2'>";
-            $output .= "<input type='checkbox'  name='".strtolower($row["$column_1"])."' class='filled-in' value='".strtolower($row["$column_1"])."' ";
+            $output .= "\n\t<label class='input-field col s2'>";
+            $output .= "\n\t\t<input type='checkbox'  name='".$table."[]' class='filled-in' value='".strtolower($row["$column_2"])."' ";
 
-                if ( $row["$column_1"] == $sticky ){
+                if ( (int)$sticky & (int)$row["$column_2"] ){
                     $output .= "checked='checked'";
                 }
 
@@ -172,9 +172,9 @@ function build_radio($value, $sticky) {
             $output .= "<div id='preferred_contact_method'>";      
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
-                $output .= "<input name='contact_method' type='radio' value='".$row['method']."'";
+                $output .= "<input name='contact_method' type='radio' value='".$row['value']."'";
                 
-                    if ( $row['method'] == $sticky ){
+                    if ( $row['value'] == $sticky ){
                         $output .= " checked";
                     }
 
@@ -192,9 +192,9 @@ function build_radio($value, $sticky) {
             // output data of each row          
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
-                $output .= "<input name='listing_status' type='radio' value='".$row['property']."' ";
+                $output .= "<input name='listing_status' type='radio' value='".$row['value']."' ";
 
-                    if ( $row['property'] == $sticky ){
+                    if ( $row['value'] == $sticky ){
                         $output .= " checked";
                     }
                 $output .= "/>";   
@@ -210,9 +210,9 @@ function build_radio($value, $sticky) {
             // output data of each row          
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
-                $output .= "<input name='pet_friendly' type='radio' value='".$row['property']."'  ";
+                $output .= "<input name='pet_friendly' type='radio' value='".$row['value']."'  ";
 
-                    if ( $row['property'] == $sticky ){
+                    if ( $row['value'] == $sticky ){
                         $output .= " checked";
                     }
                 $output .= "/>";   
@@ -225,8 +225,6 @@ function build_radio($value, $sticky) {
     echo $output;
 }
 
-function get_property() {
 
-}
 
 ?>

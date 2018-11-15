@@ -16,6 +16,9 @@ $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
 if (isset($_SESSION['user_type_s'])){
+  $session_message = [];
+  $session_message[] = "Logout required to access login page.";
+  $_SESSION['cookies_message'] = $session_message;
   user_redirection();
 }
 // echo $_SESSION['user_type_s'];

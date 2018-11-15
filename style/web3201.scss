@@ -94,14 +94,23 @@ flex: 1 0 auto;
 #nav-mobile {
     margin:0 5em;
 
-    li:hover {
-    background: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    transition:background 1s;
-    border-radius: 10px;
+    li{
+        // width:100px;
 
-        a{
-            color: rgb(0, 0, 0);
+        &:nth-last-child(1) {
+            width: 150px;
+            background: transparent !important;
+            color: $primary !important;
+        }
+        &:hover {
+        background: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        transition:background 1s;
+        border-radius: 10px;
+
+            a{
+                color: rgb(0, 0, 0);
+            }
         }
     }
 }
@@ -499,6 +508,7 @@ flex: 1 0 auto;
     margin-bottom: 100vh;
 
     .dashboard_loader_1 {
+
     position: absolute;
     background: #fff;
     left: 50%;
@@ -514,6 +524,7 @@ flex: 1 0 auto;
     height: 120px;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+
     }
 
     @-webkit-keyframes spin {
@@ -534,22 +545,41 @@ flex: 1 0 auto;
 }
 
 .dropdown_1{
+    z-index: 2000;
+
     .drop_1 {
         display: none;
-        background: $white;
+        background: rgb(184, 184, 184) !important;
+        border-radius: 10px;
         a{
             display: block;
             color: $secondry;
+
+            &:nth-child(1){
+                border: rgba(0, 0, 0, 0);
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
         }
     }
 
     &:hover{
-        a{
-            color: $secondry;
-        }
+        // a{
+        //     color: $secondry;
+        // }
         .drop_1{
-            background: #4e4e4e4f;
+            // background: #4e4e4e4f;
+            background: rgb(184, 184, 184) !important;
             display: block;
+            border-radius: 10px;
+            
+            a{
+                &:nth-child(1){
+                border: rgba(0, 0, 0, 0);
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                }
+            }
         }
     }   
 }
@@ -562,4 +592,8 @@ flex: 1 0 auto;
 .green_alert{
     color: #fff;
     background: rgb(53, 145, 11);
+}
+
+.tra-white {
+    background: rgb(0, 0, 0) !important;
 }

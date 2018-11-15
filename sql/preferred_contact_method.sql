@@ -5,11 +5,11 @@
 
 DROP TABLE IF EXISTS preferred_contact_method;
 CREATE TABLE preferred_contact_method (
-    method_id INTEGER PRIMARY KEY,
+    value INTEGER PRIMARY KEY,
     method VARCHAR(10),
     method_name VARCHAR(10)
 );
 
-INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('1', 'e', 'E-mail');
-INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('2', 'p', 'Phone');
-INSERT INTO preferred_contact_method (method_id, method, method_name) VALUES ('3', 'l', 'Letter');
+INSERT INTO preferred_contact_method (value, method, method_name) VALUES (1, 'e', 'E-mail');
+INSERT INTO preferred_contact_method (value, method, method_name) VALUES (2, 'p', 'Phone');
+INSERT INTO preferred_contact_method (value, method, method_name) VALUES (4, 'l', 'Letter');

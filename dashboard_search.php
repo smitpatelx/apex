@@ -8,7 +8,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 <?php
 require('./includes/constants.php');
 require('./includes/db.php');
-session_start();
+require("./includes/functions.php");
 
 if (empty($_SESSION['username_s']) || (($_SESSION['user_type_s'] != AGENT) && ($_SESSION['user_type_s'] != ADMIN))){
     header('Location: 405.php');  

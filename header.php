@@ -45,10 +45,10 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 
     <div class="navbar-fixed">
 
-        <div class="preloader-background white">
+        <div class="preloader-background tra-white">
             <!-- <h2 class="center m-4 loading-text" data-splitting>APEX</h2> -->
             <div class="preloader-wrapper big active">       
-                <div class="spinner-layer spinner-black-only">
+                <div class="spinner-layer spinner-blue-only">
                     <div class="circle-clipper left">
                         <div class="circle"></div>
                     </div>
@@ -95,7 +95,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
                     ?>
                     
                     <li class="waves-effect my-2 mx-2 dropdown_1">                       
-                        <a href="#" class="nav-mobile-text">Pages</a>                          
+                        <a href="#" class="nav-mobile-text white-text">Pages</a>                          
                         <div class="drop_1">
                             <a href="admin.php">Admin</a>
                             <a href="dashboard.php">Dashboard</a>

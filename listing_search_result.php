@@ -54,39 +54,46 @@ require("./header.php");
 <div class="grid-x grid-padding-x" style="justify-content: center;">
     <div id="listing-output" class="cell medium-12 large-12 small-12 grid-x grid-margin-x small-up-2 medium-up-2 large-up-4">
     <?php 
-        $conn = db_connect();
-        $output = "";
-        $sql = "SELECT * FROM listing_demo ORDER BY listing_demo.id DESC";
 
-            $result = pg_query($conn, $sql);
-            // $records = pg_num_rows($result);
-
-        if (pg_num_rows($result) > 0) {
-            // output data of each row
-            while($row = pg_fetch_assoc($result)) {
-                // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-
-            echo  "<div class='card cell medium-3 large-3 small-6 z-depth-4 hoverable' data-aos='fade-up' data-aos-offset='200'>";
-            echo  "<div class='card-image waves-effect waves-block waves-light'>";
-            echo  "<img class='activator' src='".$row["img"]."' alt='".$row["img"]."' />";
-            echo  "</div>";
-            echo  "<div class='card-content'>";
-            echo  "<span class='card-title activator blue-text text-darken-4'>".$row["list_heading"]."<i class='fas fa-ellipsis-v right'></i></span>";
-            echo  "<p><a href='#' class='btn-flat waves-effect waves-block waves-light z-depth-4'>Know More</a></p>";
-            echo  "</div>";
-            echo  "<div class='card-reveal p-0'>";
-            echo  "<span class='card-title white-text text-darken-4 grey p-2'>Information <i class='fas fa-times right p-4'></i></span>";
-            echo  "<ul>";
-            echo     "<li>Location: ".$row["location"]."</li>";
-            echo      "<li>Price: $".$row["price"]."</li>";
-            echo      "<li>Space: ".$row["sqft"]." sqft</li>";
-            echo      "<li>Contact: ".$row["phone"]."</li>";
-            echo    "</ul>";
-            echo  "</div>";
-            echo"</div>";
+    print_r($_SESSION['search_pg_fetch_assoc']);
+    if (isset($_SESSION['search_pg_fetch_assoc'])) {
+        // output data of each row
+        while($row = $_SESSION['search_pg_fetch_assoc']) {
+            // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+        $image_link = "";
+        $image_link = $row["images_path"];
+        if (true == checkRemoteFile($image_link)) {
+            // $image_link = $row["images_path"];
+            $image_link = $image_link;
+        } else {
+            $image_link = "./images/no_image.svg";
         }
+        echo  "<div class='card cell medium-3 large-3 small-6 z-depth-4 hoverable' data-aos='fade-up' data-aos-offset='200'>";
+        echo  "<div class='card-image waves-effect waves-block waves-light'>";
+        echo  "<img class='activator' src='".$image_link."' alt='img_".$row["listing_id"]."' />";
+        echo  "</div>";
+        echo  "<div class='card-content'>";
+        echo  "<span class='card-title activator blue-text text-darken-4'>".$row["headline"]."<i class='fas fa-ellipsis-v right'></i></span>";
+        echo  "<p><a href='/listing_display.php?listing_id=".$row["listing_id"]."' class='btn waves-effect waves-block waves-light z-depth-4 blue-grey darken-1 white-text position-fixed-bottom'>Know More</a></p>";
+        echo  "</div>";
+        echo  "<div class='card-reveal p-0'>";
+        echo  "<span class='card-title white-text text-darken-4 grey p-2'>Information <i class='fas fa-times right p-4'></i></span>";
+        echo  "<ul>";
+        echo     "<li>Location: ".$row["address"]."</li>";
+        echo      "<li>Price: $".$row["price"]."</li>";
+        echo      "<li>Space: ".$row["area"]." sqft</li>";
+        echo    "</ul>";
+        echo  "</div>";
+        echo"</div>";
+
+        
         }
-    ?>
+    } else {
+        header('Location: listing_search.php');
+        ob_flush();
+    }
+
+?>
     </div>
 </div>
 

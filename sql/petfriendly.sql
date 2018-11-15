@@ -8,5 +8,4 @@ property VARCHAR(30) NOT NULL
 --ALTER TABLE property_option OWNER TO groupXX_admin;
 
 INSERT INTO pet_friendly (value, property) VALUES (1, 'yes');
-
 INSERT INTO pet_friendly (value, property) VALUES (2, 'no');

@@ -82,14 +82,16 @@ foreach(range(1, 1000) as $x) {
     $enrol_date = $faker->iso8601($max = 'now');
     $last_access = $faker->iso8601($max = 'now');
 
-    $sql2 = "INSERT INTO users (user_name, password, user_type, first_name, last_name, email_address, street_address_1, street_address_2, city, postal_code, primary_phone_number, secondry_phone_number, fax_number, enrol_date, last_access) 
-    VALUES ('$user_name','$password','$user_type', '$first_name', '$last_name', '$email_address', '$street_address_1','$street_address_2', '$city', '$postal_code', '$primary_phone_number', '$secondry_phone_number', '$fax_number', '$enrol_date'::date, '$last_access'::date)";
-    $query = pg_query($conn, $sql2);
+    echo "\"".$primary_phone_number."\",";
+    //$sql2 = "INSERT INTO users (user_name, password, user_type, first_name, last_name, email_address, street_address_1, street_address_2, city, postal_code, primary_phone_number, secondry_phone_number, fax_number, enrol_date, last_access) 
+    //VALUES ('$user_name','$password','$user_type', '$first_name', '$last_name', '$email_address', '$street_address_1','$street_address_2', '$city', '$postal_code', '$primary_phone_number', '$secondry_phone_number', '$fax_number', '$enrol_date'::date, '$last_access'::date)";
+    //$query = pg_query($conn, $sql2);
 }
 
 ?>
 <pre>
     <?php 
-    //echo $sql2;
+    
+    
     ?>
 </pre>

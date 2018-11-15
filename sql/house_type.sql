@@ -1,14 +1,15 @@
 DROP TABLE IF EXISTS house_type;
 
 CREATE TABLE house_type(
-value VARCHAR(15) PRIMARY KEY
+value SMALLINT PRIMARY KEY,
+property VARCHAR(30) NOT NULL
 );
 
 -- ALTER TABLE house_type OWNER TO groupXX_admin;
 
-INSERT INTO house_type (value) VALUES ('mansion');
-INSERT INTO house_type (value) VALUES ('semi detached');
-INSERT INTO house_type (value) VALUES ('villa');
-INSERT INTO house_type (value) VALUES ('detached');
-INSERT INTO house_type (value) VALUES ('beach house');
-INSERT INTO house_type (value) VALUES ('appartments');
+INSERT INTO house_type (value, property) VALUES (1 ,'mansion');
+INSERT INTO house_type (value, property) VALUES (2 ,'semi detached');
+INSERT INTO house_type (value, property) VALUES (4 ,'villa');
+INSERT INTO house_type (value, property) VALUES (8 ,'detached');
+INSERT INTO house_type (value, property) VALUES (16 ,'beach house');
+INSERT INTO house_type (value, property) VALUES (32 ,'appartments');

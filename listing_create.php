@@ -16,6 +16,9 @@ $desc = "Dashboard Page of QualityLife";
 require('header.php');
 
 if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
+    $session_message = [];
+    $session_message[] = "Unauthorized access blocked.";
+    $_SESSION['cookies_message'] = $session_message;   
     header('Location: login.php');
     ob_flush();  //Flush output buffer
 }
@@ -32,27 +35,21 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
     $errors = []; // Store all foreseen and unforseen errors here
 
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-
+        
         $dsh_post_head = "";
         $dsh_post_desc = "";
-        $dsh_post_images = "";
-        $dsh_post_city = "";
-        $dsh_post_bedrooms = "";
-        $dsh_post_bathrooms = "";
+        $dsh_post_images =  isset($_COOKIE['dsh_post_images'])?$_COOKIE['dsh_post_images']:"2";
+        $dsh_post_city = isset($_COOKIE['dsh_post_city'])?$_COOKIE['dsh_post_city']:"8";
+        $dsh_post_bedrooms =  isset($_COOKIE['dsh_post_bedrooms'])?$_COOKIE['dsh_post_bedrooms']:"3";
+        $dsh_post_bathrooms =  isset($_COOKIE['dsh_post_bathrooms'])?$_COOKIE['dsh_post_bathrooms']:"2";
         $dsh_post_price = "";
         $dsh_post_area = "";
         $dsh_post_address = "";
-        $dsh_post_pet_friendly = "";
+        $dsh_post_pet_friendly = isset($_COOKIE['dsh_post_pet_friendly'])?$_COOKIE['dsh_post_pet_friendly']:"2";
         $dsh_post_postal_code = "";
         $dsh_post_contact = "";
         $dsh_post_file = "";
-        $features = [];
-        $ac = "";   
-        $garage = "";    
-        $pool = "";    
-        $acreage = "";    
-        $waterfront = "";
-        
+        $property_options = isset($_COOKIE['property_options'])?$_COOKIE['property_options']:0;      
 
     } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
@@ -68,30 +65,18 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         $dsh_post_pet_friendly = trimT('pet_friendly');
         $dsh_post_postal_code = trimT('postal_code');
         $dsh_post_contact = trimT('dsh_post_contact');
-        $dsh_post_file = trim('dsh_post_file');                    
+        $dsh_post_file = trim('dsh_post_file');  
+        $property_options = isset($_POST['property_option'])?sum_check_box($_POST['property_option']):0;                  
         
         $conn = db_connect();
-        
-        if(isset($_POST['ac'])){
-            $ac = post('ac'); 
-            $features[] = $ac;
-        }
-        if(isset($_POST['garage'])){
-            $garage = post('garage');
-            $features[] = $garage;
-        }
-        if(isset($_POST['pool'])){
-            $pool = post('pool');
-            $features[] = $pool;
-        }
-        if(isset($_POST['acreage'])){
-            $acreage = post('acreage');
-            $features[] = $acreage;
-        }
-        if(isset($_POST['waterfront'])){
-            $waterfront = post('waterfront');
-            $features[] = $waterfront;
-        }
+
+        // echo "Sumn of property_options: " . $property_options;
+        setcookie('property_options', $property_options, time() + (60*60*24*30));
+        setcookie('dsh_post_images', $dsh_post_images, time() + (60*60*24*30));
+        setcookie('dsh_post_city', $dsh_post_city, time() + (60*60*24*30));
+        setcookie('dsh_post_bedrooms', $dsh_post_bedrooms, time() + (60*60*24*30));
+        setcookie('dsh_post_bathrooms', $dsh_post_bathrooms, time() + (60*60*24*30));
+        setcookie('dsh_post_pet_friendly', $dsh_post_pet_friendly, time() + (60*60*24*30));
 
         $currentDir = getcwd();
         $today = "day_".date("m_d_Y");
@@ -118,7 +103,7 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
 
             $changedName = $time.$fileName;
             $uploadPath = $currentDir . $uploadDirectory . basename($changedName); 
-
+            $storage_path = $uploadDirectory . basename($changedName);
             if (! in_array($fileExtension,$fileExtensions)) {
                 $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file.";
             }
@@ -186,15 +171,16 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                     $dsh_post_status = LISTING_STATUS_OPEN;
                     $user_id = $_SESSION['user_id_s'];
                     $features = json_encode($features);
+                    $created_on = date("Y-m-d",time());
 
-                    $sql = "INSERT INTO listings ( status, price, headline, description, postal_code, images, images_path, city, property_options, bedrooms, bathrooms, address, area, contact, pets_friendly, user_id) 
-                    VALUES ( \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15 ,\$16)";
+                    $sql = "INSERT INTO listings ( status, price, headline, description, postal_code, images, images_path, city, property_options, bedrooms, bathrooms, address, area, contact, pets_friendly, user_id, created_on) 
+                    VALUES ( \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15 ,\$16, \$17)";
 
                     $stmt = pg_prepare($conn, 'create_post', $sql);
                     $result = pg_execute($conn, 'create_post', array($dsh_post_status, $dsh_post_price, $dsh_post_head, $dsh_post_desc, 
-                                        $dsh_post_postal_code, $dsh_post_images, $changedName, $dsh_post_city, $features, $dsh_post_bedrooms, $dsh_post_bathrooms, 
-                                        $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly, $user_id));
-
+                                        $dsh_post_postal_code, $dsh_post_images, $storage_path, $dsh_post_city, $property_options, $dsh_post_bedrooms, $dsh_post_bathrooms, 
+                                        $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly, $user_id, $created_on));
+                 
                     if (false != $result) {
                         $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
@@ -229,50 +215,50 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         <h2 class='cell medium-5 medium-offset-4 center red-text dosis'>Create New Post</h2>
         <form class='cell medium-5 medium-offset-4 center row' action="<?php echo $_SERVER['PHP_SELF']; ?>" method='post' enctype="multipart/form-data" >
             <div class="input-field col s12">
-                <input type="text" id='heading' name="dsh_post_head" class="validate"/>
+                <input type="text" id='heading' name="dsh_post_head" class="validate" value="<?php echo $dsh_post_head; ?>"/>
                 <label for="heading">Post Heading</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="description" name="dsh_post_description" class="materialize-textarea"></textarea>
+                <textarea id="description" name="dsh_post_description" class="materialize-textarea" value="<?php echo $dsh_post_desc; ?>"></textarea>
                 <label for="description">Description</label>
             </div>          
             <div class="input-field col s6">
-                <?php build_dropdown("images", "value","images", "Images", "2"); ?>
+                <?php build_dropdown("images", "value","images", "Images", "$dsh_post_images"); ?>
             </div>
             <div class="input-field col s6">
-                <?php build_dropdown2("city", "property", "value","city", "City", "oshawa"); ?>
+                <?php build_dropdown2("city", "property", "value","city", "City", $dsh_post_city); ?>
             </div>
             <div class="input-field col s6">
-                <?php build_dropdown("bedrooms", "value","bedrooms", "No of bedrooms", "3"); ?>
+                <?php build_dropdown("bedrooms", "value","bedrooms", "No of bedrooms", "$dsh_post_bedrooms"); ?>
             </div>
             <div class="input-field col s6">
-                <?php build_dropdown("bathrooms", "value","bathrooms", "No of bathrooms", "2"); ?>
+                <?php build_dropdown("bathrooms", "value","bathrooms", "No of bathrooms", "$dsh_post_bathrooms"); ?>
             </div>                      
             <div class="input-field col s6">
-                <input id="area" name="area" type="text" class="validate" />
-                <label for="area">Property Area</label>
+                <input id="area" name="area" type="text" class="validate" value="<?php echo $dsh_post_area; ?>"/>
+                <label for="area">Property Area in SQFT</label>
             </div>
             <div class="input-field col s6">
-                <input id="postal_code" name="postal_code" type="text" class="validate" />
+                <input id="postal_code" name="postal_code" type="text" class="validate" value="<?php echo $dsh_post_postal_code; ?>"/>
                 <label for="postal_code">Postal Code</label>
             </div>
             <div class="input-field col s12">
-                <input type="text" id='address' name="address" class="validate"/>
+                <input type="text" id='address' name="address" class="validate" value="<?php echo $dsh_post_address; ?>"/>
                 <label for="address">Address</label>
             </div>
             <div class="input-field col s6">
-                <input type="text" id='price' name="dsh_post_price" class="validate"/>
+                <input type="text" id='price' name="dsh_post_price" class="validate" value="<?php echo $dsh_post_price; ?>"/>
                 <label for="price">Price</label>
             </div>
             <div class="input-field col s6">
-                <input type="text" id='contact' name="dsh_post_contact" class="validate"/>
+                <input type="text" id='contact' name="dsh_post_contact" class="validate" value="<?php echo $dsh_post_contact; ?>"/>
                 <label for="contact">Contact</label>
             </div>
             <div class="file-field input-field col s12">
                 <h6  class="grey-text text-lighten-1">Images</h6>
                 <div class="btn">
                     <span>File</span>
-                    <input type="file" name="dsh_post_file"/>
+                    <input type="file" name="dsh_post_file" value="<?php echo $dsh_post_file; ?>"/>
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" id="Upload_one_or_more_files" name="dsh_post_file1"/>                               
@@ -281,18 +267,18 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             <div class="row">
                 <div class="file-field input-field col s12">
                     <h6 class="grey-text text-lighten-1">Pet Friendly</h6>
-                    <?php build_radio("pet_friendly", "no"); ?>
+                    <?php build_radio("pet_friendly", "$dsh_post_pet_friendly"); ?>
                 </div>
             </div>
             <div class="row">
                 <h6 class="grey-text text-lighten-1">Features</h6>
                 <div class="pl-4 ml-4">
-                    <?php build_checkbox("property_option", "property" , "AC"); ?>
+                    <?php build_checkbox("property_option", "property", "value" , $property_options); ?>
                 </div>
             </div>           
             <div class='input-field col s12 center'>
                 <!-- <input type="submit" class="btn waves-effect waves-light cayan lighten-1" name="submit"> -->
-                <button class="btn waves-effect waves-light cayan lighten-1" name="dsh_post_submit" type="submit">
+                <button class="btn grey darken-2 waves-effect waves-light z-depth-4" name="dsh_post_submit" type="submit">
                     POST <i class="fas fa-check"></i> 
                 </button>
             </div>

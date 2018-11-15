@@ -5,12 +5,12 @@
 
 DROP TABLE IF EXISTS salutations;
 CREATE TABLE salutations (
-    salutations_id INTEGER PRIMARY KEY,
+    value INTEGER PRIMARY KEY,
     salutation VARCHAR(7)
 );
 
-INSERT INTO salutations (salutations_id, salutation) VALUES ('1', 'Mr.');
-INSERT INTO salutations (salutations_id, salutation) VALUES ('2', 'Master');
-INSERT INTO salutations (salutations_id, salutation) VALUES ('3', 'Miss');
-INSERT INTO salutations (salutations_id, salutation) VALUES ('4', 'Mrs.');
-INSERT INTO salutations (salutations_id, salutation) VALUES ('5', 'Ms.');
+INSERT INTO salutations (value, salutation) VALUES (1, 'Mr.');
+INSERT INTO salutations (value, salutation) VALUES (2, 'Master');
+INSERT INTO salutations (value, salutation) VALUES (4, 'Miss');
+INSERT INTO salutations (value, salutation) VALUES (8, 'Mrs.');
+INSERT INTO salutations (value, salutation) VALUES (16, 'Ms.');

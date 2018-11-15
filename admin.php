@@ -42,14 +42,14 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != ADMIN){
                     <a href="#" class="postbtn_dashboard"><i class="fas fa-pen mr-3"></i>Posts</a>
                 </li>
                 <li>
-                    <a href="#" class="passbtn_dashboard"><i class="fas fa-user-lock mr-3"></i>Change Password</a>
+                    <a href="./change-password.php" class=""><i class="fas fa-user-lock mr-3"></i>Change Password</a>
                 </li>
                 
                 <li>
                     <a href="#" class="usersbtn_dashboard"><i class="fas fa-users mr-3"></i>Users</a>
                 </li>
                 <li>
-                    <a href="#" class="newpostbtn_dashboard"><i class="fas fa-plus mr-3"></i>New Post</a>
+                    <a href="./listing_create.php" class=""><i class="fas fa-plus mr-3"></i>New Post</a>
                 </li>
             </ul>
         </div>

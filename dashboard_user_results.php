@@ -8,7 +8,8 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 <?php
 require('./includes/constants.php');
 require('./includes/db.php');
-session_start();
+require("./includes/functions.php");
+
 if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != ADMIN)){
     echo $_SESSION['user_type_s'];
     // header('Location: 405.php');
@@ -29,7 +30,6 @@ if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != ADMIN)){
     </thead>
     <tbody class='transition-1'>
 <?php
-    require("./includes/functions.php");
 
     $conn7 = db_connect();
     $search7 = "trim(LOWER('$_GET[search7]%'))";
