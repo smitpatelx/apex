@@ -5,7 +5,7 @@ FILE: listing.sql
 WEBD - II
 **************/
 
-DROP TABLE IF EXISTS listings;
+DROP TABLE IF EXISTS listings CASCADE;
 
 CREATE TABLE listings(
 	listing_id int not null primary key default nextval('listing_id_seq'),
@@ -16,7 +16,7 @@ CREATE TABLE listings(
 	description VARCHAR(1000) NOT NULL,
 	postal_code VARCHAR(6) NOT NULL,
 	images SMALLINT NOT NULL,
-	images_path VARCHAR(200) NOT NULL,
+	images_path VARCHAR(200),
 	city INTEGER NOT NULL,
 	property_options INTEGER NOT NULL,
 	bedrooms INTEGER NOT NULL,

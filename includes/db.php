@@ -159,6 +159,46 @@ function build_checkbox($table, $column_1 , $column_2, $sticky) {
     echo $output;
 }
 
+function get_checkbox_value($table, $column_1 , $column_2, $sticky) {
+    $conn = db_connect();
+    $output = "";
+
+    $sql = "SELECT * FROM $table ";
+    $result = pg_query($conn, $sql);
+    if (pg_num_rows($result) > 0) {
+        // output data of each row
+        
+        while($row = pg_fetch_assoc($result)) {
+
+            if ( (int)$sticky & (int)$row["$column_2"] ){
+                $output .= "city ='".$row["$column_2"]."' OR ";
+            }        
+        } 
+           
+    }
+
+    return $output;
+}
+
+function display_selected_checkbox($table, $column_1 , $column_2, $sticky) {
+    $conn = db_connect();
+    $output = "";
+
+    $sql = "SELECT * FROM $table ";
+    $result = pg_query($conn, $sql);
+    if (pg_num_rows($result) > 0) {
+        // output data of each row
+        
+        while($row = pg_fetch_assoc($result)) {
+            if ( (int)$sticky & (int)$row["$column_2"] ){
+                $output .= "<span class='center red-text dosis'>".ucwords($row["$column_1"]).",</span> ";
+            }         
+        }            
+    }
+
+    echo $output;
+}
+
 function build_radio($value, $sticky) {
     $conn = db_connect();
     $output = "";

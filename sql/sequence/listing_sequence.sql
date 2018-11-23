@@ -1,4 +1,4 @@
-drop sequence if exists listing_id_seq;
+drop sequence if exists listing_id_seq CASCADE;
 
 create sequence listing_id_seq;
 select setval('listing_id_seq', 10000);

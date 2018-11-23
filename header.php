@@ -80,7 +80,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 
                 <ul id="nav-mobile" class="right hide-on-med-and-down px-3 mt-1">
                     <li class="waves-effect my-2 mx-2"><a href="index.php" class="nav-mobile-text">Home</a></li>
-                    <li class="waves-effect my-2 mx-2"><a href="listing_search.php" class="nav-mobile-text">Listing</a></li>
+                    <li class="waves-effect my-2 mx-2"><a href="listing_city_select.php" class="nav-mobile-text">Listing</a></li>
                     <?php
                         //logout btn
                         if (!empty($_SESSION['username_s'])){

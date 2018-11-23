@@ -55,11 +55,17 @@ require("./header.php");
     <div id="listing-output" class="cell medium-12 large-12 small-12 grid-x grid-margin-x small-up-2 medium-up-2 large-up-4">
     <?php 
 
-    print_r($_SESSION['search_pg_fetch_assoc']);
     if (isset($_SESSION['search_pg_fetch_assoc'])) {
         // output data of each row
-        while($row = $_SESSION['search_pg_fetch_assoc']) {
+        foreach($_SESSION['search_pg_fetch_assoc'] as $user_id_result) {
             // echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+
+        $conn = db_connect();
+
+        $sql = "SELECT * FROM listings WHERE user_id = '$user_id_result'";
+        $result = pg_query($conn, $sql);
+        
+        while($row = pg_fetch_assoc($result)){
         $image_link = "";
         $image_link = $row["images_path"];
         if (true == checkRemoteFile($image_link)) {
@@ -84,10 +90,10 @@ require("./header.php");
         echo      "<li>Space: ".$row["area"]." sqft</li>";
         echo    "</ul>";
         echo  "</div>";
-        echo"</div>";
-
-        
+        echo"</div>";     
         }
+    }
+
     } else {
         header('Location: listing_search.php');
         ob_flush();

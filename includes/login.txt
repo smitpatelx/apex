@@ -1,6 +1,8 @@
 cd /var/www/html/webd3201/patels
 cd /var/www/html/webd3201/group19/sql
 
+psql -d group19_db -f backup_23_11_2018.sql -U group19_admin
+
 psql -d group19_db -f listing.sql -U group19_admin
 psql -d group19_db -f ExamDB.sql -U group19_admin
 psql -d group19_db -f listing_demo_2.sql -U group19_admin
