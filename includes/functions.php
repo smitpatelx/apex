@@ -6,7 +6,7 @@ LAST MODIFIED:		October 4, 2018
 DESCRIPTION:			Allows users to login to their profiles or allows new users to create an account
 -->
 <?php 
-
+session_start();
 date_default_timezone_set('America/Toronto');
 
 function displayCopyrightInfo() //to display copyright information in footer file
@@ -44,18 +44,165 @@ function trimT($anyValue)
 	return trim($_POST["$anyValue"]);
 }
 
+function post($anyValue)
+{
+	return $_POST["$anyValue"];
+}
+
 function hashmd5($value)
 {
     return hash(MD5, $value);
 }
 
-// if(isset($_GET['sql'])){
-//     $sql = $_GET['sql'];
-//     $conn = db_connect();
-//     $result = pg_query($conn, $sql);
-//     $arr = pg_fetch_all($result);
+function dhashmd5($value)
+{
+    return hash($value, MD5);
+}
+
+function display_phone_number($phonenumber)
+{
+        // Allow only Digits, remove all other characters.
+    $phonenumber = preg_replace("/[^\d]/","",$phonenumber);
     
-//     echo json_encode($arr);
-// }
+    // get phonenumber length.
+    $length = strlen($phonenumber);
+    
+    // if phonenumber = 10
+    if($length == 10) {
+        $phonenumber = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "($1)$2-$3", $phonenumber);
+    }
+    else if($length > 10) {
+        $extra = "";
+        $extra = $length - 10;
+        $nonextra = substr($phonenumber, 0, 10);
+        $phonenumber = preg_replace("/^1?(\d{3})(\d{3})(\d{4})$/", "($1)$2-$3", $nonextra)." ext.".substr($phonenumber, -$extra);
+    }
+
+    return $phonenumber;
+}
+
+function is_valid_postal_code($value)
+{
+    //to remove all whitespace in between
+    $trimvalue = preg_replace('/\s+/', '', $value);
+
+    //to determine valid canada postal code. validation information from https://en.wikipedia.org/wiki/Postal_codes_in_Canada
+    if(preg_match("/^([a-ceghj-npr-tv-z]){1}[0-9]{1}[a-ceghj-npr-tv-z]{1}[0-9]{1}[a-ceghj-npr-tv-z]{1}[0-9]{1}$/i", $trimvalue))
+    { 
+        //postal code is valid
+        return true;
+    }
+    else {
+        //postal code is in-valid
+        return false;
+    }
+}
+
+function valid_phone_number($phonenumber) {
+
+    $phonenumber = preg_replace("/[^\d]/","",$phonenumber);
+
+    $areacode = substr($phonenumber, 0, 3);
+    $exchange = substr($phonenumber, 3, 3);
+    $dial_sequence = substr($phonenumber, 6, 4);
+    
+    if ( ($areacode < MAX_AREA_CODE && $areacode > MIN_AREA_CODE) 
+    && ($exchange < MAX_AREA_CODE && $exchange > MIN_AREA_CODE)
+    && ($dial_sequence < MAX_DIAL_SEQUENCE && $dial_sequence > MIN_DIAL_SEQUENCE)) {
+        //echo "true => ".$phonenumber." => ".$areacode." => ".$exchange." => ".$dial_sequence;
+        return true;
+    } else {
+        //echo "false";
+        return false;
+    }
+}
+
+function user_redirection() {
+    if ($_SESSION['user_type_s'] == ADMIN){
+        header("LOCATION: ./admin.php");
+        ob_flush();  //Flush output buffer
+    }else if ($_SESSION['user_type_s'] == AGENT){
+        header("LOCATION: ./dashboard.php");
+        ob_flush();  //Flush output buffer
+    }else if ($_SESSION['user_type_s'] == DISABLED){
+        header("LOCATION: ./406.php");
+        ob_flush();  //Flush output buffer
+    }else if ($_SESSION['user_type_s'] == CLIENT){
+        header("LOCATION: ./welcome.php");
+        ob_flush();  //Flush output buffer
+    }
+}
+
+function session_message() {
+    if(isset($_SESSION['cookies_message'])) {
+        $output = "";
+        $output .= "<script type='text/javascript'>";
+        $output .= "var myVar = setTimeout(cookies_message, 2000);";
+            
+        $output .= "function cookies_message() {";
+               
+        $cookies_message = $_SESSION['cookies_message'];
+        foreach($cookies_message as $cookie_message)
+        {
+            // $cookie_message = "<div class='red_alert'>".$cookie_message."</div>";
+            $output .= "M.toast({html: '".$cookie_message."', classes:'red'})";
+        }
+        unset($_SESSION["cookies_message"]);
+                              
+        $output .= "}";         
+        $output .= "</script>";
+
+        echo $output;
+    }
+}
+
+function checkRemoteFile($url)
+{
+    $exist = file_exists($url);
+    if($exist==true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/*
+	this function should be passed a integer power of 2, and any decimal number,
+	it will return true (1) if the power of 2 is contain as part of the decimal argument
+*/
+function is_bit_set($power, $decimal) {
+	if((pow(2,$power)) & ($decimal)) 
+		return 1;
+	else
+		return 0;
+} 
+
+/*
+	this function can be passed an array of numbers (like those submitted as 
+	part of a named[] check box array in the $_POST array).
+*/
+/*
+	this function can be passed an array of numbers (like those submitted as 
+	part of a named[] check box array in the $_POST array).
+*/
+function sum_check_box($array)
+{
+	$num_checks = count($array); 
+	$sum = 0;
+	for ($i = 0; $i < $num_checks; $i++)
+	{
+	  $sum += $array[$i]; 
+	}
+	return $sum;
+}
+
+function decode_check_box($value)
+{
+    $array = [];
+    
+}
 
 ?>

@@ -14,7 +14,7 @@ $banner = "Welcome";
 $desc = "Home Page of QualityLife";
 require("./header.php");
 
-if (empty($_SESSION['username_s'])){
+if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != CLIENT){
     header('Location: 405.php');
     ob_flush();  //Flush output buffer
 }
@@ -28,16 +28,15 @@ if (empty($_SESSION['username_s'])){
         <div class="col l12 mt-4">
         <div class="card cyan lighten-1 z-depth-4 hoverable">
             <div class="card-content">
-            <span class="card-title center-align">WELCOME</span>
+            <span class="card-title center-align">WELCOME <?php echo $_SESSION['username_s']; ?></span>
             <div class="container home-hero">
                 <h6>If you are thinking of buying a home working with a QUALITY LIFE should be your first step. REALTOR.ca can connect you to QUALITY LIFE across Canada and help find the right home for you.<br/>
                     Start your property search with the fully redesigned QUALITY-LIFE.ca app for Android.
                 </h6>
             </div>
             </div>
-            <div class="card-action center">
-            <a href="dashboard.php" class="waves-effect waves-light btn blue lighten-4 z-depth-5 cyan-text text-darken-4 transition-1">Dashboard</a>
-            <a href="listing.php" class=" waves-effect waves-light btn blue lighten-4 z-depth-5 cyan-text text-darken-4 transition-1" href="#modal1">Listing</a>
+            <div class="card-action center">   
+                <a href="listing_search.php" class=" waves-effect waves-light btn blue lighten-4 z-depth-5 cyan-text text-darken-4 transition-1">Listing</a>
             </div>
         </div>
         </div>

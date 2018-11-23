@@ -7,14 +7,64 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 -->
 <?php
 
-	//Form
-	define('MINIMUM_ID_LENGTH', '5' );
-	define('MAXIMUM_ID_LENGTH', '20' );
-	define('MINIMUM_PASSWORD_LENGTH', '6' );
-	define('MAXIMUM_PASSWORD_LENGTH', '15' );
+	//Form @start
+	define('MAX_USERNAME_LENGTH', '20' );
+	define('MIN_USERNAME_LENGTH', '6' );
+
+	define('MAX_PASSWORD_LENGTH', '8' );
+	define('MIN_PASSWORD_LENGTH', '16' );
+
 	define('MAX_FIRST_NAME_LENGTH', '20' );
+	define('MIN_FIRST_NAME_LENGTH', '3' );
+
 	define('MAX_LAST_NAME_LENGTH', '30' );
-  	define('MAXIMUM_EMAIL_LENGTH', '255' );
+	define('MIN_LAST_NAME_LENGTH', '3' );
+
+  	define('MAX_EMAIL_LENGTH', '30' );
+	define('MIN_EMAIL_LENGTH', '5' );
+	  
+  	define('MAX_ADDRESS_LENGTH', '30' );
+	define('MIN_ADDRESS_LENGTH', '6' );
+	  
+	define('POSTAL_CODE_LENGTH', '6' );
+	  
+	define('MAX_PHONE_LENGTH', '15' );
+	define('MIN_PHONE_LENGTH', '10' );
+	  
+  	define('MAX_CITY_LENGTH', '17' );
+	define('MIN_CITY_LENGTH', '3' );
+
+	define('MAX_FAX_LENGTH', '15' );
+	define('MIN_FAX_LENGTH', '6' );
+
+	define('MAX_AREA_CODE', '999' );
+	define('MIN_AREA_CODE', '200' );
+
+	define('MAX_DIAL_SEQUENCE', '9999' );
+	define('MIN_DIAL_SEQUENCE', '0000' );
+	//form constants @ends
+
+	//listing @start
+	define('MAX_FILE', '2097152' );
+
+	define('MAX_HEADING', '60' );
+	define('MIN_HEADING', '6' );
+
+	define('MAX_PRICE', '10' );
+	define('MIN_PRICE', '4' );
+
+	define('MAX_DESC', '1000' );
+	define('MIN_DESC', '60' );
+
+	define('MAX_ADDRESS', '40' );
+	define('MIN_ADDRESS', '6' );
+
+	define('MAX_AREA', '10' );
+	define('MIN_AREA', '4' );
+
+	define('MAX_CONTACT', '15' );
+	define('MIN_CONTACT', '10' );
+	//listing @end
 
 	// User Type Constants
 	define('ADMIN', 's');
@@ -31,5 +81,13 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 
 	//MD5
 	define("MD5", "md5");
+
+	define("EMAIL", "");
+	define("PHONE", "");
+	define("POSTED_EMAIL", "");
+
+	define("LISTING_STATUS_OPEN", "o");
+	define("LISTING_STATUS_CLOSE", "c");
+	define("LISTING_STATUS_SOLD", "s");
 
 ?>

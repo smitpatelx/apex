@@ -15,7 +15,14 @@ $banner = "Login";
 $desc = "Dashboard Page of QualityLife";
 
 require('header.php');
-
+if (isset($_SESSION['user_type_s'])){
+  $session_message = [];
+  $session_message[] = "Logout required to access login page.";
+  $_SESSION['cookies_message'] = $session_message;
+  user_redirection();
+}
+// echo $_SESSION['user_type_s'];
+// echo $_SESSION['username_s'];
 ?>
 
 <script type="text/javascript">     
@@ -24,21 +31,25 @@ require('header.php');
     });      
 </script>
 <?php
-  
+
   $errors = []; 
+  
+  $cookies_message = [];
   
   if ($_SERVER["REQUEST_METHOD"] == "GET")
   {
-    if(isset($_COOKIE['username']))
+    // echo encrypt_array_to_string($_COOKIE['USER']);
+    if(isset($_COOKIE['USER']))
     {
-      $loginid = $_COOKIE['username'];
+      $cookie_user = (implode('user',$_COOKIE['USER']));
+      $loginid = $cookie_user;
       $password= "";  
-      $rememberme= "";   
+      $rememberme= "checked='checked'";   
     }
     else{
       $loginid = "";
       $password= "";
-      $rememberme= "";
+      $rememberme= "checked='checked'";
     }
   }
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -85,27 +96,24 @@ require('header.php');
             $currentUserType = pg_fetch_array($result2);
             $_SESSION['user_type_s'] = $currentUserType['user_type'];
             $_SESSION['username_s'] = $currentUserType['user_name'];
-            
+            $_SESSION['last_access_s'] = $currentUserType['last_access'];
+            $_SESSION['user_id_s'] = $currentUserType['user_id'];
+
             if (isset($rememberme))
             {
-              setcookie('username[0]', $_SESSION['username_s'], time() + (60*60*24*7));
-              //set cookie for 7 days
+              $cookie_user = ($_SESSION['username_s']);
+              setcookie('USER[user]', $cookie_user, time() + (60*60*24*30));
+              $cookies_message[] = "Cookie set for 30 days.";
             }
-
-            //Redirect user to their respective pages
-            if ($_SESSION['user_type_s'] == ADMIN){
-              header("LOCATION: ./admin.php");
-              ob_flush();  //Flush output buffer
-            }else if ($_SESSION['user_type_s'] == AGENT){
-              header("LOCATION: ./dashboard.php");
-              ob_flush();  //Flush output buffer
-            }else if ($_SESSION['user_type_s'] == DISABLED){
-              header("LOCATION: ./406.php");
-              ob_flush();  //Flush output buffer
-            }else if ($_SESSION['user_type_s'] == CLIENT){
-              header("LOCATION: ./welcome.php");
-              ob_flush();  //Flush output buffer
+            else
+            {
+              unset($_COOKIE['USER[user]']);
+              setcookie( 'USER[user]',  $_SESSION['username_s'], time()-3600);
+              $cookies_message[] = "Cookie Destroyed.";
             }
+            $_SESSION['cookies_message'] = $cookies_message;
+            //Redirect user to their respective pages, see functions.php
+            user_redirection();
           }
           else
           {
@@ -132,6 +140,7 @@ require('header.php');
   {
     echo "<script>M.toast({html: '".$error."'})</script>";
   }
+  $password= "";
   
 ?>
 
@@ -141,26 +150,25 @@ require('header.php');
 
       <div id="sign-in" class="col s12 cell large-8 large-offset-2">
         <div class="cell large-4 large-offset-4 row">
-        <form class="col s12" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" autocomplete="on">
-          
+        <form class="col s12" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
           <div class="row">
             <div class="input-field col s12">
-              <input id="id" name="id" value="<?php echo $loginid ?>" type="text" class="validate">
+              <input id="id" name="id" value="<?php echo $loginid ?>" type="text" class="validate"/>
               <label for="id">User ID</label>
             </div>
           </div>
 
         <div class="row">
             <div class="input-field col s12">
-              <input id="password" name="password" value="<?php echo $password ?>" type="password" class="validate">
+              <input id="password" name="password" value="<?php echo $password ?>" type="password" class="validate"/>
               <label for="password">Password</label>
             </div>
         </div>
 
         <div class="row">
           <label class="input-field col s12">
-          <input type="checkbox"  name="rememberme" class="filled-in" value="1" />
-          <span>Remember Me</span>
+            <input type="checkbox"  name="rememberme" class="filled-in" value="1" <?php echo $rememberme ?>/>
+            <span>Remember Me</span>
           </label>
         </div>
 
@@ -181,7 +189,5 @@ require('header.php');
 </div>
 
 <?php
-
 require("./footer.php");
-
 ?>

@@ -10,9 +10,10 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
   session_start();
   if ( isset( $_COOKIE[session_name()] ) ) {
     //clear cookie off client pc
-    setcookie( 'username',  $_SESSION['username_s'], time()-3600);
+    // setcookie( 'USER[user]',  $_SESSION['username_s'], time()-3600);
+    // unset($_COOKIE['USER[]']);
     unset($_SESSION);
-    
+     //clear session from disk
     session_destroy();
     }
 
