@@ -12,7 +12,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
     //clear cookie off client pc
     setcookie( 'username',  $_SESSION['username_s'], time()-3600);
     unset($_SESSION);
-     //clear session from disk
+    
     session_destroy();
     }
 
