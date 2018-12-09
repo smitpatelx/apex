@@ -15,7 +15,7 @@ $desc = "Dashboard Page of QualityLife";
 require("./header.php");
 
 if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != ADMIN){
-    header('Location: 405.php');
+    header('Location: ./405.php');
     ob_flush();  //Flush output buffer
 }
 

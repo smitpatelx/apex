@@ -16,7 +16,7 @@ $desc = "Change Password Page of QualityLife";
 require('header.php');
 
 if (empty($_SESSION['username_s'])){
-    header('Location: 405.php');
+    header('Location: ./405.php');
     ob_flush();  //Flush output buffer
 }
 ?>
@@ -38,55 +38,60 @@ if (empty($_SESSION['username_s'])){
         $new_password = trimT('new_password');
         $confirm_password = trimT('confirm_password');
 
-        if ( isset($current_password) && ($current_password != "") 
-            && isset($new_password) && ($new_password != "")
-            && isset($confirm_password) && ($confirm_password != "")) 
-        {
+        if (!isset($current_password) || $current_password == "") {
+            $errors[] = "Current Password field is empty.";
+        }
+
+        if (!isset($new_password) || $new_password == "") {
+            $errors[] = "New Password field is empty.";
+        }  else if(strlen($new_password) >= MAX_FIRST_NAME_LENGTH && strlen($new_password) <= MIN_FIRST_NAME_LENGTH) {
+            $errors[] = "Password should be between 8 to 16 characters";
+        }
+
+        if (!isset($confirm_password) || $confirm_password == "") {
+            $errors[] = "Confirm Password field is empty.";
+        }
+
+        if ($new_password != $confirm_password) {
+            $errors[] = "New password and confirm password doesn't match.";
+        }
+
+        if (empty($errors)) {
+
             $current_password = hashmd5($current_password);
             $new_password = hashmd5($new_password);
             $confirm_password = hashmd5($confirm_password);
-
-            if ($new_password != $confirm_password) {
-                $errors[] = "New password and confirm password doesn't match.";
-            }
-
+           
             $stmt = pg_prepare($dbconn, 'user_login', "SELECT * 
-                                                      FROM users
-                                                      WHERE users.user_name = $1 AND users.password = $2");
+                                                        FROM users
+                                                        WHERE users.user_name = $1 AND users.password = $2");
 
             $result = pg_execute($dbconn, 'user_login', array($_SESSION['username_s'], $current_password));
 
             if ($result != false) {
+
                 $data = pg_fetch_array($result);
 
-                if ($current_password != $data['password']) {
-                    $errors[] = "Current password is not correct.";
-                }
-
-                if (empty($errors)) {
+                    if ($current_password != $data['password']) {
+                        $errors[] = "Current password is not correct.";
+                    } else {
 
                     $stmt1 = pg_prepare($dbconn, 'user_last_access', "UPDATE users
-                                                  SET password = '$confirm_password'
-                                                  WHERE users.user_name = \$1 AND users.password = \$2");
-    
+                                                    SET password = '$confirm_password'
+                                                    WHERE users.user_name = \$1 AND users.password = \$2");
+
                     $result1 = pg_execute($dbconn, 'user_last_access', array($_SESSION['username_s'], $current_password) );
 
                     $session_message = [];
                     $session_message[] = "Password Changed Successfully";
                     $_SESSION['cookies_message'] = $session_message;
                     user_redirection();
-                }
-
+                    }
+                
             } else {
                 $errors[] = "Password is not correct.";
             }
-            
-        } else {
-            $errors[] = "Make sure to fillup all fields.";
         }
-        
-
-
     }
 
     $current_password = "";
@@ -107,6 +112,7 @@ if (empty($_SESSION['username_s'])){
         ?>
       <form class='cell medium-5 medium-offset-4 center row' action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
           <h2 class='col s12 m12 l12 center red-text dosis'>Change Password</h2>
+          <h5 class='red-text dosis center text-lighten-2'><?php echo "<b>User ID :</b>\t".$_SESSION['username_s']."<br/> <b>Username :</b>\t".$_SESSION['user_id_s'] ?></h5>
           <div class="input-field col s12 m12 l12 center">
               <input value="<?php echo $current_password; ?>" name="current_password" id="current_password" type="password" class="validate">
               <label for="current_password">Current Password</label>

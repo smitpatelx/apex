@@ -17,7 +17,7 @@ require('header.php');
 
 if (!empty($_SESSION['username_s'])){
     $_SESSION['try_register'] = "Logout required for new user registration";
-    header('Location: update.php');
+    header('Location: ./update.php');
     ob_flush();  //Flush output buffer
 }
 ?>
@@ -80,9 +80,9 @@ if (!empty($_SESSION['username_s'])){
     $con_password = hashmd5($con_password);
 
     //for make it optional
-    if ($street_address_2 == "" || !isset($street_address_2)) {
-      $street_address_2 = "No-address";
-    } 
+    // if ($street_address_2 == "" || !isset($street_address_2)) {
+    //   $street_address_2 = "No-address";
+    // } 
     // if ($secondry_phone_number == "" || !isset($secondry_phone_number)) {
     //   $secondry_phone_number = "No-2ndphone";
     // } 
@@ -141,13 +141,13 @@ if (!empty($_SESSION['username_s'])){
         $street_address_1 = "";
       }
       
-      if (!isset($street_address_2) || $street_address_2 == "") {
-        $errors[] = "Street address 2 field is empty.";
-      } else if (strlen($street_address_2) >= MAX_ADDRESS_LENGTH && strlen($street_address_2) <= MIN_ADDRESS_LENGTH)
-      {
-        $errors[] = "You entered \"".$street_address_2."\" "."Street address 2 should be between 6 to 30 characters"; 
-        $street_address_2 = "";
-      } 
+      if (isset($street_address_2) || $street_address_2 != "") {
+          if (strlen($street_address_2) >= MAX_ADDRESS_LENGTH && strlen($street_address_2) <= MIN_ADDRESS_LENGTH)
+          {
+            $errors[] = "You entered \"".$street_address_2."\" "."Street address 2 should be between 6 to 30 characters"; 
+            $street_address_2 = "";
+          } 
+      }
         
       if (!isset($postal_code) || $postal_code == "") {
         $errors[] = "Postal Code field is empty.";
@@ -171,26 +171,26 @@ if (!empty($_SESSION['username_s'])){
           $primary_phone_number = "";
       }
 
-      if (!isset($secondry_phone_number) || $secondry_phone_number == "") {
-        $errors[] = "Secondary phone number field is empty.";
-      } else if (strlen($secondry_phone_number) >= MAX_PHONE_LENGTH && strlen($secondry_phone_number) <= MIN_PHONE_LENGTH)
-      {
-        $errors[] = "You entered \"".$secondry_phone_number."\" "."Secondary Phone Number Length should be between 10 to 15."; 
-        $secondry_phone_number = "";
-      } else if (valid_phone_number($secondry_phone_number) == false) {
-          $errors[] = "You entered \"".$secondry_phone_number."\" "."Invalid Secondary Phone Number."; 
+      if (isset($secondry_phone_number) && $secondry_phone_number != "") {
+        if (strlen($secondry_phone_number) >= MAX_PHONE_LENGTH && strlen($secondry_phone_number) <= MIN_PHONE_LENGTH)
+        {
+          $errors[] = "You entered \"".$secondry_phone_number."\" "."Secondary Phone Number Length should be between 10 to 15."; 
           $secondry_phone_number = "";
+        } else if (valid_phone_number($secondry_phone_number) == false) {
+            $errors[] = "You entered \"".$secondry_phone_number."\" "."Invalid Secondary Phone Number."; 
+            $secondry_phone_number = "";
+        }
       }
 
-      if (!isset($fax_number) || $fax_number == "") {
-        $errors[] = "Fax number field is empty.";
-      } else if (strlen($fax_number) >= MAX_FAX_LENGTH && strlen($fax_number) <= MIN_FAX_LENGTH)
-      {
-        $errors[] = "You entered \"".$fax_number."\" "."Fax Number Length should be between 10 to 15."; 
-        $fax_number = "";
-      } else if (valid_phone_number($fax_number) == false) {
-          $errors[] = "You entered \"".$fax_number."\" "."Invalid Fax Number."; 
+      if (isset($fax_number) && $fax_number != "") {
+        if (strlen($fax_number) >= MAX_FAX_LENGTH && strlen($fax_number) <= MIN_FAX_LENGTH)
+        {
+          $errors[] = "You entered \"".$fax_number."\" "."Fax Number Length should be between 10 to 15."; 
           $fax_number = "";
+        } else if (valid_phone_number($fax_number) == false) {
+            $errors[] = "You entered \"".$fax_number."\" "."Invalid Fax Number."; 
+            $fax_number = "";
+        }
       }
 
       if (!isset($username) || $username == "") {
@@ -235,7 +235,7 @@ if (!empty($_SESSION['username_s'])){
           $session_message[] = "User Registered Successfully";
           $_SESSION['cookies_message'] = $session_message;
           
-          header("Location: login.php");
+          header("Location: ./login.php");
           ob_flush();  //Flush output buffer
         } else {
           $errors[] = "User Registration Unsuccessful";

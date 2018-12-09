@@ -13,6 +13,13 @@ $banner = "LISTING";
 $desc = "Listing Page of QualityLife";
 require("./header.php");
 
+if (!isset($_SESSION['username_s'])){
+    $session_message = [];
+    $session_message[] = "Unauthorized access blocked.";
+    $_SESSION['cookies_message'] = $session_message;   
+    header('Location: ./login.php');
+    ob_flush();  //Flush output buffer
+}
 ?>
 <script type="text/javascript">       
         $(window).on('load', function () {
@@ -95,7 +102,7 @@ require("./header.php");
     }
 
     } else {
-        header('Location: listing_search.php');
+        header('Location: ./listing_search.php');
         ob_flush();
     }
 

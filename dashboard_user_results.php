@@ -12,7 +12,7 @@ require("./includes/functions.php");
 
 if (empty($_SESSION['username_s']) || ($_SESSION['user_type_s'] != ADMIN)){
     echo $_SESSION['user_type_s'];
-    // header('Location: 405.php');
+    header('Location: ./405.php');
     ob_flush();  //Flush output buffer
 }
 ?>

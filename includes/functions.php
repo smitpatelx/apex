@@ -180,6 +180,20 @@ function is_bit_set($power, $decimal) {
 		return 0;
 } 
 
+function listing_status_symbol($status) {
+    $echo = "";
+    if ($status == LISTING_STATUS_OPEN) {
+        $echo ="<i class='fas fa-circle' style='color:#18c959;'></i>OPEN";
+    } else if ($status == LISTING_STATUS_CLOSE) {
+        $echo ="<i class='fas fa-circle' style='color:#c91826;'></i>CLOSE";
+    } else if ($status == LISTING_STATUS_SOLD) {
+        $echo ="<i class='fas fa-circle' style='color:#eae025;'></i>SOLD";
+    } else if ($status == LISTING_STATUS_HIDE) {
+        $echo ="<i class='fas fa-circle' style='color:#b5b5b5;'></i>HIDDEN";
+    }
+    return $echo;
+}
+
 /*
 	this function can be passed an array of numbers (like those submitted as 
 	part of a named[] check box array in the $_POST array).

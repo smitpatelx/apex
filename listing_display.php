@@ -14,6 +14,14 @@ $banner = "Listing Display";
 $desc = "Listing Display Page";
 
 require('header.php');
+
+if (!isset($_SESSION['username_s'])){
+    $session_message = [];
+    $session_message[] = "Unauthorized access blocked.";
+    $_SESSION['cookies_message'] = $session_message;   
+    header('Location: ./login.php');
+    ob_flush();  //Flush output buffer
+}
 ?>
 <script type="text/javascript">     
     $(window).on('load', function () {
@@ -68,9 +76,10 @@ if (isset($_GET["listing_id"])) {
             echo "<li>Pets friendly: ".ucwords($row["pets_friendly"])."</li>";
 
             echo "<li class='left'>Features:";
-            foreach ($property_options as $options) {
-                echo "<span class='new badge mt-1 waves-effect waves-block waves-light z-depth-4' data-badge-caption='".ucwords($options)."'></span>";
-            }
+            echo display_bandage("property_option", "property", "value", $property_options);
+            // foreach ($property_options as $options) {
+            //     echo "<span class='new badge mt-1 waves-effect waves-block waves-light z-depth-4' data-badge-caption='".ucwords($options)."'></span>";
+            // }
             echo "</li>";
             
             echo "</ul>";
@@ -81,7 +90,7 @@ if (isset($_GET["listing_id"])) {
         }
     }
 } else {
-    header('Location: listing_search.php');
+    header('Location: ./listing_search.php');
     ob_flush();
 }
 ?>

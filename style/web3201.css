@@ -684,4 +684,8 @@ body {
 .tra-white {
   background: black !important;
 }
+
+.btn-rounded {
+  border-radius: 10px !important;
+}
 /*# sourceMappingURL=web3201.css.map */

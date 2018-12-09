@@ -11,7 +11,7 @@ require('./includes/db.php');
 require("./includes/functions.php");
 
 if (empty($_SESSION['username_s']) || (($_SESSION['user_type_s'] != AGENT) && ($_SESSION['user_type_s'] != ADMIN))){
-    header('Location: 405.php');  
+    header('Location: ./405.php');  
     ob_flush();  //Flush output buffer
 }
 // echo $_SESSION['username_s'];
@@ -26,32 +26,35 @@ if (empty($_SESSION['username_s']) || (($_SESSION['user_type_s'] != AGENT) && ($
             <th>Price</th>
             <th>Space</th>
             <th>Contact</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody class='transition-1'>
 <?php
 
-
+    $user_id_from_session = $_SESSION['user_id_s'];
     $conn2 = db_connect();
     $search1 = "trim(LOWER('$_GET[search]%'))";
-    $sql2 = "SELECT * FROM listing_demo WHERE LOWER(location) LIKE $search1
-    OR LOWER(list_heading) LIKE $search1
-    OR LOWER(price) LIKE $search1
-    OR LOWER(sqft) LIKE $search1
-    OR LOWER(phone) LIKE $search1
-    ORDER BY listing_demo.price DESC";
+    $sql2 = "SELECT * FROM listings WHERE ( LOWER(address) LIKE $search1
+    OR LOWER(headline) LIKE $search1
+    OR price::VARCHAR LIKE $search1
+    OR area::VARCHAR LIKE $search1
+    OR LOWER(contact) LIKE $search1 )
+    AND listings.user_id::VARCHAR = '$user_id_from_session'
+    ORDER BY listings.created_on DESC ";
 
     $result2 = pg_query($conn2, $sql2); 
 
     while($row2 = pg_fetch_assoc($result2)) {
     echo "<tr class='scroll_snap_item'>";
-    echo "<td>".$row2["list_heading"]."</td>";
-    echo "<td>".$row2["location"]."</td>";
+    echo "<td>".$row2["headline"]."</td>";
+    echo "<td>".$row2["address"]."</td>";
     echo "<td>$ ".$row2["price"]."</td>";
-    echo "<td>".$row2["sqft"]." sqft </td>";
-    echo "<td>".$row2["phone"]."</td>";
-    echo "<td><a class='btn red' href='".$row2["id"]."'><i class='fas fa-trash'></i></a><a class='btn teal lighten-1 mx-1' href='".$row2["id"]."'><i class='fas fa-pen-square'></i></a></td>";
+    echo "<td>".$row2["area"]." sqft </td>";
+    echo "<td>".$row2["contact"]."</td>";
+    echo "<td>".listing_status_symbol($row2["status"])."</td>";
+    echo "<td><a class='btn red' href='./".$row2["user_id"]."'><i class='fas fa-trash'></i></a><a class='btn teal lighten-1 mx-1' href='./".$row2["user_id"]."'><i class='fas fa-pen-square'></i></a></td>";
     echo "</tr>";
     }
     ?>       

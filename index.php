@@ -49,9 +49,6 @@ require("./header.php");
             <img src="./assets/illustrations/3a.jpg" alt="bg"/>
         </div>
     </div>
-
-
-    
     
 <?php
 require("./footer.php");

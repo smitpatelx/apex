@@ -16,9 +16,9 @@ require('header.php');
 
 if (!isset($_SESSION['username_s'])){
     $session_message = [];
-    $session_message[] = "Unauthorized access blocked.";
+    $session_message[] = "Login Required for accessing this page.";
     $_SESSION['cookies_message'] = $session_message;   
-    header('Location: login.php');
+    header('Location: ./login.php');
     ob_flush();  //Flush output buffer
 }
 ?>
@@ -66,15 +66,15 @@ if (!isset($_SESSION['username_s'])){
     <div style="height:843px;width:1640px;transform: scale(0.8);" class="cell small-12">
         <img src="./assets/map.PNG" usemap="#image-map">
         <map name="image-map">
-            <area target="_self" alt="oshawa" title="oshawa" href="/listing_search.php?city_value=8" coords="857,703,776,656" shape="rect">
-            <area target="_self" alt="whitby" title="whitby" href="/listing_search.php?city_value=64" coords="768,733,689,651" shape="rect">
-            <area target="_self" alt="ajax" title="ajax" href="/listing_search.php?city_value=1" coords="684,771,613,665" shape="rect">
-            <area target="_self" alt="pickering" title="pickering" href="/listing_search.php?city_value=16" coords="515,681,605,800" shape="rect">
-            <area target="_self" alt="brooklin" title="brooklin" href="/listing_search.php?city_value=2" coords="724,490,799,559" shape="rect">
-            <area target="_self" alt="bowmanville" title="bowmanville" href="/listing_search.php?city_value=4" coords="955,601,1068,672" shape="rect">
-            <area target="_self" alt="port perry" title="port perry" href="/listing_search.php?city_value=32" coords="674,312,781,386" shape="rect">
-            <area target="_self" alt="clarington" title="clarington" href="/listing_search.php?city_value=128" coords="1078,575,1154,633" shape="rect">
-            <area target="_self" alt="courtice" title="courtice" href="/listing_search.php?city_value=256" coords="864,619,942,697" shape="rect">
+            <area target="_self" alt="oshawa" title="oshawa" href="./listing_search.php?city_value=8" coords="857,703,776,656" shape="rect">
+            <area target="_self" alt="whitby" title="whitby" href="./listing_search.php?city_value=64" coords="768,733,689,651" shape="rect">
+            <area target="_self" alt="ajax" title="ajax" href="./listing_search.php?city_value=1" coords="684,771,613,665" shape="rect">
+            <area target="_self" alt="pickering" title="pickering" href="./listing_search.php?city_value=16" coords="515,681,605,800" shape="rect">
+            <area target="_self" alt="brooklin" title="brooklin" href="./listing_search.php?city_value=2" coords="724,490,799,559" shape="rect">
+            <area target="_self" alt="bowmanville" title="bowmanville" href="./listing_search.php?city_value=4" coords="955,601,1068,672" shape="rect">
+            <area target="_self" alt="port perry" title="port perry" href="./listing_search.php?city_value=32" coords="674,312,781,386" shape="rect">
+            <area target="_self" alt="clarington" title="clarington" href="./listing_search.php?city_value=128" coords="1078,575,1154,633" shape="rect">
+            <area target="_self" alt="courtice" title="courtice" href="./listing_search.php?city_value=256" coords="864,619,942,697" shape="rect">
         </map>
     </div>
 </div>

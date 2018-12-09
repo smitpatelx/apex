@@ -12,7 +12,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 
     
     if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != ADMIN){
-        header('Location: 405.php');
+        header('Location: ./405.php');
         ob_flush();  //Flush output buffer
     }
     

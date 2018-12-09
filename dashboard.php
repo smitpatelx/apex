@@ -15,7 +15,7 @@ $desc = "Dashboard Page of QualityLife";
 require("./header.php");
 
 if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
-    header('Location: 405.php');
+    header('Location: ./405.php');
     ob_flush();  //Flush output buffer
 }
 
@@ -51,96 +51,118 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         </div>
     </div>   
     <div class="grid-x">  
-        <div class="cell large-12 medium-12 small-12 p-5">
+        <div class="cell large-12 medium-12 small-12">
             <div class="dashboard_loader">
                 <div class="dashboard_loader_1"></div>
             </div>
             
             <div class="grid-x welcome_dashboard center cayan-text">
-                <div class="cell large-12 medium-12 small-12 grid-x" >
-                    <?php
-                        
-                        $conn3 = db_connect();
-                        
-                        $query_dash_user = "SELECT * FROM users WHERE users.user_name = '".$_SESSION['username_s']."'";
+                    
+                        <?php 
 
-                        $result4 = pg_query($conn3, $query_dash_user);
-                        // $records = pg_num_rows($result);
-                        // error_log(implode(pg_fetch_assoc($result4)));
-                        if (pg_num_rows($result4) > 0) {
-                            // output data of each row
-                            while($row4 = pg_fetch_assoc($result4)) {
+                            if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-                            echo "<form class='row cell medium-4 medium-offset-4 dashboard_welcome_cont' action='javascript:void(0);'>\n
-                                <h1 class='col m12 dosis'>WELCOME ".$row4["first_name"] ." ". $row4["last_name"]."</h1>\n
-                            <h3 class='col m12 dosis red-text'>This is your DASHBOARD !</h3> \n
-                            <div class='input-field col m6 toogle_disable'>\n
-                                <input disabled type='text' id='first_name' class='validate first_name_dsh' value='".$row4["first_name"]."'/>\n
-                                <label for='first_name'>First Name</label>\n
-                            </div>\n
-                            <div class='input-field col m6 toogle_disable'>\n
-                                <input disabled type='text' id='last_name' class='validate last_name_dsh' value='".$row4["last_name"]."'/>\n
-                                <label for='last_name'>Last Name</label>\n
-                            </div>\n           
-                            <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='text' id='user_name' class='validate user_name_dsh' value='".$row4["user_name"]."'/>\n
-                                <label for='user_name'>User Name</label>\n
-                            </div>\n
-                            <div class='input-field col m12 toogle_disable'>\n
-                                <input disabled type='text' id='email_dashboard' class='validate email_dsh'  value='".$row4["email_address"]."'/>\n
-                                <label for='email_dashboard'>Email</label>\n
-                            </div>\n\n
-                        </form>\n";
-                            }}
-                    ?>
-                </div>
-                <div class="input-field row cell medium-4 medium-offset-4">
-                    <button class="col m5 mx-3 btn btn-submit btn_toogle_disable">CHANGE</button>
-                    <button class="col m5 mx-3 btn btn-submit btn_username_save">SAVE</button>
-                    <script type="text/javascript">
-                        $('.btn_username_save').on("click", function () {
-                            
-                            $first_name_dashboard = $(".first_name_dsh").val();
-                            $last_name_dashboard = $(".last_name_dsh").val();
-                            $user_name_dashboard = $(".user_name_dsh").val();
-                            $email_dashboard = $(".email_dsh").val();
+                                $results_per_page = 10;
+                                $number_of_results = 0;
 
-                            if ($first_name_dashboard.length > 0 || 
-                                $last_name_dashboard.length > 0 ||
-                                $user_name_dashboard.length > 0 ||
-                                $email_dashboard.length > 0 ) {
-                                $.get("dashboard_user_fetch.php", {
-                                    "first_name_dashboard": $first_name_dashboard,
-                                    "last_name_dashboard": $last_name_dashboard,
-                                    "user_name_dashboard": $user_name_dashboard,
-                                    "email_dashboard": $email_dashboard
-                                }, function ($data) {
-                                    // $(".result").html($data);
-                                    console.log($data);
-                                    location.reload();
-                                    // $(document).load(location.href+" #reloadContent_dsh>*","");
-                                })
-                            } else if ($first_name_dashboard.length == 0 || 
-                                $last_name_dashboard.length == 0 ||
-                                $user_name_dashboard.length == 0 ||
-                                $email_dashboard.length == 0 ) {
-                                $.get("dashboard_user_fetch.php", {
-                                    "first_name_dashboard": "%",
-                                    "last_name_dashboard": "%",
-                                    "user_name_dashboard": "%",
-                                    "email_dashboard": "%"
-                                }, function ($data) {
-                                    // $(".result").html($data);
-                                    console.log($data);
-                                })
+                                $user_id_from_session = $_SESSION['user_id_s'];
+                                $conn = db_connect();
+                                
+                                $sql = "SELECT * FROM listings WHERE 
+                                listings.user_id::VARCHAR = '$user_id_from_session'
+                                ORDER BY listings.created_on DESC";
+
+                                $result = pg_query($conn, $sql);
+
+                                $number_of_results = pg_num_rows($result);    
+
+                                // echo $number_of_results;
+                                $number_of_pages = ceil($number_of_results/$results_per_page);
+
+                                $current_page_number = isset($_GET['page'])?$_GET['page']:$_GET['page']='1';
+                                echo "<div class='cell small-12 grid-x grid-margin-x p-4 m-4'>";
+                                echo "<h4 class='cell small-12 center'> Welcome ".$_SESSION['first_name_s']." ".$_SESSION['last_name_s']." !!</h4>";
+                                echo "<h5 class='cell small-12'><span class='left'>PAGE ".$current_page_number." </span><span class='red-text h6 right'>Number of results: ".$number_of_results."</span></h5>";
+                                for ($page=1;$page<=$number_of_pages; $page++) {
+                                    
+                                    echo "<div class='cell small-1'>
+                                                <a class='btn-small waves-effect  waves-light z-depth-4";
+                                    if ($page == $_GET['page']) {
+                                        echo " red ";
+                                    } else {
+                                        echo " blue-grey ";
+                                    }
+                                    echo "darken-1 white-text' href='./dashboard.php?page=".$page."'>".$page."</a>
+                                        </div>";
+                                }
+                                echo "</div>";
+
+                                if(!isset($_GET['page'])) {
+                                    $page = 1;
+                                } else {
+                                    $page = $_GET['page'];
+                                }
+
+                                $this_page_first_result = ($page-1)*$results_per_page;
+
+                                $sql2 = "SELECT * FROM listings WHERE 
+                                listings.user_id::VARCHAR = '$user_id_from_session'
+                                ORDER BY listings.created_on DESC  LIMIT '$results_per_page' OFFSET '$this_page_first_result'";
+
+                                $result = pg_query($conn, $sql2);
+
+                                echo "<div class='cell small-12 grid-x grid-padding-x p-3' style='justify-content: center;'> ";
+
+                                    echo  "<div class='cell small-12 grid-x blue-grey darken-1 white-text p-3'>";
+                                        echo "<div class='cell small-2 center'><b>Heading</b></div>";
+                                        echo "<div class='cell small-2 center'><b>Address</b></div>";
+                                        echo "<div class='cell small-2 center'><b>Price</b></div>";
+                                        echo "<div class='cell small-2 center'><b>Contact</b></div>";
+                                        echo "<div class='cell small-2 center'><b>Status</b></div>";
+                                        echo "<div class='cell small-2 center'><b>Action</b></div>";
+                                    echo"</div>"; 
+                                    echo  "<div class='cell small-12 grid-x p-3'></div>";
+                                        // <div id='listing-output' class='cell small-12 grid-x grid-margin-x small-up-2 medium-up-2 large-up-4'>
+                                    while($row = pg_fetch_assoc($result)){
+                                        $image_link = "";
+                                        $image_link = $row["images_path"];
+                                        if (true == checkRemoteFile($image_link)) {
+                                            // $image_link = $row["images_path"];
+                                            $image_link = $image_link;
+                                        } else {
+                                            $image_link = "./images/no_image.svg";
+                                        }
+                                        echo  "<div class='cell small-12 z-depth-2 hoverable grid-x p-2'>";
+                                            // echo  "<div class='card-image col s2 waves-effect waves-block waves-light'>";
+                                            // echo  "<img class='activator' src='".$image_link."' alt='img_".$row["listing_id"]."' />";
+                                            // echo  "</div>";
+                                            echo "<div class='cell small-2'>".$row["headline"]."</div>";
+                                            echo "<div class='cell small-2'>".$row["address"]."</div>";
+                                            echo "<div class='cell small-2'>".$row["price"]."</div>";
+                                            echo "<div class='cell small-2'>".$row["contact"]."</div>";
+                                            echo "<div class='cell small-2'>".listing_status_symbol($row["status"])."</div>";
+                                            echo "<div class='cell small-2'><a class='btn red' href='./".$row["user_id"]."'><i class='fas fa-trash'></i></a><a class='btn teal lighten-1 mx-1' href='./listing_update.php?listing_id=".$row["listing_id"]."'><i class='fas fa-pen-square'></i></a></div>";
+                                        echo"</div>";     
+                                    }
+                                echo " </div>";
+
+                                echo "<div class='cell small-12 grid-x grid-margin-x p-4 m-4'>";
+                                for ($page=1;$page<=$number_of_pages; $page++) {
+                                    
+                                    echo "<div class='cell small-1'>
+                                                <a class='btn-small waves-effect  waves-light z-depth-4";
+                                    if ($page == $_GET['page']) {
+                                        echo " red ";
+                                    } else {
+                                        echo " blue-grey ";
+                                    }
+                                    echo "darken-1 white-text' href='./dashboard.php?page=".$page."'>".$page."</a>
+                                        </div>";           
+                                }
+                                echo "<br/><br/><h5 class='cell small-12 '><span class='left'>PAGE ".$current_page_number." </span><span class='red-text h6 right'>Number of results: ".$number_of_results."</span></h5>";
+                                echo "</div>";
                             }
-                            else {
-                                console.log('Dashboard update form JS error !!');
-                            }
-
-                        });
-                    </script>
-                </div>
+                        ?>
             </div>
             <div class="pass_dashboard center dashdoard_container">
                 <div class='grid-x center'>

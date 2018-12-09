@@ -10,13 +10,13 @@ CREATE TABLE persons (
     first_name VARCHAR(128) NOT NULL,
     last_name VARCHAR (128) NOT NULL,
     street_address_1 VARCHAR(128) NOT NULL,
-    street_address_2 VARCHAR(128) NOT NULL, 
+    street_address_2 VARCHAR(128), 
     city VARCHAR(64) NOT NULL, 
     province VARCHAR(2) NOT NULL, 
     postal_code VARCHAR(6) NOT NULL, 
     primary_phone_number VARCHAR(15) NOT NULL, 
-    secondry_phone_number VARCHAR(15) NOT NULL, 
-    fax_number VARCHAR(15) NOT NULL,
+    secondry_phone_number VARCHAR(15), 
+    fax_number VARCHAR(15),
     preferred_contact_method VARCHAR(1) NOT NULL
 );
 

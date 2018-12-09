@@ -20,7 +20,7 @@ if (!isset($_SESSION['username_s'])){
     $session_message = [];
     $session_message[] = "Unauthorized access blocked.";
     $_SESSION['cookies_message'] = $session_message;   
-    header('Location: login.php');
+    header('Location: ./login.php');
     ob_flush();  //Flush output buffer
 }
 ?>
@@ -45,13 +45,21 @@ if (!isset($_SESSION['username_s'])){
 
         if (isset($_GET['city'])) {
             $city_select = sum_check_box($_GET['city']);
-            setcookie('city_select', $city_select, time() + (60*60*24*30));
+            setcookie('city_select', $city_select, time() + COOKIES_EXP);
         } else {
-            $session_message = [];
-            $session_message[] = "Please select any city";
-            $_SESSION['cookies_message'] = $session_message;
-            header("Location: listing_city_select.php");
-            ob_flush();
+            if (isset($_GET['city_value'])) {
+                $get_city_value = [];
+                $get_city_value_string = $_GET['city_value'];
+                // $get_city_value[] = $get_city_value_string;
+                // $get_city_value[] = sum_check_box($get_city_value);
+                setcookie('city_select', $get_city_value_string, time() + COOKIES_EXP);
+            } else {
+                $session_message = [];
+                $session_message[] = "Please select any city";
+                $_SESSION['cookies_message'] = $session_message;
+                header("Location: ./listing_city_select.php");
+                ob_flush();
+            }
         }
              
     } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -63,15 +71,15 @@ if (!isset($_SESSION['username_s'])){
         $max_price = trimT('max_price');
         $city_select = $_COOKIE['city_select'];
 
-        setcookie('search_string', $search, time() + (60*60*24*30));
-        setcookie('search_bedrooms', $bedrooms, time() + (60*60*24*30));
+        setcookie('search_string', $search, time() + COOKIES_EXP);
+        setcookie('search_bedrooms', $bedrooms, time() + COOKIES_EXP);
 
         if ($min_price >= $max_price) {
             $errors[] = "Max Price should be greater than Min Price.";
         } else {
         
-        setcookie('search_min_price', $min_price, time() + (60*60*24*30));
-        setcookie('search_max_price', $max_price, time() + (60*60*24*30));
+        setcookie('search_min_price', $min_price, time() + COOKIES_EXP);
+        setcookie('search_max_price', $max_price, time() + COOKIES_EXP);
 
         $conn = db_connect();
         $output = "";
@@ -102,6 +110,7 @@ if (!isset($_SESSION['username_s'])){
     
         $result = pg_query($conn, $sql);     
         $data = pg_fetch_assoc($result);
+        $record = $data;
         $user_id_array = [];
         while($data = pg_fetch_assoc($result)) {
             $user_id_array[] = $data['listing_id'];
@@ -113,15 +122,13 @@ if (!isset($_SESSION['username_s'])){
                     if (pg_num_rows($result) > 0) {
 
                         if (pg_num_rows($result) == 1) {
-                            header("Location: /listing_display.php?listing_id='".$data['listing_id']."'");
+                            header("Location: ./listing_display.php?listing_id='".$record['listing_id']."'");
+                            ob_flush();
+                        } else {
+                            $_SESSION['search_pg_fetch_assoc'] = $user_id_array;
+                            header('Location: ./listing_matches.php');
                             ob_flush();
                         }
-                        //  print_r($errors);
-                        // output data of each row
-                        $_SESSION['search_pg_fetch_assoc'] = $user_id_array;
-                        print_r($_SESSION['search_pg_fetch_assoc']);
-                        header('Location: listing_search_result.php');
-                        ob_flush();
                     } else {
                         $errors[] = "No result found. Please expand your search.";            
                     }
@@ -153,8 +160,12 @@ if (!isset($_SESSION['username_s'])){
     <div class='card m-4 p-4'>
         <h3> You have selected the following cities: </h3>
         <h6>
-        <?php           
-            display_selected_checkbox("city", "property" , "value", $city_select)
+        <?php   
+            if (isset($city_select)){
+                display_selected_checkbox("city", "property" , "value", $city_select);
+            } else {
+                display_selected_checkbox("city", "property" , "value", $get_city_value_string);
+            }
         ?>
         </h6>
         <h5 class="grey-text text-lighten-1">To change your selection <a href='listing_city_select.php' class="red-text text-lighten-1">click here</a>.</h5>

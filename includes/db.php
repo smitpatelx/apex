@@ -199,6 +199,25 @@ function display_selected_checkbox($table, $column_1 , $column_2, $sticky) {
     echo $output;
 }
 
+function display_bandage($table, $column_1 , $column_2, $sticky) {
+    $conn = db_connect();
+    $output = "";
+
+    $sql = "SELECT * FROM $table ";
+    $result = pg_query($conn, $sql);
+    if (pg_num_rows($result) > 0) {
+        // output data of each row
+        
+        while($row = pg_fetch_assoc($result)) {
+            if ( (int)$sticky & (int)$row["$column_2"] ){
+                $output .= "<span class='new badge mt-1 waves-effect waves-block waves-light z-depth-4' data-badge-caption='".ucwords($row["$column_1"])."'></span>";
+            }         
+        }            
+    }
+
+    echo $output;
+}
+
 function build_radio($value, $sticky) {
     $conn = db_connect();
     $output = "";

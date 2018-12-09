@@ -19,7 +19,7 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
     $session_message = [];
     $session_message[] = "Unauthorized access blocked.";
     $_SESSION['cookies_message'] = $session_message;   
-    header('Location: login.php');
+    header('Location: ./login.php');
     ob_flush();  //Flush output buffer
 }
 ?>
@@ -65,18 +65,21 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         $dsh_post_pet_friendly = trimT('pet_friendly');
         $dsh_post_postal_code = trimT('postal_code');
         $dsh_post_contact = trimT('dsh_post_contact');
-        $dsh_post_file = trim('dsh_post_file');  
+        if (isset($_POST['dsh_post_file'])) {
+            $dsh_post_file = trim('dsh_post_file');
+        }
+          
         $property_options = isset($_POST['property_option'])?sum_check_box($_POST['property_option']):0;                  
         
         $conn = db_connect();
 
         // echo "Sumn of property_options: " . $property_options;
-        setcookie('property_options', $property_options, time() + (60*60*24*30));
-        setcookie('dsh_post_images', $dsh_post_images, time() + (60*60*24*30));
-        setcookie('dsh_post_city', $dsh_post_city, time() + (60*60*24*30));
-        setcookie('dsh_post_bedrooms', $dsh_post_bedrooms, time() + (60*60*24*30));
-        setcookie('dsh_post_bathrooms', $dsh_post_bathrooms, time() + (60*60*24*30));
-        setcookie('dsh_post_pet_friendly', $dsh_post_pet_friendly, time() + (60*60*24*30));
+        setcookie('property_options', $property_options, time() + COOKIES_EXP);
+        setcookie('dsh_post_images', $dsh_post_images, time() + COOKIES_EXP);
+        setcookie('dsh_post_city', $dsh_post_city, time() + COOKIES_EXP);
+        setcookie('dsh_post_bedrooms', $dsh_post_bedrooms, time() + COOKIES_EXP);
+        setcookie('dsh_post_bathrooms', $dsh_post_bathrooms, time() + COOKIES_EXP);
+        setcookie('dsh_post_pet_friendly', $dsh_post_pet_friendly, time() + COOKIES_EXP);
 
         $currentDir = getcwd();
         $today = "day_".date("m_d_Y");
@@ -104,7 +107,10 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
             $changedName = $time.$fileName;
             $uploadPath = $currentDir . $uploadDirectory . basename($changedName); 
             $storage_path = $uploadDirectory . basename($changedName);
-            if (! in_array($fileExtension,$fileExtensions)) {
+
+            if (!isset($_POST['dsh_post_file']) || $_POST['dsh_post_file'] == "") {
+                $storage_path = "./images/no_image.svg";
+            } else if (! in_array($fileExtension,$fileExtensions)) {
                 $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file.";
             }
 
@@ -165,26 +171,28 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                 $errors[] = "This canadian postal code is invalid"; 
                 $dsh_post_postal_code = "";
             }
-                
+                //ss
             if (empty($errors)) {          
 
                     $dsh_post_status = LISTING_STATUS_OPEN;
                     $user_id = $_SESSION['user_id_s'];
-                    $features = json_encode($features);
+                    // $features = json_encode($features);
                     $created_on = date("Y-m-d",time());
 
                     $sql = "INSERT INTO listings ( status, price, headline, description, postal_code, images, images_path, city, property_options, bedrooms, bathrooms, address, area, contact, pets_friendly, user_id, created_on) 
                     VALUES ( \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15 ,\$16, \$17)";
 
                     $stmt = pg_prepare($conn, 'create_post', $sql);
-                    $result = pg_execute($conn, 'create_post', array($dsh_post_status, $dsh_post_price, $dsh_post_head, $dsh_post_desc, 
+                    
+                 
+                    if (false != $stmt) {
+                        // $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+
+                        if ($storage_path != "") {
+                            $result = pg_execute($conn, 'create_post', array($dsh_post_status, $dsh_post_price, $dsh_post_head, $dsh_post_desc, 
                                         $dsh_post_postal_code, $dsh_post_images, $storage_path, $dsh_post_city, $property_options, $dsh_post_bedrooms, $dsh_post_bathrooms, 
                                         $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly, $user_id, $created_on));
-                 
-                    if (false != $result) {
-                        $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
-                        if ($didUpload) {
                             $session_message[] = "Post created successfully.";
                             $_SESSION['cookies_message'] = $session_message;
                             user_redirection();

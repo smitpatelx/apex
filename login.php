@@ -96,13 +96,15 @@ if (isset($_SESSION['user_type_s'])){
             $currentUserType = pg_fetch_array($result2);
             $_SESSION['user_type_s'] = $currentUserType['user_type'];
             $_SESSION['username_s'] = $currentUserType['user_name'];
+            $_SESSION['first_name_s'] = $currentUserType['first_name'];
+            $_SESSION['last_name_s'] = $currentUserType['last_name'];
             $_SESSION['last_access_s'] = $currentUserType['last_access'];
             $_SESSION['user_id_s'] = $currentUserType['user_id'];
 
             if (isset($rememberme))
             {
               $cookie_user = ($_SESSION['username_s']);
-              setcookie('USER[user]', $cookie_user, time() + (60*60*24*30));
+              setcookie('USER[user]', $cookie_user, time() + COOKIES_EXP);
               $cookies_message[] = "Cookie set for 30 days.";
             }
             else

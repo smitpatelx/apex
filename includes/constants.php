@@ -89,5 +89,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 	define("LISTING_STATUS_OPEN", "o");
 	define("LISTING_STATUS_CLOSE", "c");
 	define("LISTING_STATUS_SOLD", "s");
+	define("LISTING_STATUS_HIDE", "h");
 
+	define("COOKIES_EXP", 2592000);
 ?>
