@@ -15,13 +15,22 @@ CREATE TABLE users (
     last_name VARCHAR (128) NOT NULL,
     email_address VARCHAR(40) NOT NULL,
     street_address_1 VARCHAR(128) NOT NULL,
+<<<<<<< HEAD
     street_address_2 VARCHAR(128), 
+=======
+    street_address_2 VARCHAR(128) NOT NULL, 
+>>>>>>> 5a03d788a70a72822cda86d705291dd82127a05a
     city VARCHAR(64) NOT NULL, 
     province VARCHAR(2) NOT NULL, 
     postal_code VARCHAR(6) NOT NULL, 
     primary_phone_number VARCHAR(25) NOT NULL, 
+<<<<<<< HEAD
     secondry_phone_number VARCHAR(25), 
     fax_number VARCHAR(25),
+=======
+    secondry_phone_number VARCHAR(25) NOT NULL, 
+    fax_number VARCHAR(25) NOT NULL,
+>>>>>>> 5a03d788a70a72822cda86d705291dd82127a05a
     preferred_contact_method VARCHAR(1) NOT NULL,
     enrol_date DATE NOT NULL,
     last_access DATE NOT NULL

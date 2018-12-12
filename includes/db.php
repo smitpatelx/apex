@@ -159,6 +159,7 @@ function build_checkbox($table, $column_1 , $column_2, $sticky) {
     echo $output;
 }
 
+<<<<<<< HEAD
 function get_checkbox_value($table, $column_1 , $column_2, $sticky) {
     $conn = db_connect();
     $output = "";
@@ -218,6 +219,8 @@ function display_bandage($table, $column_1 , $column_2, $sticky) {
     echo $output;
 }
 
+=======
+>>>>>>> 5a03d788a70a72822cda86d705291dd82127a05a
 function build_radio($value, $sticky) {
     $conn = db_connect();
     $output = "";
@@ -231,9 +234,15 @@ function build_radio($value, $sticky) {
             $output .= "<div id='preferred_contact_method'>";      
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
+<<<<<<< HEAD
                 $output .= "<input name='contact_method' type='radio' value='".$row['method']."'";
                 
                     if ( $row['method'] == $sticky ){
+=======
+                $output .= "<input name='contact_method' type='radio' value='".$row['value']."'";
+                
+                    if ( $row['value'] == $sticky ){
+>>>>>>> 5a03d788a70a72822cda86d705291dd82127a05a
                         $output .= " checked";
                     }
 
@@ -284,6 +293,7 @@ function build_radio($value, $sticky) {
     echo $output;
 }
 
+<<<<<<< HEAD
 function build_radio_for_images($json_decode, $sticky) {
     $conn = db_connect();
     $output = "";
@@ -367,5 +377,8 @@ function admin_provided_user_to_blacklist_btn($user_id, $listing_id) {
 
     return $return;
 }
+=======
+
+>>>>>>> 5a03d788a70a72822cda86d705291dd82127a05a
 
 ?>

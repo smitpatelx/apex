@@ -122,6 +122,9 @@ if (isset($_SESSION['user_type_s'])){
               //Redirect user to their respective pages, see functions.php
               user_redirection();
             }
+            $_SESSION['cookies_message'] = $cookies_message;
+            //Redirect user to their respective pages, see functions.php
+            user_redirection();
           }
           else
           {

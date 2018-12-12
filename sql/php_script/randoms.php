@@ -97,6 +97,7 @@ $provinces = ["AB",
 
 $p_c_m = ["e", "p", "l"];
 
+<<<<<<< HEAD
 $statuss = ["o", "c", "s", "h"];
 
 $property_optionss = [1 , 2, 4 ,8 ,16];
@@ -104,4 +105,6 @@ $property_optionss = [1 , 2, 4 ,8 ,16];
 $cityss = [1 , 2, 4 ,8 ,16, 32, 64, 128, 256];
 
 $pets_friendlys = [1, 2];
+=======
+>>>>>>> 5a03d788a70a72822cda86d705291dd82127a05a
 ?>
