@@ -83,10 +83,12 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
                     <li class="waves-effect my-2 mx-2"><a href="listing_city_select.php" class="nav-mobile-text">Listing</a></li>
                     <?php
                         //logout btn
-                        if (!empty($_SESSION['username_s'])){
+                        if (isset($_SESSION['username_s'])){
                             echo "<li class='waves-effect mx-2 my-2'><a href='logout.php' class='nav-mobile-text'>Log Out</a></li>";
-                            echo "<li class='waves-effect mx-2 my-2'><a href='update.php' class='nav-mobile-text'>Update</a></li>";
-                            echo "<li class='waves-effect mx-2 my-2'><a href='listing_create.php' class='nav-mobile-text'>Create Listing</a></li>";
+                            echo "<li class='waves-effect mx-2 my-2'><a href='user_update.php' class='nav-mobile-text'>Update</a></li>";
+                            if ($_SESSION['user_type_s'] == AGENT){
+                                echo "<li class='waves-effect mx-2 my-2'><a href='listing_create.php' class='nav-mobile-text'>Create Listing</a></li>";
+                            }
                         }
                         else{
                             echo "<li class='waves-effect my-2 mx-2'><a href='login.php' class='nav-mobile-text'>Login</a></li>";
@@ -97,16 +99,19 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
                     <li class="waves-effect my-2 mx-2 dropdown_1">                       
                         <a href="#" class="nav-mobile-text white-text">Pages</a>                          
                         <div class="drop_1">
-                            <a href="admin.php">Admin</a>
-                            <a href="dashboard.php">Dashboard</a>
-                            <a href="listing-display.php">Listing Display</a>
-                            <a href="welcome.php">Welcome</a>
                             <?php
-                                //logout btn
-                                if (!empty($_SESSION['username_s'])){
-                                    echo "<a href='change-password.php'>Change Password</a>";
-                                    echo "<a href='update.php'>Update</a>";
-                                }
+                                if (isset($_SESSION['username_s'])){
+                                    if ($_SESSION['user_type_s'] == ADMIN){
+                                        echo "<a href='admin.php'>Admin</a>";
+                                    }else if ($_SESSION['user_type_s'] == AGENT){
+                                        echo "<a href='dashboard.php'>Dashboard</a>";
+                                    }else if ($_SESSION['user_type_s'] == CLIENT){
+                                        echo " <a href='welcome.php'>Welcome</a>";
+                                    }
+                                    echo "<a href='change-password.php'>Change Password</a>";                                  
+                                } else {
+                                    echo "<a href='#'>&#x1F603;</a>";
+                                }                            
                             ?>
                         </div>
                     </li>                

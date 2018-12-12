@@ -231,9 +231,9 @@ function build_radio($value, $sticky) {
             $output .= "<div id='preferred_contact_method'>";      
             while($row = pg_fetch_assoc($result)) {
                 $output .= "<p><label>";
-                $output .= "<input name='contact_method' type='radio' value='".$row['value']."'";
+                $output .= "<input name='contact_method' type='radio' value='".$row['method']."'";
                 
-                    if ( $row['value'] == $sticky ){
+                    if ( $row['method'] == $sticky ){
                         $output .= " checked";
                     }
 
@@ -284,6 +284,88 @@ function build_radio($value, $sticky) {
     echo $output;
 }
 
+function build_radio_for_images($json_decode, $sticky) {
+    $conn = db_connect();
+    $output = "";
 
+    $sql = "SELECT * FROM preferred_contact_method ";
+    $result = pg_query($conn, $sql);
+    if (pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+
+        $output .= "<div class='row'>"; 
+        $output .= "<div id='main_image' class='col s12 row'>"; 
+        $output .= "<h3 class=' center grey-text dosis'>Select Main Image</h3>";
+        for ( $i=0 ; $i < count($json_decode) ; $i++){
+            // output data of each row    
+
+            $output .= "<p class='col s4'><label>";
+            $output .= "<input name='main_image' type='radio' value='".$i."'";
+            
+                if ( $i == $sticky ){
+                    $output .= " checked";
+                }
+
+            $output .= "/>";   
+            $output .= "<span>"."<img style='width:6em;height:6em;border-radius:50%;' src='".$json_decode[$i]."' alt='bg' />"."</span>";    
+            $output .= "</label></p>";     
+                                   
+        }
+        $output .= "</div>"; 
+    }
+
+    echo $output;
+}
+
+function admin_add_listing_to_blacklist_btn($user_id, $listing_id) {
+    $conn = db_connect();
+    $return = "";
+    $sql = "SELECT * FROM offensives WHERE listing_id=$listing_id";
+    $query = pg_query($conn, $sql);
+
+    if(pg_num_rows($query) > 0) {
+        $return = "<a class='mx-2 btn waves-effect waves-light green darken-2 white-text' href='./add_to_offending.php?listing_id=".$listing_id."&method=unhide'>Remove from blacklist
+        </a>";
+    } else {
+        $return = "<a class='mx-2 btn waves-effect waves-light red darken-2 white-text' href='./add_to_offending.php?listing_id=".$listing_id."&method=hide'>Add to blacklist
+        </a>";
+    }
+
+    return $return;
+}
+
+function admin_add_user_to_blacklist_btn($user_id, $listing_id) {
+    $conn = db_connect();
+    $return = "";
+    $sql = "SELECT * FROM users WHERE user_type='d' AND user_id::VARCHAR='$user_id'";
+    $query = pg_query($conn, $sql);
+
+    if(pg_num_rows($query) > 0) {
+        $return = "<a class='mx-2 btn waves-effect waves-light yellow darken-4 white-text' href='./add_to_offending.php?listing_id=".$listing_id."&method=enable_user'>Enable This User
+        </a>";
+    } else {
+        $return = "<a class='mx-2 btn waves-effect waves-light red darken-2 white-text' href='./add_to_offending.php?listing_id=".$listing_id."&method=disable_user'>Disable This User
+        </a>";
+    }
+
+    return $return;
+}
+
+function admin_provided_user_to_blacklist_btn($user_id, $listing_id) {
+    $conn = db_connect();
+    $return = "";
+    $sql = "SELECT * FROM users WHERE user_type='d' AND user_id::VARCHAR='$user_id'";
+    $query = pg_query($conn, $sql);
+
+    if(pg_num_rows($query) > 0) {
+        $return = "<a class='mx-2 btn waves-effect waves-light yellow darken-4 white-text' href='./add_to_offending.php?listing_id=".$listing_id."&method=enable_provided_user&user=".$user_id."'>Enable This User
+        </a>";
+    } else {
+        $return = "<a class='mx-2 btn waves-effect waves-light red darken-2 white-text' href='./add_to_offending.php?listing_id=".$listing_id."&method=disable_provided_user&user=".$user_id."'>Disable This User
+        </a>";
+    }
+
+    return $return;
+}
 
 ?>

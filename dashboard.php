@@ -141,7 +141,8 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                                             echo "<div class='cell small-2'>".$row["price"]."</div>";
                                             echo "<div class='cell small-2'>".$row["contact"]."</div>";
                                             echo "<div class='cell small-2'>".listing_status_symbol($row["status"])."</div>";
-                                            echo "<div class='cell small-2'><a class='btn red' href='./".$row["user_id"]."'><i class='fas fa-trash'></i></a><a class='btn teal lighten-1 mx-1' href='./listing_update.php?listing_id=".$row["listing_id"]."'><i class='fas fa-pen-square'></i></a></div>";
+                                            //<a class='btn red' href='./".$row["user_id"]."'><i class='fas fa-trash'></i></a>
+                                            echo "<div class='cell small-2'><a class='btn teal lighten-1 mx-1' href='./listing_update.php?listing_id=".$row["listing_id"]."'><i class='fas fa-pen-square'></i></a></div>";
                                         echo"</div>";     
                                     }
                                 echo " </div>";

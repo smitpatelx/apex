@@ -41,7 +41,7 @@ $desc = "Admin Page of QualityLife";
 
 	<div class="message-box">
 	<h1>Access Denied</h1>
-	<p>User login required to access this page.</p>
+	<p>Your account is still in process (pending). Wait for approval.</p>
 	<div class="buttons-con">
 		<div class="action-link-wrap">
 		<a onclick="history.back(-1)" class="link-button link-back-button">Go Back</a>

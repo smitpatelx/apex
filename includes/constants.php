@@ -45,7 +45,7 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 	//form constants @ends
 
 	//listing @start
-	define('MAX_FILE', '2097152' );
+	define('MAX_FILE', 100000);
 
 	define('MAX_HEADING', '60' );
 	define('MIN_HEADING', '6' );
@@ -92,4 +92,5 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
 	define("LISTING_STATUS_HIDE", "h");
 
 	define("COOKIES_EXP", 2592000);
+	define("MAX_UPLOAD_IMAGE", 6);
 ?>

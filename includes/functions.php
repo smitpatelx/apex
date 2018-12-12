@@ -130,6 +130,28 @@ function user_redirection() {
     }else if ($_SESSION['user_type_s'] == CLIENT){
         header("LOCATION: ./welcome.php");
         ob_flush();  //Flush output buffer
+    }else if ($_SESSION['user_type_s'] == PENDING){
+        header("LOCATION: ./405.php");
+        ob_flush();  //Flush output buffer
+    }
+}
+
+function user_not_valid_redirect($user_type) {
+    if ($user_type == ADMIN){
+        header("LOCATION: ./admin.php");
+        ob_flush();  //Flush output buffer
+    }else if ($user_type == AGENT){
+        header("LOCATION: ./dashboard.php");
+        ob_flush();  //Flush output buffer
+    }else if ($user_type == DISABLED){
+        header("LOCATION: ./aup.php");
+        ob_flush();  //Flush output buffer
+    }else if ($user_type == CLIENT){
+        header("LOCATION: ./welcome.php");
+        ob_flush();  //Flush output buffer
+    }else if ($user_type == PENDING){
+        header("LOCATION: ./405.php");
+        ob_flush();  //Flush output buffer
     }
 }
 
@@ -181,17 +203,17 @@ function is_bit_set($power, $decimal) {
 } 
 
 function listing_status_symbol($status) {
-    $echo = "";
+    $return_status = "";
     if ($status == LISTING_STATUS_OPEN) {
-        $echo ="<i class='fas fa-circle' style='color:#18c959;'></i>OPEN";
+        $return_status ="<i class='fas fa-circle' style='color:#18c959;'></i>OPEN";
     } else if ($status == LISTING_STATUS_CLOSE) {
-        $echo ="<i class='fas fa-circle' style='color:#c91826;'></i>CLOSE";
+        $return_status ="<i class='fas fa-circle' style='color:#c91826;'></i>CLOSE";
     } else if ($status == LISTING_STATUS_SOLD) {
-        $echo ="<i class='fas fa-circle' style='color:#eae025;'></i>SOLD";
+        $return_status ="<i class='fas fa-circle' style='color:#eae025;'></i>SOLD";
     } else if ($status == LISTING_STATUS_HIDE) {
-        $echo ="<i class='fas fa-circle' style='color:#b5b5b5;'></i>HIDDEN";
+        $return_status ="<i class='fas fa-circle' style='color:#b5b5b5;'></i>HIDDEN";
     }
-    return $echo;
+    return $return_status;
 }
 
 /*
@@ -213,10 +235,23 @@ function sum_check_box($array)
 	return $sum;
 }
 
-function decode_check_box($value)
-{
-    $array = [];
-    
+
+function like_button($userid, $listing_id) {
+    $output = "";
+
+    $conn = db_connect();
+    $sql = "SELECT * FROM favourites WHERE user_id::VARCHAR='$userid' AND listing_id=$listing_id";
+    $query = pg_query($conn, $sql);
+
+    if(pg_num_rows($query) > 0) {
+        $output = "<a class='btn waves-effect waves-light red darken-2 white-text' href='./favourite.php?listing_id=".$listing_id."&method=dislike'><i class='fas fa-heart'></i> You Liked This
+        </a>";
+    } else {
+        $output = "<a class='btn waves-effect waves-light red darken-2 white-text' href='./favourite.php?listing_id=".$listing_id."&method=like'><i class='fas fa-heart'></i> Like
+        </a>";
+    }
+
+    return $output;
 }
 
 ?>

@@ -63,6 +63,16 @@ $(".create_post_dashboard").hide(0);
 $(".dashboard_loader").delay(1400).fadeOut('slow');
 
 $(document).ready(function () {
+    setTimeout(function () {
+        $.get("admin_post_result.php", {
+            "search": "%",
+            "status": "p"
+        }, function ($data) {
+            $(".agent_result").html($data);
+        })
+
+    }, 600);
+    
     $(".postbtn_dashboard").click(function () {
         $(".dashboard_loader").show();
         $(".create_post_dashboard").hide(400);
@@ -82,6 +92,8 @@ $(document).ready(function () {
                 $(".result").html($data);
             });
         }, 600);
+
+        
         //FOR LIVE SEARCH ON DASHBOARD @end
     });
     $(".passbtn_dashboard").click(function () {
@@ -167,6 +179,48 @@ $(".posts_search").on("input", function () {
     }
 });
 //FOR LIVE SEARCH ON DASHBOARD @end
+
+//FOR LIVE SEARCH ON ADMIN
+$(".agent_search").on("input", function () {
+    $search = $(".agent_search").val();
+    $status = $(".agent_status").val();
+    if ($search.length > 0) {
+        $.get("admin_post_result.php", {
+            "search": $search,
+            "status": $status
+        }, function ($data) {
+            $(".agent_result").html($data);
+        })
+    } else if ($search.length == 0) {
+        $.get("admin_post_result.php", {
+            "search": "%",
+            "status": $status
+        }, function ($data) {
+            $(".agent_result").html($data);
+        })
+    }
+});
+
+$(".agent_status").on('change', function () {
+    $search = $(".agent_search").val();
+    $status = $(".agent_status").val();
+    if ($search.length > 0) {
+        $.get("admin_post_result.php", {
+            "search": $search,
+            "status": $status
+        }, function ($data) {
+            $(".agent_result").html($data);
+        })
+    } else if ($search.length == 0) {
+        $.get("admin_post_result.php", {
+            "search": "%",
+            "status": $status
+        }, function ($data) {
+            $(".agent_result").html($data);
+        })
+    }
+});
+//FOR LIVE SEARCH ON ADMIN @end
 $('.slides').slick({
     infinite: true,
     speed: 600,

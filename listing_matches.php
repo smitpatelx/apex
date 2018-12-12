@@ -79,7 +79,7 @@ if (!isset($_SESSION['username_s'])){
         $sql .= ") AND bedrooms = '$bedrooms'
             AND ( price >= $min_price 
             AND price <= $max_price )
-            AND status = 'o'
+            AND ( status ='o' OR status ='s' )
             ORDER BY listings.created_on DESC ";
 
         $result = pg_query($conn, $sql);
@@ -90,6 +90,8 @@ if (!isset($_SESSION['username_s'])){
         $number_of_pages = ceil($number_of_results/$results_per_page);
 
         $current_page_number = isset($_GET['page'])?$_GET['page']:$_GET['page']='1';
+        $_SESSION['listing_matches.php'] = isset($_GET['page'])?$_GET['page']:$_GET['page']='1';
+        
         echo "<div class='grid-x grid-margin-x p-4 m-4'>";
         echo "<a class='cell small-2 small-offset-5 btn waves-effect waves-block waves-light z-depth-4 blue-grey lighten-2 white-text btn-rounded' href='./listing_city_select.php'><i class='fas fa-chevron-left'></i> BACK</a>";
         echo "<h5 class='cell small-12 '><span class='left'>PAGE ".$current_page_number." </span><span class='red-text h6 right'>Number of results: ".$number_of_results."</span></h5>";
@@ -127,7 +129,7 @@ if (!isset($_SESSION['username_s'])){
         $sql2 .= ") AND bedrooms = '$bedrooms'
             AND ( price >= $min_price 
             AND price <= $max_price )
-            AND status = 'o'
+            AND ( status ='o' OR status ='s' )
             ORDER BY listings.created_on DESC LIMIT '$results_per_page' OFFSET '$this_page_first_result'";
 
         $result = pg_query($conn, $sql2);

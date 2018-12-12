@@ -54,7 +54,7 @@ if (empty($_SESSION['username_s']) || (($_SESSION['user_type_s'] != AGENT) && ($
     echo "<td>".$row2["area"]." sqft </td>";
     echo "<td>".$row2["contact"]."</td>";
     echo "<td>".listing_status_symbol($row2["status"])."</td>";
-    echo "<td><a class='btn red' href='./".$row2["user_id"]."'><i class='fas fa-trash'></i></a><a class='btn teal lighten-1 mx-1' href='./".$row2["user_id"]."'><i class='fas fa-pen-square'></i></a></td>";
+    echo "<td><a class='btn teal lighten-1 mx-1' href='./listing_update.php?listing_id=".$row2["listing_id"]."'><i class='fas fa-pen-square'></i></a></td>";
     echo "</tr>";
     }
     ?>       

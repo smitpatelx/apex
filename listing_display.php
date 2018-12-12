@@ -34,7 +34,13 @@ if (isset($_GET["listing_id"])) {
   $conn = db_connect();
   $output = "";
   $listing_id = $_GET["listing_id"];
-  $sql = "SELECT * FROM listings WHERE listing_id = $listing_id ORDER BY listings.created_on DESC";
+
+  if ( $_SESSION['user_type_s']==ADMIN){
+    $sql = "SELECT * FROM listings WHERE listing_id = $listing_id ORDER BY listings.created_on DESC";
+  }else {
+    $sql = "SELECT * FROM listings WHERE listing_id = $listing_id AND ( status ='o' OR status ='s' ) ORDER BY listings.created_on DESC";
+  }
+  
 
 	$result = pg_query($conn, $sql);
 	// $records = pg_num_rows($result);
@@ -54,7 +60,30 @@ if (isset($_GET["listing_id"])) {
             $image_link = "./images/no_image.svg";
         }
 
+        $last_page = isset($_SESSION['listing_matches.php'])?$_SESSION['listing_matches.php']:"1";
+        
+        
+
+        $user_id = $row['user_id'];
+
         echo "<div class='grid-x my-4'>";
+        echo "<a class='cell small-2 small-offset-5 btn waves-effect waves-block waves-light z-depth-4 blue-grey lighten-2 white-text btn-rounded' onclick='history.back(-1)'><i class='fas fa-chevron-left'></i> BACK</a>";
+        if ($_SESSION['user_type_s'] == ADMIN) {
+            echo "<div class='row cell small-12'>";
+            echo "<div class='input-field center'>";
+            echo  admin_add_listing_to_blacklist_btn($_SESSION['user_id_s'], $listing_id);
+            echo  admin_add_user_to_blacklist_btn($_SESSION['user_id_s'], $listing_id);
+            echo "</div>";
+            echo "</div>";
+        } else if ($_SESSION['user_type_s'] == CLIENT) {
+            echo "<div class='row cell small-12'>";
+            echo "<div class='input-field center'>";
+            echo like_button($_SESSION['user_id_s'], $listing_id);
+            echo  admin_add_listing_to_blacklist_btn($_SESSION['user_id_s'], $listing_id);
+            echo "</div>";
+            echo "</div>";
+        }
+        
             echo "<div class='cell large-6 large-offset-3'>";
                 echo  "<div class='card z-depth-4 hoverable' data-aos='zoom-out'>";
                     echo  "<div class='card-image waves-effect waves-block waves-light'>";
@@ -88,6 +117,11 @@ if (isset($_GET["listing_id"])) {
         echo"</div>";
         echo"</div>";
         }
+    } else {
+        $session_message = [];
+        $session_message[] = "You are not allowed to see this listing.";
+        $_SESSION['cookies_message'] = $session_message;
+        echo "<script> window.history.go(-1); </script>";
     }
 } else {
     header('Location: ./listing_search.php');

@@ -48,7 +48,7 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         $dsh_post_pet_friendly = isset($_COOKIE['dsh_post_pet_friendly'])?$_COOKIE['dsh_post_pet_friendly']:"2";
         $dsh_post_postal_code = "";
         $dsh_post_contact = "";
-        $dsh_post_file = "";
+        // $dsh_post_file = "";
         $property_options = isset($_COOKIE['property_options'])?$_COOKIE['property_options']:0;      
 
     } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -65,9 +65,9 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         $dsh_post_pet_friendly = trimT('pet_friendly');
         $dsh_post_postal_code = trimT('postal_code');
         $dsh_post_contact = trimT('dsh_post_contact');
-        if (isset($_POST['dsh_post_file'])) {
-            $dsh_post_file = trim('dsh_post_file');
-        }
+        // if (isset($_POST['dsh_post_file'])) {
+        //     $dsh_post_file = trim('dsh_post_file');
+        // }
           
         $property_options = isset($_POST['property_option'])?sum_check_box($_POST['property_option']):0;                  
         
@@ -88,35 +88,35 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         // mkdir("./images/".$today);
         //echo $uploadDirectory."<br/>";
 
-        if (!file_exists($uploadDirectory)) //if file dont exist
-        {
-            mkdir("./images/".$today);
-            $_SERVER['PHP_SELF']; //call file again after creating directory
-        }    
-            $fileExtensions = ['jpeg','jpg','png']; // Get all the file extensions
+        // if (!file_exists($uploadDirectory)) //if file dont exist
+        // {
+        //     mkdir("./images/".$today);
+        //     $_SERVER['PHP_SELF']; //call file again after creating directory
+        // }    
+            // $fileExtensions = ['jpeg','jpg','png']; // Get all the file extensions
 
-            $fileName = $_FILES['dsh_post_file']['name'];
-            $fileSize = $_FILES['dsh_post_file']['size'];
-            $fileTmpName  = $_FILES['dsh_post_file']['tmp_name'];
-            $fileType = $_FILES['dsh_post_file']['type'];
-            $explode = explode('.',$fileName);
-            $end = end($explode);
-            $strtolower = strtolower($end);
-            $fileExtension = $strtolower;
+            // $fileName = $_FILES['dsh_post_file']['name'];
+            // $fileSize = $_FILES['dsh_post_file']['size'];
+            // $fileTmpName  = $_FILES['dsh_post_file']['tmp_name'];
+            // $fileType = $_FILES['dsh_post_file']['type'];
+            // $explode = explode('.',$fileName);
+            // $end = end($explode);
+            // $strtolower = strtolower($end);
+            // $fileExtension = $strtolower;
 
-            $changedName = $time.$fileName;
-            $uploadPath = $currentDir . $uploadDirectory . basename($changedName); 
-            $storage_path = $uploadDirectory . basename($changedName);
+            // $changedName = $time.$fileName;
+            // $uploadPath = $currentDir . $uploadDirectory . basename($changedName); 
+            // $storage_path = $uploadDirectory . basename($changedName);
 
-            if (!isset($_POST['dsh_post_file']) || $_POST['dsh_post_file'] == "") {
-                $storage_path = "./images/no_image.svg";
-            } else if (! in_array($fileExtension,$fileExtensions)) {
-                $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file.";
-            }
+            // if (!isset($_POST['dsh_post_file']) || $_POST['dsh_post_file'] == "") {
+            //     $storage_path = "./images/no_image.svg";
+            // } else if (! in_array($fileExtension,$fileExtensions)) {
+            //     $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file.";
+            // }
 
-            if ($fileSize > MAX_FILE) {
-                $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB.";
-            }
+            // if ($fileSize > MAX_FILE) {
+            //     $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB.";
+            // }
 
             if (!isset($dsh_post_head) || $dsh_post_head == "") {
                 $errors[] = "Heading field is empty";
@@ -179,27 +179,26 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                     // $features = json_encode($features);
                     $created_on = date("Y-m-d",time());
 
-                    $sql = "INSERT INTO listings ( status, price, headline, description, postal_code, images, images_path, city, property_options, bedrooms, bathrooms, address, area, contact, pets_friendly, user_id, created_on) 
-                    VALUES ( \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14, \$15 ,\$16, \$17)";
+                    $sql = "INSERT INTO listings ( status, price, headline, description, postal_code, images, city, property_options, bedrooms, bathrooms, address, area, contact, pets_friendly, user_id, created_on, main_image) 
+                    VALUES ( \$1, \$2, \$3, \$4, \$5, \$6, \$7, \$8, \$9, \$10, \$11, \$12, \$13, \$14 ,\$15, \$16, \$17)";
 
-                    $stmt = pg_prepare($conn, 'create_post', $sql);
+                    // $stmt = pg_prepare($conn, 'create_post', $sql);
                     
                  
-                    if (false != $stmt) {
+                    if ($stmt = pg_prepare($conn, 'create_post', $sql)) {
                         // $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+                        $main_image = 0;
 
-                        if ($storage_path != "") {
-                            $result = pg_execute($conn, 'create_post', array($dsh_post_status, $dsh_post_price, $dsh_post_head, $dsh_post_desc, 
-                                        $dsh_post_postal_code, $dsh_post_images, $storage_path, $dsh_post_city, $property_options, $dsh_post_bedrooms, $dsh_post_bathrooms, 
-                                        $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly, $user_id, $created_on));
+                        $result = pg_execute($conn, 'create_post', array($dsh_post_status, $dsh_post_price, $dsh_post_head, $dsh_post_desc, 
+                                    $dsh_post_postal_code, $dsh_post_images, $dsh_post_city, $property_options, $dsh_post_bedrooms, $dsh_post_bathrooms, 
+                                    $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly, $user_id, $created_on, $main_image));
 
-                            $session_message[] = "Post created successfully.";
-                            $_SESSION['cookies_message'] = $session_message;
-                            user_redirection();
-                            ob_flush();  //Flush output buffer                           
-                        } else {
-                            $error[] = "Image upload unsuccessful. Maybe filesize is more than 2 mb.";
-                        }
+                        $session_message[] = "Post created successfully.";
+                        $_SESSION['cookies_message'] = $session_message;
+                        user_redirection();  
+                                                
+                    } else {
+                        $error[] = "Prepare statment fail.";
                     }
                                    
             } else {
@@ -227,7 +226,7 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                 <label for="heading">Post Heading</label>
             </div>
             <div class="input-field col s12">
-                <textarea id="description" name="dsh_post_description" class="materialize-textarea" value="<?php echo $dsh_post_desc; ?>"></textarea>
+                <textarea id="description" name="dsh_post_description" class="materialize-textarea" ><?php echo $dsh_post_desc; ?></textarea>
                 <label for="description">Description</label>
             </div>          
             <div class="input-field col s6">
@@ -262,16 +261,16 @@ if (!isset($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                 <input type="text" id='contact' name="dsh_post_contact" class="validate" value="<?php echo $dsh_post_contact; ?>"/>
                 <label for="contact">Contact</label>
             </div>
-            <div class="file-field input-field col s12">
+            <!-- <div class="file-field input-field col s12">
                 <h6  class="grey-text text-lighten-1">Images</h6>
                 <div class="btn">
                     <span>File</span>
-                    <input type="file" name="dsh_post_file" value="<?php echo $dsh_post_file; ?>"/>
+                    <input type="file" name="dsh_post_file" value="<?php //echo $dsh_post_file; ?>"/>
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path validate" type="text" id="Upload_one_or_more_files" name="dsh_post_file1"/>                               
                 </div>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="file-field input-field col s12">
                     <h6 class="grey-text text-lighten-1">Pet Friendly</h6>

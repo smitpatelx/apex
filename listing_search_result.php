@@ -69,7 +69,7 @@ if (!isset($_SESSION['username_s'])){
 
         $conn = db_connect();
 
-        $sql = "SELECT * FROM listings WHERE user_id = '$user_id_result'";
+        $sql = "SELECT * FROM listings WHERE user_id = '$user_id_result' AND ( status ='o' OR status ='s' ) ";
         $result = pg_query($conn, $sql);
         
         while($row = pg_fetch_assoc($result)){

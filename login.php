@@ -17,7 +17,7 @@ $desc = "Dashboard Page of QualityLife";
 require('header.php');
 if (isset($_SESSION['user_type_s'])){
   $session_message = [];
-  $session_message[] = "Logout required to access login page.";
+  $session_message[] = "This page is not available.";
   $_SESSION['cookies_message'] = $session_message;
   user_redirection();
 }
@@ -93,29 +93,35 @@ if (isset($_SESSION['user_type_s'])){
             // pg_query($dbconn, $result1);
 
     
-            $currentUserType = pg_fetch_array($result2);
-            $_SESSION['user_type_s'] = $currentUserType['user_type'];
-            $_SESSION['username_s'] = $currentUserType['user_name'];
-            $_SESSION['first_name_s'] = $currentUserType['first_name'];
-            $_SESSION['last_name_s'] = $currentUserType['last_name'];
-            $_SESSION['last_access_s'] = $currentUserType['last_access'];
-            $_SESSION['user_id_s'] = $currentUserType['user_id'];
+            $data = pg_fetch_array($result2);
 
-            if (isset($rememberme))
-            {
-              $cookie_user = ($_SESSION['username_s']);
-              setcookie('USER[user]', $cookie_user, time() + COOKIES_EXP);
-              $cookies_message[] = "Cookie set for 30 days.";
+            if ($data['user_type']==PENDING || $data['user_type']==DISABLED) {
+               user_not_valid_redirect($data['user_type']);
+            } else {
+              
+              $_SESSION['user_type_s'] = $data['user_type'];
+              $_SESSION['username_s'] = $data['user_name'];
+              $_SESSION['first_name_s'] = $data['first_name'];
+              $_SESSION['last_name_s'] = $data['last_name'];
+              $_SESSION['last_access_s'] = $data['last_access'];
+              $_SESSION['user_id_s'] = $data['user_id'];
+
+              if (isset($rememberme))
+              {
+                $cookie_user = ($_SESSION['username_s']);
+                setcookie('USER[user]', $cookie_user, time() + COOKIES_EXP);
+                $cookies_message[] = "Cookie set for 30 days.";
+              }
+              else
+              {
+                unset($_COOKIE['USER[user]']);
+                setcookie( 'USER[user]',  $_SESSION['username_s'], time()-3600);
+                $cookies_message[] = "Cookie Destroyed.";
+              }
+              $_SESSION['cookies_message'] = $cookies_message;
+              //Redirect user to their respective pages, see functions.php
+              user_redirection();
             }
-            else
-            {
-              unset($_COOKIE['USER[user]']);
-              setcookie( 'USER[user]',  $_SESSION['username_s'], time()-3600);
-              $cookies_message[] = "Cookie Destroyed.";
-            }
-            $_SESSION['cookies_message'] = $cookies_message;
-            //Redirect user to their respective pages, see functions.php
-            user_redirection();
           }
           else
           {
@@ -182,6 +188,10 @@ if (isset($_SESSION['user_type_s'])){
                 <a class="btn waves-effect waves-light blue lighten-1" href="./register.php">Register
                     <i class="fas fa-user-plus ml-1"></i>
                 </a>
+            </div>
+            <div class="input-field col s12">
+              <a class="btn waves-effect waves-light grey white-text" href="./forget_password.php">Forget Password
+              </a>
             </div>
         </div>
 

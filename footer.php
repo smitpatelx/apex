@@ -19,11 +19,9 @@ DESCRIPTION:			Allows users to login to their profiles or allows new users to cr
                 <div class="col l6 s12 center">
                     <h4 class="white-text pl-2">Pages</h4>
                     <ul>
-                        <li><a class="white-text shift-right" href="index.php" data-splitting>HOME</a></li>
-                        <li><a class="white-text shift-right" href="listing.php" data-splitting>LISTING</a></li>
-                        <li><a class="white-text shift-right" href="login.php" data-splitting>LOGIN</a></li>
-                        <li><a class="white-text shift-right" href="admin.php" data-splitting>ADMIN</a></li>
-                        <li><a class="white-text shift-right" href="dashboard.php" data-splitting>DASHBOARD</a></li>
+                        <li><a class="white-text shift-right" href="./index.php" data-splitting>HOME</a></li>
+                        <li><a class="white-text shift-right" href="./privacy_policy.php" data-splitting>PRIVACY POLICY</a></li>
+                        <li><a class="white-text shift-right" href="./aup.php" data-splitting>AUP</a></li>
                     </ul>
                 </div>
             </div>

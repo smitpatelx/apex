@@ -481,6 +481,29 @@ flex: 1 0 auto;
 }
 
 
+.slides_image_upload {
+    width:60%;
+    position: relative;
+    height:30em;
+    filter:brightness(80%);
+    transform: translateY(-4em);
+    z-index: -1;
+    animation:scale-1 1s ease-in-out forwards 1;
+    transition: 0.5s;
+    object-fit: cover;
+    overflow: hidden;
+    margin:5em 0 0 20%;
+
+    img{
+        width: 60em;
+        transform: scale(1, 1.2);
+        height:50em;
+        overflow: hidden;
+        margin-top: -5em;
+        transform: translateY(-5em);
+    }
+}
+
 //FOOTER
 /*****************************************************************/
 

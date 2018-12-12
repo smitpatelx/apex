@@ -220,7 +220,7 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
 
                     $sql = "UPDATE listings SET status=\$1 , price=\$2 , headline=\$3 , description=\$4 , postal_code=\$5, 
                     images=\$6, images_path=\$7, city=\$8, property_options=\$9, bedrooms=\$10, bathrooms=\$11, 
-                    address=\$12, area=\$13, contact=\$14, pets_friendly=\$15 
+                    address=\$12, area=\$13, contact=\$14, pets_friendly=\$15 ,main_image=\$16
                     WHERE listings.user_id::VARCHAR = '$user_id' AND listings.listing_id::VARCHAR = '$display_listing_id' ";
                     echo $sql;
                     $stmt = pg_prepare($conn, 'update_post', $sql);
@@ -230,14 +230,14 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
                         // $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
 
                         if ($storage_path != "") {
+                            $main_image = 0;
                             $result = pg_execute($conn, 'update_post', array($dsh_post_status, $dsh_post_price, $dsh_post_head, $dsh_post_desc, 
                                         $dsh_post_postal_code, $dsh_post_images, $storage_path, $dsh_post_city, $property_options, $dsh_post_bedrooms, $dsh_post_bathrooms, 
-                                        $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly));
+                                        $dsh_post_address, $dsh_post_area, $dsh_post_contact, $dsh_post_pet_friendly, $main_image));
 
                             $session_message[] = "Post updated successfully.";
                             $_SESSION['cookies_message'] = $session_message;
-                            user_redirection();
-                            ob_flush();  //Flush output buffer                           
+                            user_redirection();                         
                         } else {
                             $error[] = "Image upload unsuccessful. Maybe filesize is more than 2 mb.";
                         }
@@ -264,7 +264,7 @@ if (empty($_SESSION['username_s']) || $_SESSION['user_type_s'] != AGENT){
         <h2 class='cell medium-5 medium-offset-4 center red-text dosis'>Update Post</h2>
         <div class='cell medium-5 medium-offset-4 center p-4'>
             <!-- <input type="submit" class="btn waves-effect waves-light cayan lighten-1" name="submit"> -->
-            <a class="btn grey darken-2 waves-effect waves-light z-depth-4 white-text" href="./listing_images.php?image_id='<?php echo $_GET['listing_id']; ?>'">
+            <a class="btn grey darken-2 waves-effect waves-light z-depth-4 white-text" href="./listing_images.php?listing_id=<?php echo $_GET['listing_id']; ?>">
                 <i class="fas fa-image"></i> IMAGES 
             </a>
         </div>

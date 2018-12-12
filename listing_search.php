@@ -38,7 +38,9 @@ if (!isset($_SESSION['username_s'])){
     if ($_SERVER["REQUEST_METHOD"] == "GET") {
         
         $search = isset($_COOKIE['search_string'])?$_COOKIE['search_string']:"";
-        // $city = isset($_GET['city_value'])?$_GET['city_value']:$_COOKIE['search_city'];
+        $search_pet_friendly = isset($_COOKIE['search_pet_friendly'])?$_COOKIE['search_pet_friendly']:"2";
+        $search_bathrooms =  isset($_COOKIE['search_bathrooms'])?$_COOKIE['search_bathrooms']:"2";
+        $search_postal_code =  isset($_COOKIE['search_postal_code'])?$_COOKIE['search_postal_code']:"";
         $bedrooms = isset($_COOKIE['search_bedrooms'])?$_COOKIE['search_bedrooms']:4;
         $min_price = isset($_COOKIE['search_min_price'])?$_COOKIE['search_min_price']:100000;
         $max_price = isset($_COOKIE['search_max_price'])?$_COOKIE['search_max_price']:1600000;
@@ -65,14 +67,19 @@ if (!isset($_SESSION['username_s'])){
     } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $search = strtolower(trimT('search'));
-        // $city = strtolower(trimT('city'));
+        $search_postal_code = trimT('postal_code');
+        $search_pet_friendly = trimT('pet_friendly');
         $bedrooms = trimT('bedrooms');
+        $search_bathrooms = trimT('bathrooms');
         $min_price = trimT('min_price');
         $max_price = trimT('max_price');
         $city_select = $_COOKIE['city_select'];
 
         setcookie('search_string', $search, time() + COOKIES_EXP);
         setcookie('search_bedrooms', $bedrooms, time() + COOKIES_EXP);
+        setcookie('search_postal_code', $search_postal_code, time() + COOKIES_EXP);
+        setcookie('search_pet_friendly', $search_pet_friendly, time() + COOKIES_EXP);
+        setcookie('search_bathrooms', $search_bathrooms, time() + COOKIES_EXP);
 
         if ($min_price >= $max_price) {
             $errors[] = "Max Price should be greater than Min Price.";
@@ -96,10 +103,13 @@ if (!isset($_SESSION['username_s'])){
         $sql .= $str;
         $sql .= ") AND bedrooms = '$bedrooms'
             AND ( price >= $min_price 
-            AND price <= $max_price )
-            AND status = 'o'
+            AND price <= $max_price ) 
+            AND bathrooms = '$search_bathrooms' 
+            AND postal_code LIKE '%$search_postal_code%'
+            AND pets_friendly = $search_pet_friendly 
+            AND ( status = 'o' OR status = 's' )
             ORDER BY listings.created_on DESC  LIMIT 200";
-
+        echo $sql;
     //         SELECT listings.listing_id FROM listings 
 	// WHERE 1 = 1 AND (listings.city = 4 OR listings.city = 8 OR listings.city = 64) 
 	// AND (listings.bedrooms = 16 OR listings.bedrooms = 32) 
@@ -188,10 +198,23 @@ if (!isset($_SESSION['username_s'])){
             <?php build_dropdown("bedrooms", "value","bedrooms", "No of bedrooms", $bedrooms); ?>
         </div>
         <div class="input-field col s6">
+            <?php build_dropdown("bathrooms", "value","bathrooms", "No of bathrooms", "$search_bathrooms"); ?>
+        </div>  
+        <div class="input-field col s6">
+            <input id="postal_code" name="postal_code" type="text" class="validate" value="<?php echo $search_postal_code; ?>"/>
+            <label for="postal_code">Postal Code</label>
+        </div>
+        <div class="input-field col s6">
             <?php build_dropdown2("search_price", "property_v", "property","min_price", "Minimum Price", $min_price); ?>
         </div>
         <div class="input-field col s6">
             <?php build_dropdown2("search_price", "property_v", "property","max_price", "Maximum Price", $max_price); ?>
+        </div>
+        <div class="row">
+            <div class="file-field input-field col s12">
+                <h6 class="grey-text text-lighten-1">Pet Friendly</h6>
+                <?php build_radio("pet_friendly", "$search_pet_friendly"); ?>
+            </div>
         </div>
         <div class="input-field col s12 center">
             <button class="btn grey darken-2 waves-effect waves-light z-depth-4" type="submit" name="search_btn">Search
