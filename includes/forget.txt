@@ -1,0 +1,21 @@
+
+To : dhrumil@netdevv.com
+Subject : User Password Reset
+ Body : <br/><br/>Hi dhrumil bhavsar<br/>Your new Password : 6DMi@zPp<br/><br/>We advice you to change your password within 24 hrs.<br/>Thankyou for using <a href='https://netdevv.com'>NETDEVV.COM</a>
+ Header : From: services@netdevv.com
+Reply-To: services@netdevv.com
+X-Mailer: PHP/7.2.11
+
+To : dhrumil@netdevv.com
+Subject : User Password Reset
+ Body : <br/><br/>Hi dhrumil bhavsar<br/>Your new Password : G3@wudWP<br/><br/>We advice you to change your password within 24 hrs.<br/>Thankyou for using <a href='https://netdevv.com'>NETDEVV.COM</a>
+ Header : From: services@netdevv.com
+Reply-To: services@netdevv.com
+X-Mailer: PHP/7.2.11
+
+To : dhrumil@netdevv.com
+Subject : User Password Reset
+ Body : <br/><br/>Hi dhrumil bhavsar<br/>Your new Password : fu#p5YHV<br/><br/>We advice you to change your password within 24 hrs.<br/>Thankyou for using <a href='https://netdevv.com'>NETDEVV.COM</a>
+ Header : From: services@netdevv.com
+Reply-To: services@netdevv.com
+X-Mailer: PHP/7.2.11

@@ -201,6 +201,10 @@ if (!empty($_SESSION['username_s'])){
         $username = "";
       }
 
+      if ($user_type==AGENT) {
+        $user_type = PENDING;
+      }
+
       $conn = db_connect();
       $sql_u = "SELECT * FROM users WHERE user_name='$username'";
       $sql_e = "SELECT * FROM users WHERE email_address='$email'";

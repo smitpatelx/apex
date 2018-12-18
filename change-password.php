@@ -16,7 +16,10 @@ $desc = "Change Password Page of QualityLife";
 require('header.php');
 
 if (empty($_SESSION['username_s'])){
-    header('Location: ./405.php');
+    $session_message = [];
+    $session_message[] = "Login required to access this page";
+    $_SESSION['cookies_message'] = $session_message;   
+    header('Location: ./login.php');
     ob_flush();  //Flush output buffer
 }
 ?>
@@ -82,10 +85,11 @@ if (empty($_SESSION['username_s'])){
 
                     $result1 = pg_execute($dbconn, 'user_last_access', array($_SESSION['username_s'], $current_password) );
 
-                    $session_message = [];
-                    $session_message[] = "Password Changed Successfully";
-                    $_SESSION['cookies_message'] = $session_message;
-                    user_redirection();
+                        $session_message = [];
+                        $session_message[] = "Password Changed Successfully";
+                        $_SESSION['cookies_message'] = $session_message;
+                        header('Location: ./logout.php');
+                        ob_flush();  //Flush output buffer
                     }
                 
             } else {

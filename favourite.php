@@ -42,7 +42,9 @@ if (!isset($_SESSION['username_s']) || $_SESSION['username_s']!=CLIENT){
 
             if($method == "like") {
                 $sql="INSERT INTO favourites ( user_id, listing_id ) VALUES ( $user_id, $listing_id)";
+                $sql2="UPDATE listings SET status='s' WHERE listing_id=$listing_id";
                 if( $query=pg_query($conn,$sql) ) {
+                    $query2=pg_query($conn,$sql2);
                     echo "LIKE";
                     $session_message[] = "Post liked.";
                     $_SESSION['cookies_message'] = $session_message;
@@ -57,7 +59,9 @@ if (!isset($_SESSION['username_s']) || $_SESSION['username_s']!=CLIENT){
             } elseif ($method == "dislike") {
                 
                 $sql="DELETE FROM favourites WHERE user_id::VARCHAR='$user_id' AND listing_id = $listing_id";
+                $sql2="UPDATE listings SET status='o' WHERE listing_id=$listing_id";
                 if( $query=pg_query($conn,$sql) ) {
+                    $query2=pg_query($conn,$sql2);
                     echo "DISLIKE";
                     $session_message[] = "Post disliked.";
                     $_SESSION['cookies_message'] = $session_message;

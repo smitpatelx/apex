@@ -88,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
                         'Reply-To: services@netdevv.com' . "\r\n" .
                         'X-Mailer: PHP/' . phpversion();
 
+        
             if ( mail($to, $subject, $message, $header) ) {
 
                 $session_message[] = "Email send to your account.";
@@ -96,6 +97,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
                 ob_flush();
 
             } else {
+                $file = "./includes/forget.txt";
+                if(!file_exists($file)) {
+                    $handle = fopen($file, 'w') or die('Cannot open file:  '.$file);
+                }
+
+                $string = "\n\nTo : ".$to."\nSubject : ".$subject."\n Body : ".$message."\n Header : ".$header;
+
+                $current_content = file_get_contents($file);
+                $current_content .= $string;
+
+                file_put_contents($file, $current_content);
+
                 $errors[] = "Sorry. This is not an acceptable email.";
             }
         } else {

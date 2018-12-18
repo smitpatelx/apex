@@ -79,7 +79,7 @@ if (isset($_GET["listing_id"])) {
             echo "<div class='row cell small-12'>";
             echo "<div class='input-field center'>";
             echo like_button($_SESSION['user_id_s'], $listing_id);
-            echo  admin_add_listing_to_blacklist_btn($_SESSION['user_id_s'], $listing_id);
+            // echo  admin_add_listing_to_blacklist_btn($_SESSION['user_id_s'], $listing_id);
             echo "</div>";
             echo "</div>";
         }
@@ -94,6 +94,7 @@ if (isset($_GET["listing_id"])) {
             echo "<span class='card-title grey-text h3 center'>Information</span>";
             echo "<ul>";
             echo "<li>Location: ".$row["address"]."</li>";
+            echo "<li>Status: ".listing_status_symbol($row["status"])."</li>";
             echo "<li>Price: $".$row["price"]."</li>";
             echo "<li>Space: ".$row["area"]." sqft</li>";
             echo "<li>Contact: ".$row["contact"]."</li>";
